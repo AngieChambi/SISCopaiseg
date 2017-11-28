@@ -1,0 +1,28 @@
+{% extends "main/dashboard.html" %}
+<!--
+@copyright   Copyright (c) 2014 Submit Consulting
+@author      Angel Sullon (@asullom)
+@package     sad
+Descripcion: Create/Update group
+-->
+{% load i18n crispy_forms_tags %} {% load l10n %} 
+{% block breadcrumbs_item %}
+<li><a href="{% url 'ventas:ventadetalle_list' %}">{{opts.verbose_name_plural|capfirst}}</a></li>
+<li class="active">{{ title }}</li>
+{% endblock breadcrumbs_item %}
+ {% block content_title %} {{ opts.verbose_name|capfirst }} | <small>{{ title }}</small> {% endblock content_title %} {% block content %}
+<div class="container panel panel-defaul row">
+    <form action="" method="post">
+        <div class="col-md-6">
+            {{ form|crispy }} {% csrf_token %}
+        </div>
+        <div class="col-md-12 row">
+            <button type="submit" class="btn  btn-primary col-md-3">Agregar</button>
+            <a href="{% url 'ventas:ventadetalle_list' %}" class="col-md-3 btn btn-danger">Cancelar</a>
+        </div>
+    </form>
+</div>
+{% endblock %} {% block extrajs %} {{ block.super }}
+<script type="text/javascript">
+</script>
+{% endblock extrajs %}

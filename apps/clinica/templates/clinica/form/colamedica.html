@@ -1,0 +1,25 @@
+{% extends "main/dashboard.html" %}
+{% load i18n crispy_forms_tags %}
+{% load l10n %}
+
+{% block breadcrumbs_item %}
+<li><a href="/clinica/colamedica/listar/">{{ opts.verbose_name_plural|capfirst }}</a></li>
+<li class="active">{{ title }}</li>
+{% endblock breadcrumbs_item %}
+
+{% block page_title %}
+	<i class="fa fa-paw"></i>dddddddddddd
+	{{ opts.verbose_name_plural|capfirst }}
+	<small>
+		{{ subtitle }}
+	</small>
+{% endblock page_title %}
+
+{% block page_content %}
+
+	{% crispy form %}
+
+{% endblock page_content %}
+
+{% block extrajs %}
+{% endblock extrajs %}

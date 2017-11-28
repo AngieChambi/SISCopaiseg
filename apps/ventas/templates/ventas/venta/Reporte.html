@@ -1,0 +1,233 @@
+{% extends "main/dashboard.html" %} {% load i18n app_security staticfiles%} {% load i18n crispy_forms_tags %} {% load l10n humanize %} {% block style %}
+<link href="{% static 'clivet/ventas.css' %}" rel="stylesheet"> {% endblock style %}{% block breadcrumbs_item %}
+<li class="active"> {{ opts.verbose_name_plural|capfirst }}</li>
+{% endblock breadcrumbs_item %} {% block page_title %} <i class="fa fa-files-o"></i> {{title}}{% endblock page_title %} {% block page_content %}
+<div class=""="container-fluid  ">
+    <div class="panel panel-success">
+        <div class="panel-heading panel-titulo-detalle">
+            <div class="col-md-3">
+                <h4 class="text-bold"> <i class="fa fa-search"></i> Buscar por:</h4>
+            </div>
+            <div class="col-md-6">
+                <input autofocus="autofocus" type="none" class="form-control  busqueda-venta-imput " value="{{cliente.id}}" placeholder="Buscar cliente">
+            </div>
+            <div class="col-md-3">
+                <input id="busqueda-producto-imput" type="none" autofocus="autofocus" placeholder="FECHA" class="form-control datepicker busqueda-venta-imput ">
+            </div>
+        </div>
+        <div class="panel-body">
+            <table class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th width="5%" class="text-center tr-title-reporte">#</th>
+                        <th width="15%" class="text-center tr-title-reporte">Fecha de Venta</th>
+                        <th width="30%" class="text-center tr-title-reporte">Cliente</th>
+                        <th width="20%" class="text-center tr-title-reporte">Igv</th>
+                        <th width="20%" class="text-center tr-title-reporte">Total</th>
+                        <th width="10%" class="text-center tr-title-reporte">Detalle</th>
+                    </tr>
+                </thead>
+                <tbody class="datos">
+                    {% for d in object_list %}
+                    <tr>
+                        <td class="text-center td-reporte">{% if is_paginated %} {{ page_obj.start_index|add:forloop.counter0 }} {% else %} {{ forloop.counter }} {% endif %}
+                        </td>
+                        <td class="text-center td-reporte">{{ d.fechav|date:'Y-m-d'}}</td>
+                        <td class="text-left td-reporte">{{ d.cliente }}</td>
+                        <td class="text-right td-reporte">{{ d.igv }}</td>
+                        <td class="text-right td-reporte">{{ d.total}}</td>
+                        <td class="text-center">
+                            <a href="{% url 'ventas:detalle_go' d.pk %}" class="btn btn-lg btn-success" title="Ver detalle de la Venta" rel="tooltip">
+                                <span class="glyphicon glyphicon-th-list"></span>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="panel-footer">
+            <div class="row totales">
+                {% if is_paginated %} {% load paginator %} {% paginator %} {% else %}
+                <div class="col-md-12">
+                    <ul class="breadcrumbpag">
+                        {{ object_list.count }} {% ifequal object_list.count 1 %}{{ opts.verbose_name|capfirst }}{% else %}{{ opts.verbose_name_plural|capfirst }}{% endifequal %}
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock page_content %} {% block extrajs %}
+<script src="{% static 'jquery-ui/jquery-ui.js' %}"></script>
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+    $(".busqueda-venta-imput").autocomplete({
+        source: "{% url 'ventas:get_cliente_venta' %}",
+        minLength: 0,
+        select: function(event, ui) {
+            console.log(event, ui);
+            id_cliente = ui.item.cliente_id;
+            id_mascota = ui.item.id;
+            mascota = ui.item.nombre_mascota;
+            var id = ui.item.cliente_id;
+
+            $.ajax({
+
+                data: {
+                    'id': id
+                },
+                url: '/ventas/cliente/filter/',
+                type: 'get',
+                success: function(data) {
+                    var object = JSON.parse(data);
+                    console.log(object);
+                    var list = "";
+                    var totales = "";
+
+                    var i;
+                    var totalg = 0;
+                    var igvg = 0;
+                    var subtg = 0;
+                    parseInt(i);
+                    for (i in object) {
+                        list = list + "<tr>" +
+                            "<td class='text-center td-reporte'>" + (parseInt(+"" + i + "") + 1) +
+                            "</td><td class='text-center td-reporte'>" + object[i].fecha +
+                            "</td><td class='text-left td-reporte'>" + object[i].cliente +
+                            "</td><td class='text-right td-reporte'>" + object[i].igv +
+                            "</td><td class='text-right td-reporte'>" + object[i].total +
+                            "</td><td class='text-center'><a href='" + object[i].id + "/' class='btn btn-lg btn-success' title='Ver detalle de la Venta'><span class='glyphicon glyphicon-th-list'></span></a></td></tr>";
+                        $('.datos').html(list);
+                        totalg = Math.ceil10(parseFloat(object[i].total) + totalg, -2);
+                        igvg = Math.ceil10(parseFloat(object[i].igv) + igvg, -2);
+
+
+                        console.log(i);
+                    }
+                    subtg = Math.ceil10(totalg - igvg, -2);
+                    totales = totales + "<div class='col-md-6'><p class='resumen-fecha'> RESUMEN TOTAL </p><p class='resumen-reporte text-center'>Veterinaria PepShop</p></div><div class='col-md-offset-2 col-md-2'><p class = 'resumen-d text-left'> Igv 18 % : </p><p class='resumen-d text-left'>Sub Total : </p><p class = 'resumen-d text-left'> Total: </p></div><div class = 'col-md-2' >" +
+                        "<p class = 'resumen-v text-right'> <span class='soles-reporte'>S/.</span>" + igvg + "</p>" +
+                        "<p class = 'resumen-v text-right'> <span class='soles-reporte'>S/.</span>" + subtg + "</p>" +
+                        "<p class = 'resumen-v total-v text-right'> <span class='soles-reporte'>S/. </span>" + totalg + "</p>";
+                    $('.totales').html(totales);
+                    console.log(totalg);
+                    console.log(igvg);
+                    console.log(subtg);
+                    console.log(object);
+
+                }
+            });
+        }
+    });
+});
+(function() {
+    function decimalAdjust(type, value, exp) {
+        if (typeof exp === 'undefined' || +exp === 0) {
+            return Math[type](value);
+        }
+        value = +value;
+        exp = +exp;
+        // Si el valor no es un número o el exp no es un entero...
+        if (isNaN(value) || !(typeof exp === 'number' && exp % 1 === 0)) {
+            return NaN;
+        }
+        // Shift
+        value = value.toString().split('e');
+        value = Math[type](+(value[0] + 'e' + (value[1] ? (+value[1] - exp) : -exp)));
+        // Shift back
+        value = value.toString().split('e');
+        return +(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp));
+    }
+    // Decimal round
+    if (!Math.round10) {
+        Math.round10 = function(value, exp) {
+            return decimalAdjust('round', value, exp);
+        };
+    }
+    // Decimal floor
+    if (!Math.floor10) {
+        Math.floor10 = function(value, exp) {
+            return decimalAdjust('floor', value, exp);
+        };
+    }
+    // Decimal ceil
+    if (!Math.ceil10) {
+        Math.ceil10 = function(value, exp) {
+            return decimalAdjust('ceil', value, exp);
+        };
+    }
+})();
+$(document).ready(function() {
+    $('#busqueda-producto-imput').datetimepicker({
+        format: 'YYYY-MM-DD',
+        //format: 'YYYY-MM-DD hh:mm:ss', //pata datatimes
+        language: 'es',
+        pickTime: false,
+        //showMeridian: true,
+        autoclose: true,
+        todayHighlight: true,
+    });
+    $('.datepicker').on('change', Fecha);
+
+    function Fecha() {
+        var fechav = $(this).val();
+        console.log(fechav);
+        $.ajax({
+            data: {
+                'fechav': fechav
+            },
+            url: '/ventas/date/filter/',
+            type: 'get',
+            success: function(data) {
+                var object = JSON.parse(data);
+                var list = "";
+                var totales = "";
+
+                var i;
+                var totalg = 0;
+                var igvg = 0;
+                var subtg = 0;
+                parseInt(i);
+                for (i in object) {
+                    list = list + "<tr>" +
+                        "<td class='text-center td-reporte'>" + (parseInt(+"" + i + "") + 1) +
+                        "</td><td class='text-center td-reporte'>" + object[i].fecha +
+                        "</td><td class='text-left td-reporte'>" + object[i].cliente +
+                        "</td><td class='text-right td-reporte'>" + object[i].igv +
+                        "</td><td class='text-right td-reporte'>" + object[i].total +
+                        "</td><td class='text-center'><a href='" + object[i].id + "/' class='btn btn-lg btn-success' title='Ver detalle de la Venta'><span class='glyphicon glyphicon-th-list'></span></a></td></tr>";
+                    $('.datos').html(list);
+                    totalg = Math.ceil10(parseFloat(object[i].total) + totalg, -2);
+                    igvg = Math.ceil10(parseFloat(object[i].igv) + igvg, -2);
+
+
+                    console.log(i);
+
+                }
+                subtg = Math.ceil10(totalg - igvg, -2);
+                totales = totales + "<div class='col-md-6'><p class='resumen-fecha'>" + fechav + "</p><p class='resumen-reporte'>RESUMEN TOTAL</p></div><div class='col-md-3'><p class = 'resumen-d text-left'> Igv 18 % : </p><p class='resumen-d text-left'>Sub Total : </p><p class = 'resumen-d text-left'> Total: </p></div><div class = 'col-md-3' >" +
+                    "<p class = 'resumen-v text-right'> <span class='soles-reporte'> S/. </span>" + igvg + "</p>" +
+                    "<p class = 'resumen-v text-right'> <span class='soles-reporte'> S/. </span>" + subtg + "</p>" +
+                    "<p class = 'resumen-v total-v text-right'> <span class='soles-reporte'>S/.</span>" + totalg + "</p>";
+                $('.totales').html(totales);
+                console.log(totalg);
+                console.log(igvg);
+                console.log(subtg);
+                console.log(object);
+                if (Object.keys(object).length === 0) {
+                    console.log('vacio ', object);
+                    list = list + "<td colspan='6' class='td-reporte text-center'>Ninguna Venta encontrada</td>";
+                    $('.datos').html(list);
+                }
+
+            }
+        });
+    }
+
+});
+</script>
+{% endblock extrajs %}

@@ -1,0 +1,698 @@
+{% load i18n crispy_forms_tags staticfiles %}
+{% load i18n app_security %}
+{% load l10n humanize %}
+<link rel="stylesheet" href="{% static 'assets/css/colorbox.css' %}" />
+<div class="row">
+    <div class="col-md-3">
+        <span class="input-icon input-icon-right" style="width:100%">
+            <input id="search" type="text" class="form-control" placeholder="Buscar...'" data-value="data"/>
+            <i class="ace-icon fa fa-search purple"></i>
+        </span>
+    </div>
+    <div class="col-md-9">
+        <div class="btn-group">
+            <button data-toggle="dropdown" class="btn btn-success dropdown-toggle" >
+                <i class="ace-icon fa fa-stethoscope align-top bigger-125"></i>
+                Nueva Atencion
+                <span class="ace-icon fa fa-caret-down icon-on-right"></span>
+            </button>
+            <ul class="dropdown-menu dropdown-warning">
+                    <li>
+                        <a  href="{% url 'clinica:consulta_add' id_mascota id_cola_medica  %}" >
+                        <i class="ace-icon fa fa-stethoscope red"></i>
+                        Nueva Consulta</a>
+                    </li>
+                <li>
+                    <a  data-toggle="modal" data-target="#myModal">
+                        <i class="ace-icon fa fa-eyedropper orange"></i>
+                        Aplicar Vacuna</a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="ace-icon fa fa-bug green"></i>
+                        Aplicar Antiparasitarios</a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="ace-icon fa fa-bug"></i>
+                        Aplicar Antipulgas</a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="ace-icon fa fa-user-md blue"></i>
+                        Ciriguía</a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="ace-icon fa fa-h-square purple"></i>
+                        Internamiento</a>
+                </li>
+            </ul>
+        </div><!-- /.btn-group -->
+
+        <a href="{% url 'clinica:nota_add'  id_mascota id_cola_medica id_cola_medica %}" class="btn btn-primary">
+            <i class="ace-icon fa fa-file-text-o align-center bigger-125"></i>
+            Nota
+        </a>
+
+        <button data-toggle="modal" data-target="#Modalarchivo" class="btn btn-default" style="border-width:3px">
+            <i class="ace-icon fa fa-cloud-upload align-top bigger-125"></i>
+            Adjuntar Archivo
+        </button>
+        <a href="#" id="agenda_medica" class="btn btn-warning" style="border-width:3px">
+            <i class="ace-icon fa fa-calendar align-top bigger-125"></i>
+            Agenda Medica
+        </a>
+        <a href="/clinica/atencion/terminada/ina/{{id_cola_medica|key:'colamedica_ina'}}/" class="btn btn-danger btn-sm text-bold" title="{% trans 'Terminar'|capfirst %} {% trans 'Atención' %}" rel="tooltip" style="padding: 6px 12px"><i class="btn-icon-only fa fa-flag"></i>
+            Terminar Atención
+        </a>
+    </div>
+</div>
+<div id="timeline-1">
+    <div class="row" >
+        <div class="col-xs-12 col-md-8" >
+            {% for d in historial %}
+            <!-- #section:pages/timeline -->
+            <div class="timeline-container">
+                <div class="timeline-label">
+                    <!-- #section:pages/timeline.label -->
+                    <span class="label label-primary arrowed-in-right label-lg">
+                        <b>{{d.created_ath}}</b>
+                    </span>
+                    <!-- /section:pages/timeline.label -->
+                </div>
+                <div class="timeline-items">
+                    <!-- /section:pages/timeline.item -->
+                    {% if d.archivosadjuntos_set.all %}
+                        <div class="timeline-item clearfix">
+                            <div class="timeline-info">
+                                <i class="timeline-indicator ace-icon fa fa-paperclip btn btn-success no-hover"></i>
+                            </div>
+
+                            <div class="widget-box transparent">
+                                <div class="widget-header">
+                                    <h5 class="widget-title smaller">Archivos Adjuntos</h5>
+
+                                    <span class="widget-toolbar no-border">
+                                        <i class="ace-icon fa fa-clock-o bigger-110"></i>
+                                        {{dd.created_time}}
+                                    </span>
+                                    <span class="widget-toolbar no-border">
+                                        <a href="#"
+                                        title="Medico Asignado">
+                                            <i class="green ace-icon fa fa-user"></i>
+                                            <span class="green"><small>{{d.colamedica.medico}}</small></span>
+                                        </a>
+                                    </span>
+
+                                </div>
+
+                                <div class="widget-body">
+                                    <div class="widget-main">
+                                        <ul class="ace-thumbnails clearfix">
+                                            {% for  dd in d.archivosadjuntos_set.all %}
+                                            <!-- #section:pages/gallery -->
+                                            <li>
+                                                <a href="{{MEDIA_URL}}{{dd.file}}" title="Photo Title" data-rel="colorbox">
+                                                    <img width="200" height="180" maxHeight="200" alt="150x150" src="{{MEDIA_URL}}{{dd.file}}" style="max-height:115px; min-height:115px"/>
+                                                </a>
+                                                <div class="tags">
+                                                    <span class="label-holder">
+                                                        <span class="label label-info">breakfast</span>
+                                                    </span>
+
+                                                    <span class="label-holder">
+                                                        <span class="label label-danger">fruits</span>
+                                                    </span>
+
+                                                    <span class="label-holder">
+                                                        <span class="label label-success">toast</span>
+                                                    </span>
+
+                                                    <span class="label-holder">
+                                                        <span class="label label-warning arrowed-in">diet</span>
+                                                    </span>
+                                                </div>
+
+                                                <div class="tools">
+                                                    <a href="#">
+                                                        <i class="ace-icon fa fa-link"></i>
+                                                    </a>
+
+                                                    <a href="#">
+                                                        <i class="ace-icon fa fa-paperclip"></i>
+                                                    </a>
+
+                                                    <a href="#">
+                                                        <i class="ace-icon fa fa-pencil"></i>
+                                                    </a>
+
+                                                    <a href="#">
+                                                        <i class="ace-icon fa fa-times red"></i>
+                                                    </a>
+                                                </div>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                        <div class="space-6"></div>
+
+                                        <div class="widget-toolbox clearfix">
+                                            <div class="pull-right action-buttons">
+                                                <div class="space-4"></div>
+
+                                                <div>
+                                                    <a href="#">
+                                                        <i class="ace-icon fa fa-heart red bigger-125"></i>
+                                                    </a>
+
+                                                    <a href="#">
+                                                        <i class="ace-icon fa fa-facebook blue bigger-125"></i>
+                                                    </a>
+
+                                                    <a href="#">
+                                                        <i class="ace-icon fa fa-reply light-green bigger-130"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% for dd in d.atencion_set.all %}
+                    <div class="timeline-item clearfix">
+                        <div class="timeline-info">
+                            <i class="timeline-indicator ace-icon fa fa-stethoscope btn btn-danger no-hover green"></i>
+                        </div>
+                        <div class="widget-box transparent">
+                            <div class="widget-header widget-header-small">
+                                <h5 class="widget-title smaller text-danger">Consulta</h5>
+                                <span class="widget-toolbar btn-group ">
+                                        <button data-toggle="dropdown" class="btn btn-default dropdown-toggle no-border btn-xs">
+                                            <i class="ace-icon fa fa-navicon"></i>
+                                            <span class="ace-icon fa fa-caret-down icon-on-right"></span>
+                                        </button>
+
+                                    <ul class="dropdown-menu dropdown-warning menu-opcion" id="consuta_{{dd.pk}}">
+                                            <li>
+                                                <a href="#" >
+                                                    <i class="ace-icon fa fa-dollar purple"></i>
+                                                    Facturar</a>
+                                            </li>
+
+                                            <li>
+                                                <a href="{% url 'clinica:consulta_update' id_mascota id_cola_medica d.pk dd.pk %}" disabled>
+                                                    <i class="ace-icon fa fa-pencil green"></i>
+                                                    Editar</a>
+                                            </li>
+
+                                            <li>
+                                                <a href="#">
+                                                    <i class="ace-icon fa fa-paperclip blue"></i>
+                                                    Adjuntar un archivo</a>
+                                            </li>
+
+                                            <li class="divider"></li>
+
+                                            <li>
+                                                <a href="{% url 'clinica:consulta_delete' id_mascota id_cola_medica dd.pk %}"
+                                                    class=" js-confirm text-bold" msg-title="Eliminar Consulta?." msg="Esta Seguro
+                                                       <br/>Recuerde esta operación no puede revertirse" title="Eliminar Cliente" rel="tooltip">
+                                                    <i class="ace-icon fa fa-remove red"></i>
+                                                    Eliminar</a>
+                                            </li>
+                                    </ul>
+                                </span><!-- /.btn-group -->
+                                <span class="widget-toolbar no-border">
+                                    <i class="ace-icon fa fa-clock-o bigger-110"></i>
+                                    9:15
+                                </span>
+                                <span class="widget-toolbar no-border">
+                                    <a href="#">
+                                        <i class="ace-icon fa fa-user"></i>
+                                    </a>
+                                </span>
+                            </div>
+                            <div class="widget-body">
+                                <div class="widget-main">
+                                    <ol>
+                                        <li>
+                                            <b>Anamnesis y/o Descripción:</b>
+                                            <ul class="list-unstyled">
+                                                <li>
+                                                    <p><i class="ace-icon fa fa-caret-right green fa-x2"></i> {{ dd.anamnesis}}</p>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <b>Examen Clínico:</b>
+                                            <ul class="list-unstyled">
+                                                {% for ddd in  dd.hallasgos_clinicos.all%}
+                                                <li>
+                                                    <p><i class="ace-icon fa fa-caret-right green fa-x2"></i>
+                                                        {{ddd.nombre}}
+                                                    </p>
+                                                </li>
+                                                {% endfor %}
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <b>Constantes:</b>
+                                            <div class="row">
+                                                <div class="col-xs-6">
+                                                    <ul class="list-unstyled">
+                                                        <li>
+                                                            <p><i class="ace-icon fa fa-caret-right green fa-x2"></i> <b>T°:</b>  {{dd.temperatura}}°C</p>
+                                                        </li>
+                                                        <li>
+                                                            <p><i class="ace-icon fa fa-caret-right green fa-x2"></i> <b>FC:</b>  {{dd.fc}}</p>
+                                                        </li>
+                                                        <li>
+                                                            <p><i class="ace-icon fa fa-caret-right green fa-x2"></i> <b>FR:</b>  {{dd.fr}}</p>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <ul class="list-unstyled">
+                                                        <li>
+                                                            <p><i class="ace-icon fa fa-caret-right green fa-x2"></i> <b>Peso:</b>  {{dd.kg}}</p>
+                                                        </li>
+                                                        <li>
+                                                            <p><i class="ace-icon fa fa-caret-right green fa-x2"></i> <b>Porcentaje:</b>  {{dd.porcentaje}}%</p>
+                                                        </li>
+                                                        <li>
+                                                            <p><i class="ace-icon fa fa-caret-right green fa-x2"></i> <b>TLC:</b>  {{dd.tlc}}</p>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <b>Dx:</b>
+                                            <ul class="list-unstyled">
+                                                <li>
+                                                    <p><i class="ace-icon fa fa-caret-right green fa-x2"></i> {{ dd.dx}}</p>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <b>Pruebas Auxiliares Requeridas:</b>
+                                            <ul class="list-unstyled">
+                                                {% for ddd in  dd.pruebas_auxiliares.all%}
+                                                    <li>
+                                                        <p><i class="ace-icon fa fa-caret-right green fa-x2"></i> {{ ddd.nombre}}</p>
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <b>Tratamiento:</b>
+                                            <ul class="list-unstyled">
+                                                {% for ddd in  dd.tratamiento.all%}
+                                                    <li>
+                                                        <p><i class="ace-icon fa fa-caret-right green fa-x2"></i> {{ ddd.nombre}}</p>
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        </li>
+                                    </ol>
+                                    <div class="space-6"></div>
+                                    <div class="widget-toolbox clearfix">
+                                        <div class="pull-right action-buttons">
+                                            <div class="space-4"></div>
+
+                                            <div>
+                                                <a href="#">
+                                                    <i class="ace-icon fa fa-heart red bigger-125"></i>
+                                                </a>
+
+                                                <a href="#">
+                                                    <i class="ace-icon fa fa-facebook blue bigger-125"></i>
+                                                </a>
+
+                                                <a href="#">
+                                                    <i class="ace-icon fa fa-reply light-green bigger-130"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% if d.notas_set.all %}
+
+                    <div class="timeline-item clearfix">
+                        <div class="timeline-info">
+                            <i class="timeline-indicator ace-icon fa fa-file-text-o btn btn-primary no-hover"></i>
+                        </div>
+
+                        <div class="widget-box transparent">
+                            <div class="widget-header widget-header-small">
+                                <h5 class="widget-title smaller">Nota</h5>
+                                <span class="widget-toolbar btn-group ">
+                                        <button data-toggle="dropdown" class="btn btn-default dropdown-toggle no-border btn-xs">
+                                            <i class="ace-icon fa fa-navicon"></i>
+                                            <span class="ace-icon fa fa-caret-down icon-on-right"></span>
+                                        </button>
+
+                                        <ul class="dropdown-menu dropdown-warning">
+                                            <li>
+                                                <a href="#">
+                                                    <i class="ace-icon fa fa-dollar purple"></i>
+                                                    Facturar</a>
+                                            </li>
+
+                                            <li>
+                                                <a href="#">
+                                                    <i class="ace-icon fa fa-pencil green"></i>
+                                                    Editar</a>
+                                            </li>
+
+                                            <li>
+                                                <a href="#">
+                                                    <i class="ace-icon fa fa-paperclip blue"></i>
+                                                    Adjuntar un archivo</a>
+                                            </li>
+
+                                            <li class="divider"></li>
+
+                                            <li>
+                                                <a href="#">
+                                                    <i class="ace-icon fa fa-remove red"></i>
+                                                    Eliminar</a>
+                                            </li>
+                                        </ul>
+                                    </span><!-- /.btn-group -->
+                                <span class="widget-toolbar no-border">
+                                    <i class="ace-icon fa fa-clock-o bigger-110"></i>
+                                    9:15
+                                </span>
+                                <span class="widget-toolbar no-border">
+                                    <a href="#">
+                                        <i class="ace-icon fa fa-user"></i>
+                                    </a>
+                                </span>
+                            </div>
+                            <div class="widget-body">
+                                <div class="widget-main">
+                                    {% for dd in d.notas_set.all %}
+                                    <ul>
+                                        <li>{{ dd.descripcion}}</li>
+                                    </ul>
+                                    {% endfor %}
+                                    <div class="space-6"></div>
+
+                                    <div class="widget-toolbox clearfix">
+                                        <div class="pull-right action-buttons">
+                                            <div class="space-4"></div>
+
+                                            <div>
+                                                <a href="#">
+                                                    <i class="ace-icon fa fa-heart red bigger-125"></i>
+                                                </a>
+
+                                                <a href="#">
+                                                    <i class="ace-icon fa fa-facebook blue bigger-125"></i>
+                                                </a>
+
+                                                <a href="#">
+                                                    <i class="ace-icon fa fa-reply light-green bigger-130"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% endif %}
+                    {% if d.vacunacion_set.all %}
+
+                    <div class="timeline-item clearfix">
+                        <div class="timeline-info">
+                            <i class="timeline-indicator ace-icon fa fa-eyedropper btn btn-warning"></i>
+                        </div>
+
+                        <div class="widget-box transparent">
+                            <div class="widget-header widget-header-small">
+                                <h5 class="widget-title smaller text-warning text-bold">Vacunas</h5>
+
+                                <span class="widget-toolbar no-border">
+                                    <a href="#">
+                                        <span class="text-warning text-bold"><i class="ace-icon fa fa-user"></i> <small>{{d.colamedica.medico}}</small></span>
+                                    </a>
+                                </span>
+                            </div>
+
+                            <div class="widget-body">
+                                <div class="widget-main">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>Hora</th>
+                                                    <th>Motivo</th>
+                                                    <th>Nombre</th>
+                                                    <th>Dosis</th>
+                                                    <th>Observación</th>
+                                                    <th class="text-center">Opciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for dd in d.vacunacion_set.all %}
+                                                <tr>
+                                                    <td>{{ dd.created_ath|date:'h:m:s'}}</td>
+                                                    <td>{{ dd.motivo}}</td>
+                                                    <td>{{ dd.vacuna}}</td>
+                                                    <td>{{ dd.dosis}}</td>
+                                                    <td>{{ dd.observacion}}</td>
+                                                    <td class="text-center"><a href="#" class="text-info" title="Editar" id="update_vacunacion"><i class="ace-icon fa fa-pencil  text-bold"></i></a>
+                                                    <a href="#" class="text-danger"><i class="ace-icon fa fa-remove  text-bold"></i></a></td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    <div class="space-6"></div>
+
+                                    <div class="widget-toolbox clearfix">
+                                        <div class="pull-right action-buttons">
+                                            <div class="space-4"></div>
+
+                                            <div>
+                                                <a href="#">
+                                                    <i class="ace-icon fa fa-heart red bigger-125"></i>
+                                                </a>
+
+                                                <a href="#">
+                                                    <i class="ace-icon fa fa-facebook blue bigger-125"></i>
+                                                </a>
+
+                                                <a href="#">
+                                                    <i class="ace-icon fa fa-reply light-green bigger-130"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% endif %}
+                </div><!-- /.timeline-items -->
+            </div><!-- /.timeline-container -->
+            <!-- /section:pages/timeline -->
+            {% endfor %}
+        </div>
+        <div class="col-xs-12 col-md-4">
+            <h4 class="red">
+                <i class="ace-icon fa fa-plus-square"></i>
+                Próximos Eventos</h4>
+            <div class="" style="border-left: 3px solid orange !important; border:1px solid #ddd">
+                <table id="simple-table" class="table">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <i class="ace-icon fa fa-calendar orange"></i>
+                                04/06</td>
+                            <td>Control</td>
+                            <td class="text-center">
+                                <a href="#"
+                                    class="text-bold"
+                                    title="Agregar Mascota" rel="tooltip">
+                                    <i class="btn-icon-only fa fa-check green"></i>
+                                </a>
+                                <a href="#" class=" text-bold" title="Cambiar Cliente" rel="tooltip">
+                                    <i class="btn-icon-only fa fa-pencil blue"></i>
+                                </a>
+                                <a href="#" class=" js-confirm text-bold" msg-title="Eliminar Cliente?." msg="Esta Seguro
+                                   <br/>Recuerde esta operación no puede revertirse" title="Eliminar Cliente" rel="tooltip">
+                                    <i class="btn-icon-only fa fa-trash-o red"></i>
+                                </a>
+                            </td>
+                        </tr>
+                            <tr>
+                                <td>
+                                    <i class="ace-icon fa fa-calendar orange"></i>
+                                    04/06</td>
+                                <td>Control</td>
+                                <td class="text-center">
+                                    <a href="#"
+                                        class="text-bold"
+                                        title="Agregar Mascota" rel="tooltip">
+                                        <i class="btn-icon-only fa fa-check green"></i>
+                                    </a>
+                                    <a href="#" class=" text-bold" title="Cambiar Cliente" rel="tooltip">
+                                        <i class="btn-icon-only fa fa-pencil blue"></i>
+                                    </a>
+                                    <a href="#" class=" js-confirm text-bold" msg-title="Eliminar Cliente?." msg="Esta Seguro
+                                       <br/>Recuerde esta operación no puede revertirse" title="Eliminar Cliente" rel="tooltip">
+                                        <i class="btn-icon-only fa fa-trash-o red"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                                <tr>
+                                    <td>
+                                        <i class="ace-icon fa fa-calendar orange"></i>
+                                        04/06</td>
+                                    <td>Control</td>
+                                    <td class="text-center">
+                                        <a href="#"
+                                            class="text-bold"
+                                            title="Agregar Mascota" rel="tooltip">
+                                            <i class="btn-icon-only fa fa-check green"></i>
+                                        </a>
+                                        <a href="#" class=" text-bold" title="Cambiar Cliente" rel="tooltip">
+                                            <i class="btn-icon-only fa fa-pencil blue"></i>
+                                        </a>
+                                        <a href="#" class=" js-confirm text-bold" msg-title="Eliminar Cliente?." msg="Esta Seguro
+                                           <br/>Recuerde esta operación no puede revertirse" title="Eliminar Cliente" rel="tooltip">
+                                            <i class="btn-icon-only fa fa-trash-o red"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                    <tr>
+                                        <td>
+                                            <i class="ace-icon fa fa-calendar orange"></i>
+                                            04/06</td>
+                                        <td>Control</td>
+                                        <td class="text-center">
+                                            <a href="#"
+                                                class="text-bold"
+                                                title="Agregar Mascota" rel="tooltip">
+                                                <i class="btn-icon-only fa fa-check green"></i>
+                                            </a>
+                                            <a href="#" class=" text-bold" title="Cambiar Cliente" rel="tooltip">
+                                                <i class="btn-icon-only fa fa-pencil blue"></i>
+                                            </a>
+                                            <a href="#" class=" js-confirm text-bold" msg-title="Eliminar Cliente?." msg="Esta Seguro
+                                               <br/>Recuerde esta operación no puede revertirse" title="Eliminar Cliente" rel="tooltip">
+                                                <i class="btn-icon-only fa fa-trash-o red"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'assets/js/jquery.colorbox.js' %}"></script>
+<script type="text/javascript">
+
+$('#update_vacunacion').click(function() {
+
+    console.log("ddddddddddddddd");
+    alert("golaaaaa");
+
+});
+    jQuery(function($) {
+var $overflow = '';
+var colorbox_params = {
+    rel: 'colorbox',
+    reposition:true,
+    scalePhotos:true,
+    scrolling:false,
+    previous:'<i class="ace-icon fa fa-arrow-left"></i>',
+    next:'<i class="ace-icon fa fa-arrow-right"></i>',
+    close:'&times;',
+    current:'{current} of {total}',
+    maxWidth:'100%',
+    maxHeight:'100%',
+onOpen:function(){
+    $overflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+},
+onClosed:function(){
+    document.body.style.overflow = $overflow;
+},
+onComplete:function(){
+    $.colorbox.resize();
+}
+};
+
+$('.ace-thumbnails [data-rel="colorbox"]').colorbox(colorbox_params);
+$("#cboxLoadingGraphic").html("<i class='ace-icon fa fa-spinner orange fa-spin'></i>");//let's add a custom loading icon
+
+
+$(document).one('ajaxloadstart.page', function(e) {
+$('#colorbox, #cboxOverlay').remove();
+});
+})
+
+
+$('#Modalarchivo').on('shown.bs.modal', function () {
+    $(this).modal('show');
+});
+
+var colamedica_id = new Array();
+console.log(colamedica_id);
+{% for d in historial %}
+    {% for dd in d.atencion_set.all %}
+        {{id_cola_medica}}
+        console.log({{dd.atenciones.colamedica_id}});
+        $(function() {
+            if ({{id_cola_medica}}=== {{dd.atenciones.colamedica_id}} && '{{dd.atenciones.colamedica.is_active}}' === 'True' ) {
+                console.log("ingresar");
+            }else {
+                $('#consuta_{{dd.pk}} li > a').on('click', function(event) {
+                   event.preventDefault();
+                   console.log(event);
+                   var html = ''
+                   html+='<div class="alert alert-warning " role="alert">'
+                   html+='<button type="button" class="close" data-dismiss="alert">'
+                   html+='<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>'
+                   html+='</button>Ya se termino esta atencion</div>'
+                   $('#flash-message').html(html)
+                   return false;
+                });
+                    console.log("no ingresar");
+            }
+        });
+    {% endfor %}
+{% endfor %}
+
+$("#agenda_medica").click(function(event) {
+    $.ajax({
+        url: '/citas/mascota/crear',
+        type: 'GET',
+    })
+    .done(function(d) {
+        $("#tab-historia-medica").html(d);
+        console.log("success");
+    })
+    .fail(function() {
+        console.log("error");
+    })
+    .always(function() {
+        console.log("complete");
+    });
+});
+</script>

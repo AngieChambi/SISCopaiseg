@@ -1,0 +1,33 @@
+{% extends "main/dashboard.html" %}
+{% load i18n crispy_forms_tags staticfiles %}
+{% load l10n %}
+
+
+{% block style %}
+</style>
+{% endblock style %}
+
+{% block headjs %}
+{% endblock %}
+
+{% block breadcrumbs %}
+<ol class="breadcrumb">
+  <li><a href="{% url 'clivet:clivet' %}"><i class="fa fa-home"></i> {% trans 'Home' %}</a></li>
+  <li><a href="/clinica/colamedica/listar/">{% trans 'Cola' %} {% trans 'Medica' %}</a></li>
+  <li class="active">{{ opts.verbose_name_plural|capfirst }}</li>
+</ol>
+{% endblock breadcrumbs %}
+
+{% block page_title %}
+{{ colamedica_id }}
+{% endblock page_title %}
+
+{% block page_content %}
+
+{% crispy form %}
+
+{% endblock %}
+
+{% block extrajs %}
+{{ block.super }}
+{% endblock extrajs %}

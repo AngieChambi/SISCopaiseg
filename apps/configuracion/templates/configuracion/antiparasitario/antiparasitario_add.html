@@ -1,0 +1,22 @@
+{% load i18n staticfiles app_security %}
+{% load l10n humanize %}
+{% load i18n crispy_forms_tags staticfiles %}
+{% load l10n %}
+{% crispy form %}
+{% csrf_token %}
+
+<ul class="ul-antiparasitario">
+    {% for d in anti_list %}
+        <li class="item-blue col-lg-3 lista-antiparasitario">
+            <div class="" id="handle3"> {{ d.nombre }}
+                <div class="pull-right action-buttons">
+                    <a href="{% url 'configuracion:antiparasitario_update' d.pk %}"class="green" > <i class="ace-icon fa fa-pencil bigger-130"></i></a>
+                    <a class="red" href="{% url 'configuracion:antiparasitario_delete' d.pk %}"><i class="ace-icon fa fa-trash-o bigger-130 js-confirm text-bold" msg-title="Eliminar Servicio?." msg="Esta Seguro
+                <br/>Recuerde esta operación no puede revertirse" title="Eliminar Servicio" rel="tooltip"></i></a>
+                </div>
+            </div>
+        </li>
+
+
+    {% endfor %}
+</ul>

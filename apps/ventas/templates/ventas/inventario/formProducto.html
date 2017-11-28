@@ -1,0 +1,389 @@
+ {% extends "main/dashboard.html" %}
+<!--
+@copyright   Copyright (c) 2014 Submit Consulting
+@author      Angel Sullon (@asullom)
+@package     sad
+
+Descripcion: Create/Update group
+-->
+{% load i18n crispy_forms_tags %} {% load l10n %} 
+{% block breadcrumbs_item %}
+    <li><a href="{% url 'ventas:producto_list' %}">{{ opts.verbose_name_plural|capfirst }}</a></li>
+    <li class="active">{{ title }}</li>
+{% endblock breadcrumbs_item %}
+
+{% block page_title %}
+    <i class="fa fa-cube"></i> {{ title }}
+{% endblock page_title %}
+{% block page_content %}
+<form action="" method="post">
+    {% csrf_token %}
+    {% crispy form %}
+</form>
+<div id="add-new-categoria" class="modal fade" role="dialog" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Agregar categoria</h4>
+            </div>
+            <div class="modal-body">
+                <form action="" method="post" id="new-form-categoria" name="new-form-categoria">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="nombre_categoria">Nombre
+                            <span class="required">*</span>
+                        </label>
+                        <input name="nombre_categoria" type="text" class="form-control" id="nombre_categoria" placeholder="Ingrese un nombre" minlength="4" maxlength="100" required="true">
+                    </div>
+                    <div class="form-group">
+                        <label for="id_categoria_departamento">Departamento
+                            <span class="required">*</span>
+                        </label>
+                        <div class="input-group">
+                            {{form.categoria_departamento}}
+                            <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" id="addDepartamento">Agregar</button>
+                        </span>
+                        </div>
+                    </div>
+                    <div class="alert alert-danger hide" role="alert" id="success_message_categoria"></div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" name="submit" class="btn btn-primary text-bold" id="submit-categoria" title="Guardar categoria">
+                    <i class="btn-icon-onlyx fa fa-save"></i> <span class="hidden-xsx"> Guardar</span>
+                </button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" title="Cerrar modal">
+                    <i class="btn-icon-onlyx fa fa-ban"></i> <span class="hidden-xsx"> Cerrar</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="add-new-departamento" class="modal fade" role="dialog" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Agregar departamento</h4>
+            </div>
+            <div class="modal-body">
+                <form action="" method="post" id="new-form-departamento" name="new-form-departamento">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="nombre_departamento">Nombre
+                            <span class="required">*</span>
+                        </label>
+                        <input name="nombre_departamento" type="text" class="form-control" id="nombre_departamento" placeholder="Ingrese un nombre" minlength="4" maxlength="100" required="true">
+                    </div>
+                    <div class="alert alert-danger hide" role="alert" id="success_message_departamentos"></div>
+                    <div id="div_id_fechaVencimiento" class="form-group"> <label for="id_fechaVencimiento" class="control-label ">
+                Fecha de vencimiento
+            </label> <div class="controls "> <input class="dateinput form-control" id="id_fechaVencimiento" name="fechaVencimiento" placeholder="YYYY-MM-DD" type="text"> </div> </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" name="submit" class="btn btn-primary text-bold" id="submit-departamento" title="Guardar departamento">
+                    <i class="btn-icon-onlyx fa fa-save"></i> <span class="hidden-xsx"> Guardar</span>
+                </button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" title="Cerrar modal">
+                    <i class="btn-icon-onlyx fa fa-ban"></i> <span class="hidden-xsx"> Cerrar</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="add-new-unidad" class="modal fade" role="dialog" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Agregar unidad</h4>
+            </div>
+            <div class="modal-body">
+                <form action="" method="post" id="new-form-unidad" name="new-form-unidad" class="form">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label for="nombre_unidad">Nombre
+                                    <span class="required">*</span>
+                                </label>
+                                <input name="nombre_unidad" type="text" class="form-control" id="nombre_unidad" placeholder="Ingrese un nombre" minlength="4" maxlength="100" required="true">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="simbolo_unidad">Símbolo
+                                    <span class="required">*</span>
+                                </label>
+                                <input name="simbolo_unidad" type="text" class="form-control" id="simbolo_unidad" required="true" placeholder="Ejem. Kg.">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="cantidad_unidad">Cantidad equivalencia
+                                    <span class="required">*</span>
+                                </label>
+                                <input name="cantidad_unidad" type="number" class="form-control" id="cantidad_unidad" min="0" max="1000" required="true">
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label for="id_unidadc_ventas">U. medida para ventas
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="input-group">
+                                    {{form.unidadc_ventas}}
+                                    <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" id="addUnidadVentas">Agregar</button>
+                        </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="alert alert-danger hide" role="alert" id="success_message_unidades"></div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" name="submit" class="btn btn-primary text-bold" id="submit-unidad" title="Guardar unidad">
+                    <i class="btn-icon-onlyx fa fa-save"></i> <span class="hidden-xsx"> Guardar</span>
+                </button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" title="Cerrar modal">
+                    <i class="btn-icon-onlyx fa fa-ban"></i> <span class="hidden-xsx"> Cerrar</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="add-new-unidadv" class="modal fade" role="dialog" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Agregar unidad de ventas</h4>
+            </div>
+            <div class="modal-body">
+                <form action="" method="post" id="new-form-unidadv" name="new-form-unidadv" class="form">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label for="nombre_unidadv">Nombre
+                                    <span class="required">*</span>
+                                </label>
+                                <input name="nombre_unidadv" type="text" class="form-control" id="nombre_unidadv" placeholder="Ingrese un nombre" minlength="4" maxlength="100" required="true">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="simbolo_unidadv">Símbolo
+                                    <span class="required">*</span>
+                                </label>
+                                <input name="simbolo_unidadv" type="text" class="form-control" id="simbolo_unidadv" required="true">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-danger hide" role="alert" id="success_message_unidadv"></div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" name="submit" class="btn btn-primary text-bold" id="submit-unidadv" title="Guardar unidad ventas">
+                    <i class="btn-icon-onlyx fa fa-save"></i> <span class="hidden-xsx"> Guardar</span>
+                </button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" title="Cerrar modal">
+                    <i class="btn-icon-onlyx fa fa-ban"></i> <span class="hidden-xsx"> Cerrar</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} {% block extrajs %} {{ block.super }}
+<script type="text/javascript">
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+var csrftoken = getCookie('csrftoken');
+
+function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+$.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+    }
+});
+$('#id_fechaVencimiento').datetimepicker({
+    format: 'YYYY-MM-DD',
+    //format: 'YYYY-MM-DD hh:mm:ss', //pata datatimes
+    language: 'es',
+    pickTime: false,
+    //showMeridian: true,
+    autoclose: true,
+    todayHighlight: true,
+});
+$('#addCategoria').click(function() {
+    $('#add-new-categoria').modal({
+                backdrop: 'static',
+                keyboard: false
+            });
+});
+$('#addDepartamento').click(function() {
+    $('#add-new-departamento').modal({
+                backdrop: 'static',
+                keyboard: false
+            });
+});
+$('#addUnidad').click(function() {
+    $('#add-new-unidad').modal({
+                backdrop: 'static',
+                keyboard: false
+            });
+});
+$('#addUnidadVentas').click(function() {
+    $('#add-new-unidadv').modal({
+                backdrop: 'static',
+                keyboard: false
+            });
+});
+$('#submit-categoria').click(function() {
+    var formArray = $("#new-form-categoria").serializeArray();
+    var formJson = JSON.stringify(formArray);
+    if (formArray[1].value.length > 4 && formArray[2].value.trim() !== '') {
+        $.ajax({
+                url: '{% url "ventas:post_categoria_ajax" %}',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    des: formArray[1].value,
+                    dep: formArray[2].value
+                },
+            })
+            .done(function(d) {
+                var select = $("#id_categoria");
+                select.append('<option value="' + d.pk + '">' + d.name + '</option>');
+                select.val(d.pk);
+                $('#add-new-categoria').modal('hide');
+            })
+            .fail(function() {
+                console.log("error");
+            })
+            .always(function() {
+                console.log("complete");
+            });
+    } else {
+        $('#success_message_categoria').attr('class', 'alert alert-danger').text("Revise los datos.");
+    }
+});
+$('#submit-departamento').click(function() {
+    var formArray = $("#new-form-departamento").serializeArray();
+    var formJson = JSON.stringify(formArray);
+    if (formArray[1].value.trim().length > 0) {
+        $.ajax({
+                url: '{% url "ventas:post_departamento_ajax" %}',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    des: formArray[1].value
+                },
+            })
+            .done(function(d) {
+                var select = $("#id_categoria_departamento");
+                select.append('<option value="' + d.pk + '">' + d.name + '</option>');
+                select.val(d.pk);
+                $('#add-new-departamento').modal('hide');
+            })
+            .fail(function() {
+                console.log("error");
+            })
+            .always(function() {
+                console.log("complete");
+            });
+    } else {
+        $('#success_message_events').attr('class', 'alert alert-danger').text("Ingrese un nombre.");
+    }
+});
+
+$('#submit-unidad').click(function() {
+    var formArray = $("#new-form-unidad").serializeArray();
+    var formJson = JSON.stringify(formArray);
+    if (formArray[1].value.trim().length > 0 && formArray[2].value.trim().length > 0 && formArray[3].value.trim().length > 0 && formArray[4].value.trim().length > 0 ) {
+        $.ajax({
+                url: '{% url "ventas:post_unidad_ajax" %}',
+                type: 'POST',
+                dataType: 'json',
+                data:{
+                    n: formArray[1].value,
+                    s: formArray[2].value,
+                    c: formArray[3].value,
+                    v: formArray[4].value
+                },
+            })
+            .done(function(d) {
+                var select = $("#id_unidad_medida");
+                select.append('<option value="' + d.pk + '">' + d.name + '</option>');
+                select.val(d.pk);
+                $('#add-new-unidad').modal('hide');
+            })
+            .fail(function() {
+                console.log("error");
+            })
+            .always(function() {
+                console.log("complete");
+            });
+    } else {
+        $('#success_message_unidades').attr('class', 'alert alert-danger').text("Revise los datos ingresados nuevamente.");
+    }
+});
+$('#submit-unidadv').click(function() {
+    var formArray = $("#new-form-unidadv").serializeArray();
+    var formJson = JSON.stringify(formArray);
+    if (formArray[1].value.trim().length > 0 && formArray[2].value.trim().length > 0) {
+        $.ajax({
+                url: '{% url "ventas:post_unidad_ventas_ajax" %}',
+                type: 'POST',
+                dataType: 'json',
+                data:{
+                    n: formArray[1].value,
+                    s: formArray[2].value,
+                },
+            })
+            .done(function(d) {
+                var select = $("#id_unidadc_ventas");
+                select.append('<option value="' + d.pk + '">' + d.name + '</option>');
+                select.val(d.pk);
+                $('#add-new-unidadv').modal('hide');
+            })
+            .fail(function() {
+                console.log("error");
+            })
+            .always(function() {
+                console.log("complete");
+            });
+    } else {
+        $('#success_message_unidadv').attr('class', 'alert alert-danger').text("Revise los datos ingresados nuevamente.");
+    }
+});
+</script>
+{% endblock extrajs %}

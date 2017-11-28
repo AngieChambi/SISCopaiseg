@@ -1,0 +1,20 @@
+{% extends "main/dashboard.html" %}
+{% load l10n staticfiles  i18n%}
+{% load crispy_forms_tags %}
+{% block breadcrumbs_item %}
+<li><a href="{% url 'clinica:cliente_list' %}">{{ opts.verbose_name_plural|capfirst }}</a></li>
+<li class="active">{{ title }}</li>
+{% endblock breadcrumbs_item %}
+
+{% block page_title %}
+<i class="fa fa-user"></i> {{ title }}
+{% endblock page_title %}
+{% block page_content %}
+
+    {% csrf_token %}
+    {% crispy form %}
+{% endblock %}
+
+{% block extrajs %}
+{{ block.super }}
+{% endblock extrajs %}

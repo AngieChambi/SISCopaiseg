@@ -1,0 +1,140 @@
+{% extends "main/dashboard.html" %}
+<!--
+@copyright   Copyright (c) 2014 Submit Consulting
+@author      Angel Sullon (@asullom)
+@package     sad
+
+Descripcion: Create/Update group
+-->
+{% load i18n crispy_forms_tags %}{% load l10n %}
+{% block breadcrumbs_item %}
+<li><a href="{% url 'ventas:unidad_medida_list' %}">{{ opts.verbose_name_plural|capfirst }}</a></li>
+<li class="active">{{ title }}</li>
+{% endblock breadcrumbs_item %}
+
+{% block content_title %}
+<i class="fa fa-tag"></i> {{ title }}
+{% endblock content_title %}
+{% block content %}
+
+<div class="container panel panel-defaul">
+    <form action="" method="post">
+        {% crispy form %} {% csrf_token %}
+    </form>
+</div>
+<div id="add-new-unidadv" class="modal fade" role="dialog" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Agregar unidad de ventas</h4>
+            </div>
+            <div class="modal-body">
+                <form action="" method="post" id="new-form-unidadv" name="new-form-unidadv" class="form">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label for="nombre_unidadv">Nombre
+                                    <span class="required">*</span>
+                                </label>
+                                <input name="nombre_unidadv" type="text" class="form-control" id="nombre_unidadv" placeholder="Ingrese un nombre" minlength="4" maxlength="100" required="true">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="simbolo_unidadv">Símbolo
+                                    <span class="required">*</span>
+                                </label>
+                                <input name="simbolo_unidadv" type="text" class="form-control" id="simbolo_unidadv" required="true" placeholder="Ejem. Kg.">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-danger hide" role="alert" id="success_message_unidadv"></div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" name="submit" class="btn btn-primary text-bold" id="submit-unidadv" title="Guardar unidad ventas">
+                    <i class="btn-icon-onlyx fa fa-save"></i> <span class="hidden-xsx"> Guardar</span>
+                </button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" title="Cerrar modal">
+                    <i class="btn-icon-onlyx fa fa-ban"></i> <span class="hidden-xsx"> Cerrar</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extrajs %}
+{{ block.super }}
+
+<script type="text/javascript">
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+var csrftoken = getCookie('csrftoken');
+
+function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+$.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+    }
+});
+
+$('#addUnidadV').click(function() {
+    $('#add-new-unidadv').modal({
+                backdrop: 'static',
+                keyboard: false
+            });
+});
+$('#submit-unidadv').click(function() {
+    var formArray = $("#new-form-unidadv").serializeArray();
+    var formJson = JSON.stringify(formArray);
+    if (formArray[1].value.trim().length > 0 && formArray[2].value.trim().length > 0) {
+        $.ajax({
+                url: '{% url "ventas:post_unidad_ventas_ajax" %}',
+                type: 'POST',
+                dataType: 'json',
+                data:{
+                    n: formArray[1].value,
+                    s: formArray[2].value,
+                },
+            })
+            .done(function(d) {
+                var select = $("#id_unidad_medida_venta");
+                select.append('<option value="' + d.pk + '">' + d.name + '</option>');
+                select.val(d.pk);
+                $('#add-new-unidadv').modal('hide');
+            })
+            .fail(function() {
+                console.log("error");
+            })
+            .always(function() {
+                console.log("complete");
+            });
+    } else {
+        $('#success_message_unidadv').attr('class', 'alert alert-danger').text("Revise los datos ingresados nuevamente.");
+    }
+});
+</script>
+{% endblock extrajs %}

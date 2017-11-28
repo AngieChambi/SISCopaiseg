@@ -1,0 +1,80 @@
+{% extends "main/dashboard.html" %}
+<!--
+@package     ventas
+Descripcion: Lista Tipo Documento
+-->
+{% load i18n app_security %} {% load l10n humanize %} 
+{% block breadcrumbs_item %}
+<li class="active">{{ opts.verbose_name_plural|capfirst }}</li>
+{% endblock breadcrumbs_item %}
+
+
+{% block content_title %}
+<i class="fa fa-tags"></i> Lista de {{opts.verbose_name_plural}}
+{% endblock content_title %}
+{% block content %}
+
+<script type="text/javascript">
+$(function() {
+    $('table').kgrid({
+        form_data : ['{{f}}', '{{q}}'],
+        form_to   : '/ventas/departamento/listar/?f={{f}}&q={{q}}',
+        order_attr: 'class=""',
+        order_to  : '/ventas/departamento/listar/?f={{f}}&q={{q}}',
+    });
+});
+</script>
+<div class="container"> 
+<div class="btn-toolbar btn-toolbar-top">
+    <div class="row">
+        <div class="btn-actions col-md-9">
+            <a href="{% url 'ventas:departamento_add' %}" class=" btn btn-primary text-bold" title="Agregar Departamento">
+                <i class="fa fa-plus"></i>
+                <span class="hidden-xs"> Agregar</span>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="container-overflow">
+    <table class="table table-bordered table-hover table-striped table-condensed table-responsive">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th class="col-hidden" data-search="descripcion" data-order="descripcion">Nombre</th>
+                <th class="btn-actions col-blocked text-center">Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for d in object_list %}
+            <tr>
+                <td>{% if is_paginated %} {{ page_obj.start_index|add:forloop.counter0 }} {% else %} {{ forloop.counter }} {% endif %}
+                </td>
+                <td>{{ d.descripcion }}</td>
+                <td class="text-center">
+                    <a href="{% url 'ventas:departamento_upd' d.pk|key:'dep_upd' %}" class="btn btn-info btn-sm text-bold" title="Cambiar Departamento" rel="tooltip">
+                        <i class="btn-icon-only fa fa-edit"></i>
+                    </a>
+                    <a href="{% url 'ventas:departamento_del' d.pk|key:'dep_del' %}" class="btn btn-danger btn-sm js-confirm text-bold" msg-title="Eliminar Departamento" msg="¿Esta Seguro de continuar con la operación?
+                            <br/>Recuerde esta operación no puede revertirse" title="Eliminar Departamento" rel="tooltip">
+                        <i class="btn-icon-only fa fa-trash-o"></i>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div class="row">
+    {% if is_paginated %} {% load paginator %} {% paginator %} {% else %}
+    <div class="col-md-12">
+        <ul class="breadcrumbpag">
+            {{ object_list.count }} {% ifequal object_list.count 1 %}{{ opts.verbose_name|capfirst }}{% else %}{{ opts.verbose_name_plural|capfirst }}{% endifequal %}
+        </ul>
+    </div>
+    {% endif %}
+</div>
+</div>
+{% endblock content %}
+{% block extrajs %}
+{{ block.super }}
+{% endblock extrajs %}

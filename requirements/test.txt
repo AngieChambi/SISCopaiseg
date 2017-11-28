@@ -1,0 +1,4 @@
+# Install dependencies test go here
+
+-r base.txt
+coverage==4.3.4

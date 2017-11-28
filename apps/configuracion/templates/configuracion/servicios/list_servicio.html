@@ -1,0 +1,87 @@
+{% extends "main/dashboard.html" %} {% load i18n staticfiles app_security %}
+{% load l10n humanize %}
+{% load i18n crispy_forms_tags staticfiles %}
+{% load l10n %}
+{% block style %}
+<style media="screen">
+    .list-group-item{
+        padding: 20px 10px;
+        border: none;
+        border-bottom:  dotted ;
+    }
+    .icons-servicios{
+        background: #438eb9;
+        padding: 8px 12px 10px;
+        color: #fff;
+        border-radius: 100%;
+        margin-right: 10px;
+    }
+    .nombre-servicios{
+        font-size: 1.8em;
+        font-style: normal;
+        color: #757572;
+    }
+</style>
+{% endblock style %}
+{% block breadcrumbs_item %}
+<li class="active">{{ opts.verbose_name_plural|capfirst }}</li>
+{% endblock breadcrumbs_item %}
+
+{% block page_title %}
+<i class="fa fa-files-o"></i> {{title}}
+ {% endblock page_title %}
+
+ {% block page_content %}
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-info">
+           <div class="panel-heading">
+               <span class="panel-title text-bold"><i class="fa fa-cubes bigger-130"></i> Registrar Nuevo Servicio</span>
+           </div>
+           <div class="panel-body">
+               {% csrf_token %}
+               {% crispy form%}
+           </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <span class="panel-title  text-bold"><i class="fa fa-list bigger-130"></i> Lista de Servicios</span>
+            </div>
+            <div class="panel-body">
+               <ul class="list-group">
+                   {% for d in object_list %}
+                   <li class="list-group-item">
+                       <i class="icons-servicios ace-icon  fa fa-hospital-o bigger-230"></i>
+                       <span class="nombre-servicios">{{d.nombre}}</span>
+                       <a href="{% url 'configuracion:servicios_update' d.pk %}" class="ace-icon badge badge-success"><i class="fa fa-pencil"></i></a>
+                       <a href="{% url 'configuracion:servicios_delete' d.pk %}" class="ace-icon badge badge-danger js-confirm text-bold" msg-title="Eliminar Servicio?." msg="Esta Seguro
+                   <br/>Recuerde esta operación no puede revertirse" title="Eliminar Servicio" rel="tooltip"><i class="fa fa-trash"></i></a>
+                   </li>
+                   {% endfor %}
+               </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock page_content %}
+{% block extrajs %}
+{{ block.super }}
+<script src="{% static 'assets/js/fuelux/fuelux.spinner.js' %}"></script>
+<script type="text/javascript">
+    $('#id_precio').ace_spinner({
+        value:0,
+        min:0,
+        max:200,
+        step:1,
+        btn_up_class:'btn-info' ,
+        btn_down_class:'btn-info'
+    }).closest('.ace-spinner')
+    .on('changed.fu.spinbox', function(){
+        //console.log($('#spinner1').val())
+    });
+
+</script>
+{% endblock extrajs %}

@@ -1,0 +1,55 @@
+<div class="col-xs-12">
+    <div class="row">
+        {% for d in especies %}
+            <div class="col-xs-12 col-md-{{uno}}">
+                <div class="dd" id="nestable">
+                    <ol class="dd-list">
+                        <li class="dd-item dd-collapsed" >
+                            <button data-action="collapse" id="collapse{{d.id}}" class="collapse" type="button" style="display: none;">Collapse</button>
+                            <button class="expand" data-value="{{d.id}}" id="expand{{d.id}}" data-action="expand"  type="button" style="display: block;">Expand</button>
+                            <div class="dd-handle" id="handle{{d.id}}" >{{d.nombre}}
+                                <div class="pull-right action-buttons">
+                                      <a class="green" href="#">    <i class="ace-icon fa fa-pencil bigger-130"></i>
+                                      </a>
+                                      <a class="red" href="#">
+                                          <i class="ace-icon fa fa-trash-o bigger-130"></i>
+                                      </a>
+                                </div>
+                            </div>
+                            <ol class="dd-list" style="padding-left:0 !important">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div id="list_raza{{d.id}}" c>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ol>
+                        </li>
+                    <ol>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script type="text/javascript">
+{% for d in  especies %}
+
+$("#expand{{d.id}}").click(function(event) {
+    var id = $(this).attr("data-value");
+   $("this").attr("data-value");
+  console.log("data",id);
+          $.ajax({
+              url: '/configuracion/raza/listar/'+id,
+              success: function(data) {
+                $('#list_raza'+id).html(data);
+                $("#id_especie"+id).val('{{d.id}}');
+                }
+            });
+});
+{% endfor %}
+
+ jQuery(function($){
+     $('.dd').nestable({ });
+});
+</script>

@@ -1,0 +1,14 @@
+{% extends "mod_backend/base.html" %} {% load i18n staticfiles %} {% block title %}base_home{% endblock title %} {% block extrastyle %}
+<link href="{% static 'bootstrap-fileinput/css/fileinput.css' %}" rel="stylesheet">
+<!--<link href="{% static 'custom/css/navbar-fixed-top.css' %}" rel="stylesheet">-->
+<link href="{% static 'unslider-master/src/scss/unslider.css' %}" rel="stylesheet">
+<link href="{% static 'clivet/style.css' %}" rel="stylesheet"> 
+{% endblock extrastyle%} 
+{% block header %} {% endblock header %} 
+{% block footer %}
+{% endblock footer %} {% block extrajs %}
+<script src="{% static 'bootstrap-fileinput/js/fileinput.js' %}"></script>
+<script src="{% static 'unslider-master/src/js/unslider.js' %}"></script>
+<script src="{% static 'clivet/js/ed-grid.js' %}"></script>
+<script src="{% static 'clivet/js/scripts.js' %}"></script>
+{% endblock extrajs %}

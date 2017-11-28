@@ -1,0 +1,72 @@
+{% extends "main/dashboard.html" %} {% load i18n app_security %} {% load l10n humanize %} {% block breadcrumbs_item %}
+<li class="active">{{ opts.verbose_name_plural|capfirst }}</li>
+{% endblock breadcrumbs_item %} {% block content_title %}
+<i class="fa fa-users"></i> Lista de {{opts.verbose_name_plural}} {% endblock content_title %} {% block content %}
+<script type="text/javascript">
+$(function() {
+    $('table').kgrid({
+        form_data: ['{{f}}', '{{q}}'],
+        form_to: '/clivet/cliente/listar/?f={{f}}&q={{q}}',
+        order_attr: 'class=""',
+        order_to: '/clivet/cliente/listar/?f={{f}}&q={{q}}',
+    });
+});
+</script>
+<div class="btn-toolbar btn-toolbar-top">
+    <div class="row">
+        <div class="btn-actions col-md-9">
+            <a href="{% url 'clivet:cliente_add' %}" class="btn btn-primary text-bold" title="Agregar Cliente">
+                <i class="fa fa-plus"></i>
+                <span class="hidden-xs"> Agregar</span>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="container-overflow">
+    <table class="table table-bordered table-hover table-striped table-condensed table-responsive">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th class="col-hidden" data-search="nombre" data-order="nombre">Nombres y Apellidos</th>
+                <th class="col-hidden" data-search="identity_tipe" data-order="identity_tipe">Tipo de Doc de identidad</th>
+                <th class="col-hidden" data-search="identity_num" data-order="identity_num">Número</th>
+                <th class="btn-actions col-blocked text-center">Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for d in object_list %}
+            <tr>
+                <td>{% if is_paginated %} {{ page_obj.start_index|add:forloop.counter0 }} {% else %} {{ forloop.counter }} {% endif %}
+                </td>
+                <td>{{ d.person.first_name }} {{d.person.last_name}}</td>
+                <td>{{ d.person.identity_type }}</td>
+                <td>{{ d.person.identity_num }}</td>
+                <td class="text-center">
+                    <a href="{% url 'clivet:cliente_upd' d.pk|key:'doc_upd' %}" class="btn btn-info btn-sm text-bold" title="Cambiar Cliente" rel="tooltip">
+                        <i class="btn-icon-only fa fa-edit"></i>
+                    </a>
+                    <a href="{% url 'clivet:cliente_del' d.pk|key:'doc_del' %}" class="btn btn-danger btn-sm js-confirm text-bold" msg-title="Eliminar Cliente?." msg="Esta Seguro
+                       <br/>Recuerde esta operación no puede revertirse" title="Eliminar Cliente" rel="tooltip">
+                        <i class="btn-icon-only fa fa-trash-o"></i>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div class="row">
+    {% if is_paginated %} {% load paginator %} {% paginator %} {% else %}
+    <div class="col-md-12">
+        <ul class="breadcrumbpag">
+            {{ object_list.count }} {% ifequal object_list.count 1 %}{{ opts.verbose_name|capfirst }}{% else %}{{ opts.verbose_name_plural|capfirst }}{% endifequal %}
+        </ul>
+    </div>
+    {% endif %}
+</div>
+{% endblock content %} 
+{% block extrajs %} {{ block.super }}
+<script>
+$('.pull-right').addClass('col-md-3');
+</script>
+{% endblock extrajs %}

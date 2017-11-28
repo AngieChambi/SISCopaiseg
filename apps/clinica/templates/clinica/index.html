@@ -1,0 +1,159 @@
+{% extends "main/dashboard.html" %}
+{% load i18n app_security %}
+{% load l10n humanize %}
+
+{% block breadcrumbs_item %}
+  <li class="active"> {{ opts.verbose_name_plural|capfirst }}</li>
+{% endblock breadcrumbs_item %}
+
+
+{% block page_title %}
+    <i class="fa fa-paw"></i> {{ opts.verbose_name_plural|capfirst }}
+    <small>
+        <i class="ace-icon fa fa-angle-double-right"></i>
+        {{title}}
+    </small>
+{% endblock page_title %}
+
+{% block page_content %}
+
+
+<script type="text/javascript">
+$(function() {
+    $('table').kgrid({
+        form_data: ['{{f}}', '{{q}}'],
+        form_to: '{% url 'clinica:mascota_list' id_cliente %}?f={{f}}&q={{q}}',
+        order_attr: 'class=""',
+        order_to: '{% url 'clinica:mascota_list' id_cliente %}?f={{f}}&q={{q}}',
+    });
+});
+</script>
+
+<div class="btn-toolbar btn-toolbar-top">
+    <div class="row">
+        <div class="btn-actions col-md-9">
+            <a href="{% url 'clinica:mascota_add' id_cliente %}" class="btn btn-primary text-bold" title="Agregar Mascota">
+                <i class="fa fa-plus"></i>
+                <span class="hidden-xs"> Agregar</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="container-overflow">
+    <table class="table table-bordered table-hover table-striped table-condensed table-responsive">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th class="col-hidden" data-search="nombre" data-order="nombre">Nombre</th>
+                <th class="col-hidden">Dueño</th>
+                <th class="col-hidden">Especie</th>
+                <th class="col-hidden">Raza</th>
+                <th class="col-hidden">Esterel..?</th>
+                <th class="col-hidden">C. Corporal</th>
+                <th class="col-hidden">Activo</th>
+                <th class="col-hidden text-center">Ver Ficha</th>
+                <th class="btn-actions col-blocked text-center">Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for d in listar_mascota %}
+            <tr class="{{ d.is_active|yesno:',danger' }}">
+                <td>{% if is_paginated %}
+                    {{ page_obj.start_index|add:forloop.counter0 }}
+                    {% else %}
+                    {{ forloop.counter }}
+                    {% endif %}
+                </td>
+                <td>{{ d.nombre }}</td>
+                <td>{{ d.duenho }}</td>
+                <td>{{ d.especie }}</td>
+                <td>{{ d.raza }}</td>
+                <td>
+                    <span class="label label-{{ d.esterelizado|yesno:'primary,success' }}">
+                        {% if d.esterelizado %}{% trans 'Yes'|upper %} {% else %} {% trans 'No'|upper %} {% endif %}
+                    </span>
+                </td>
+                <td>{{ d.cond_corporal }}</td>
+                <td>
+                    <span class="label label-{{ d.is_active|yesno:'primary,success' }}">
+                        {% if d.is_active %}{% trans 'Yes'|upper %} {% else %} {% trans 'No'|upper %} {% endif %}
+                        </span>
+                </td>
+                <td class="text-center">
+                    <a data-toggle="modal" data-target="#myModal" class="ver-ficha btn btn-info btn-sm text-bold" title="Ver ficha clinica" rel="tooltip" data-value="{{d.pk}}">
+                        <i class="btn-icon-only fa fa-file-pdf-o"></i>
+                    </a>
+                </td>
+                <td class="text-center">
+                    <a href="{% url 'clinica:mascota_perfil_list' d.pk %}" class="btn btn-warning btn-sm text-bold" title="{% trans 'Ver' %} {% trans 'Atenciones' %}" rel="tooltip"><i class="btn-icon-only fa fa-paw"></i></a>
+
+                    {% if d.is_active %}
+
+                    <a href="/clinica/mascota/state/ina/{{d.pk|key:'mascota_ina'}}/" class="btn btn-success btn-sm text-bold" title="{% trans 'inactivate'|capfirst %} {% trans 'Mascota' %}" rel="tooltip"><i class="btn-icon-only fa fa-flag"></i></a>
+
+                    {% else %}
+
+                    <a href="/clinica/mascota/state/rea/{{d.pk|key:'mascota_rea'}}/" class="btn btn-info btn-sm text-bold" title="{% trans 'reactivate'|capfirst %} {% trans 'Mascota' %}" rel="tooltip"><i class="btn-icon-only fa fa-flag"></i></a>
+
+
+                    {% endif %}
+                    <a href="{% url 'clinica:actualizar_mascota' d.pk %}" class="btn btn-info btn-sm text-bold" title="Ediatar datos de la Mascota" rel="tooltip">
+                        <i class="btn-icon-only fa fa-edit"></i>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+</div>
+
+<div class="row">
+    {% if is_paginated %} {% load paginator %} {% paginator %} {% else %}
+    <div class="col-md-12">
+        <ul class="breadcrumbpag">
+            {{ listar_mascota.count }} {% ifequal listar_mascota.count 1 %}{{ opts.verbose_name|capfirst }}{% else %}{{ opts.verbose_name_plural|capfirst }}{% endifequal %}
+        </ul>
+    </div>
+    {% endif %}
+</div>
+
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Modal title</h4>
+      </div>
+      <div id="destino" class="modal-body">
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+{% endblock page_content %}
+
+
+{% block extrajs %}
+{{ block.super }}
+<script type="text/javascript">
+    var id = "";
+    $(".ver-ficha").click(function () {
+        id= $(this).attr("data-value")
+    });
+    console.log(id);
+
+    $('#myModal').on('shown.bs.modal', function () {
+
+        $.ajax({
+            url:"/clinica/historia/ficha/"+id,
+            type: "GET",
+            async: true,
+            success: function(data) {
+                $('#destino').html(data);
+            }
+        });
+    });
+
+</script>
+{% endblock extrajs %}

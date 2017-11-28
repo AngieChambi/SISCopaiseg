@@ -1,0 +1,67 @@
+{% extends "main/dashboard.html" %} {% load i18n app_security staticfiles%} {% load i18n crispy_forms_tags %} {% load l10n humanize %} {% block style %}
+<link href="{% static 'clivet/ventas.css' %}" rel="stylesheet"> {% endblock style %} {% block breadcrumbs_item %}
+<li class="active"> {{ opts.verbose_name_plural|capfirst }}</li>
+{% endblock breadcrumbs_item %} {% block content_title %} {{title}}{% endblock content_title %} {% block content %}
+<div class="container-fluid ">
+    <div class="panel container-main">
+        <div class="panel-heading   panel-titulo-detalle">
+            <div class="col-md-3 img-container col-xs-12 col-sm-12">
+                <img class="" width="100%" src='{% static "clivet/img1/DogShop.png" %}'>
+            </div>
+            <div class="col-md-9 text-center  col-xs-12 col-sm-12 row">
+                <p class="label-d text-left col-md-7">Señor(a) :<span class="cliente-show">{{venta.cliente}}</span></p>
+                <p class="label-d text-left col-md-5 hidden-xs">Celular : <span class="cliente-show">{{venta.cliente.telefono}}</span></p>
+                <p class="label-d text-left col-md-7  hidden-sm hidden-xs">Ciudad : <span class="cliente-show">{{venta.cliente.ciudad}}</span></p>
+                <p class="label-d text-left col-md-5  hidden-sm hidden-xs">Dirección :<span class="cliente-show">{{venta.cliente.direccion}}</span></p></span></p>
+            </div>
+        </div>
+        <div class="panel-body">
+            <table class="table table-condensed ">
+                <thead>
+                    <tr>
+                        <th width="5%" class="text-center title-th-d">#</th>
+                        <th width="15%" class=" text-left title-th-d">Cantidad</th>
+                        <th width="30%" class=" text-center title-th-d ">Descripcion</th>
+                        <th width="15%" class=" text-right title-th-d">Precio Unitario</th>
+                        <th width="15%" class=" text-right title-th-d">Importe</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                </tfoot>
+                <tbody>
+                    {% for d in detalle %}
+                    <tr>
+                        <td class="text-center">{% if is_paginated %} {{ page_obj.start_index|add:forloop.counter0 }} {% else %} {{ forloop.counter }} {% endif %}
+                        </td class="text-center">
+                        <td class="text-left">{{ d.cantidad }}{{d.producto.unidad_medida.unidad_medida_venta}}</td>
+                        <td class="text-left ">{{ d.producto.nombre }}</td>
+                        <td class="text-right"><span class="soles">S/.  </span>{{ d.producto.precioV }}</td>
+                        <td class="text-right"><span class="soles">S/.   </span> {{ d.importe }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="panel panel-footer">
+            <div class="row container-footer-detalle">
+                <div class="col-md-9 container-cancelelado">
+                    <p class="cancelado">CANCELADO</p>
+                    <span class="trabajador">Clinica Vererinaria Pep-Shop- {{venta.user}}</span>
+                </div>
+                <div class="col-md-3 row">
+                    <div class="col-md-6">
+                        <p class="resumen-d total-v text-left">Igv 18% :</p>
+                        <p class="resumen-d total-v text-left">Sub Total : </p>
+                        <p class="resumen-d total-v text-left">Total : </p>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="resumen-v text-right"><span>S/.</span>{{venta.igv}}</p>
+                        <p class="resumen-v text-right"><span>S/.</span>{{sub}}</p>
+                        <p class="resumen-v total-v text-right"><span>S/.</span>{{venta.total}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,247 @@
+{% extends "main/dashboard.html" %}
+{% load i18n crispy_forms_tags staticfiles %}
+{% load i18n app_security %}
+{% load l10n humanize %}
+
+{% block style %}
+<link href="{% static 'clivet/ventas.css' %}" rel="stylesheet">
+<style media="screen">
+    .chosen-container {
+        width: 100% !important;
+    }
+
+    #asignar{
+        display: none;
+    }
+    .vacuna{
+        margin-bottom: 0px;
+    }
+    .titlehistoria.active, .titlehistoria.active:hover{
+        background: #B2DFDB;
+        border-color: #83b9b6;
+        color: #212121;
+        text-shadow: 0 -1px 0 #757575;
+    }
+
+    #div_id_mascotas, #div_id_medico, #div_id_descripcion{
+        margin-bottom: 1px;
+    }
+    #div_id_mascotas #id_mascotas, #div_id_medico #id_medico, #div_id_descripcion #id_descripcion{
+        cursor: default;
+        background-color: #fff;
+        -moz-appearance:none;
+        -webkit-appearance:none;
+        -ms-appearance:none;
+        -o-appearance:none;
+        color: #212121;
+        border-color: #83b9b6;
+        text-shadow: 0 -1px 0 #757575;
+    }
+
+    .btn-medica{
+        background: #009688;
+        color: #fff;
+    }
+    .btn-medica:hover{
+        background:#00796B;
+        color: #fff;
+    }
+
+    .btn-medica-add{
+        background: #B2DFDB;
+        border-color: #83b9b6;
+    }
+    .btn-medica-add:hover{
+        background: #009688;
+        border-color: #065f5a;
+        color: #fff;
+        font-size: 1.2em;
+    }
+
+    .panel-medica{
+        border-radius: 2px !important;
+        border-color: #83b9b6;
+    }
+    .medica-table{
+        border-color: #83b9b6;
+        background:#B2DFDB;
+    }
+    .panel-medica>thead>tr>th {
+        vertical-align: bottom;
+        color: #212121;
+        border-bottom: 2px solid #83b9b6;
+    }
+    .click{
+        background:#8BC34A;
+        color: #fff;
+        border-radius: 50%;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.23),0 3px 10px rgba(0,0,0,0.16);
+    }
+    .click:hover{
+        -webkit-transform: scale(1.2) rotate(90deg);
+        transform: scale(1.5) rotate(90deg);
+        color: #fff;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.23),0 3px 10px rgba(0,0,0,0.16);
+    }
+
+</style>
+{% endblock style %}
+
+{% block headjs %}
+{% endblock headjs %}
+
+{% block breadcrumbs_item %}
+  <li class="active" class="active">Recepción</li>
+{% endblock breadcrumbs_item %}
+
+{% block page_title %}<span class="text-bold"><i class="fa fa-ambulance"></i> {{ title}}</span><small><i class="ace-icon fa fa-angle-double-right"></i> Venda o derive a un paciente a las diferentes areas de la clinica</small>
+{% endblock page_title %}
+
+{% block page_content %}
+<div class="row">
+    <div class="col-xs-12">
+        <div class="widget-box widget-color-green ui-sortable-handle widget-box-ventas">
+        <div class="widget-header headding-buscador-producto">
+            <div class="row">
+                <div class="col-xs-12">
+                    <label for="search" class="text-bold control-label  requiredField">Cliente</label>
+                </div>
+                <div class="col-sm-8 col-md-8">
+                    <span class="input-icon input-icon-right" style="width:100%">
+                        <input id="search"  class="form-control widget-box-ventas " placeholder="Buscar...'" data-value="data"/>
+                        <i class="ace-icon fa fa-search green"></i>
+                    </span>
+                </div>
+                <div class="col-md-1">
+                    <a id="asignar_cola_medica" href="#"
+                    class="btn btn-purple btn-sm text-bold btn-block"
+                    title="Eviar a Cola Medica" rel="tooltip" disabled>
+                        <i class="btn-icon-only fa fa-stethoscope"></i>
+                    </a>
+                </div>
+                <div class="col-md-1">
+                    <a id="crear_mascota" href="#"
+                        class="btn btn-warning btn-sm text-bold btn-block"
+                        title="Agregar Mascota" rel="tooltip" disabled>
+                        <i class="btn-icon-only fa fa-paw"></i>
+                    </a>
+                </div>
+                <div class="col-md-1">
+                    <a href="{% url 'clinica:cliente_add'%}"
+                    class="btn btn-purple btn-sm text-bold btn-block"
+                    title="Agregar Cliente" rel="tooltip">
+                        <i class="btn-icon-only fa fa-users"></i>
+                    </a>
+                </div>
+                <div class="col-md-1">
+                    <a id="editar_cliente" href="#"
+                    class="btn btn-info btn-sm text-bold btn-block"
+                    title="Editar Cliente" rel="tooltip" disabled>
+                        <i class="btn-icon-only fa fa-edit"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+<!--DESDE AQUI VENTAS-->
+<div class="row">
+    <div class="space-10"></div>
+    <div class="col-xs-12">
+        <div  id="secction-ventas" >
+            <div class="row">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">{{ title }}</h4>
+            </div>
+            <div class="modal-body">
+                <form action="" method="post" name="colamedica-form" id="colamedica-form">
+                        {% csrf_token %}
+                        {% crispy form %}
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock page_content %}
+
+{% block js %}
+
+<script src="{% static 'jquery-ui/jquery-ui.js' %}"></script>
+<script type="text/javascript">
+
+
+            $.ajax({
+                url: '/clinica/ventas',
+                type: 'GET',
+            })
+            .done(function(d) {
+                $("#secction-ventas").html(d)
+            })
+            .fail(function() {
+                console.log("error");
+            })
+            .always(function() {
+                console.log("complete");
+            });
+
+
+var id_mascota;
+
+    $( "#search" ).autocomplete({
+        source:"{% url 'clinica:get_drugs' %}",
+        minLength: 0,
+        select: function( event, ui ) {
+            console.log(event,ui);
+            id_cliente = ui.item.cliente_id;
+            id_mascota = ui.item.id;
+            mascota = ui.item.nombre_mascota;
+            Venta.cliente = ui.item.cliente_id;
+
+            $("#tags").val(mascota);
+            $("#id_mascota").val(id_mascota);
+            var campo = $('#tags').val();
+        if (campo != '') {
+                $('#editar_cliente').attr('disabled',false);
+                $('#crear_mascota').attr('disabled',false);
+                $('#asignar_cola_medica').attr('disabled',false);
+                console.log("jolas");
+            }else {
+                $('#editar_cliente').attr('disabled',false);
+                $('#crear_mascota').attr('disabled',true);
+                $('#asignar_cola_medica').attr('disabled',true);
+            }
+        }
+    });
+
+
+
+$('#crear_mascota').on('click', function () {
+    window.location.pathname='/clinica/mascota/crear/'+id_cliente
+});
+$('#editar_cliente').on('click', function () {
+    window.location.pathname='/clinica/cliente/actualizar/'+id_cliente
+    console.log(window.location.pathname);
+});
+
+$('#asignar_cola_medica').click(function() {
+    $('#myModal').modal({
+        backdrop: 'static',
+        keyboard: false
+    });
+});
+
+</script>
+{% endblock js %}

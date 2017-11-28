@@ -1,0 +1,3 @@
+# Install for deploy project
+
+-r requirements/local.txt

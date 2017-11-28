@@ -1,0 +1,474 @@
+{% extends "main/dashboard.html" %} {% load i18n app_security staticfiles%} {% load i18n crispy_forms_tags %} {% load l10n humanize %} {% block style %}
+<link href="{% static 'clivet/ventas.css' %}" rel="stylesheet"> {% endblock style %}
+{% block breadcrumbs_item %}
+<li class="active"> {{ opts.verbose_name_plural|capfirst }}</li>
+{% endblock breadcrumbs_item %} {% block page_title %} hola{% endblock page_title %} {% block page_content %}
+<div class="container-fluid  ">
+    <div class="row panel panel-default">
+        <div class="panel panel-info col-md-8">
+            <div class="panel-heading row panel-titulo ">
+                <div class="alert col-md-7 col-md-push-7 alerta-ventas" id="success-alert">
+                </div>
+                <p class="titulo-busqueda"><span class="glyphicon glyphicon-shopping-cart btn-lg" aria-hidden="true"></span>Añadir productos o Servicios al Carrito</p>
+                <div class="col-md-12 producto">
+                    {{ form.producto }}
+                </div>
+            </div>
+            <div class="panel-body ">
+                <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th class="text-center th-carrito">Cantidad</th>
+                            <th class="text-center th-carrito">Stok</th>
+                            <th class="text-center th-carrito">Descripcion</th>
+                            <th class="text-center th-carrito">Precio unitario</th>
+                            <th class="text-center th-carrito">Importe</th>
+                            <th class="text-center th-carrito">Opciones</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                    </tfoot>
+                    <tbody id="tabla_producto">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-4 panel panel-warning">
+            <form rule="" action="" method="post">{% csrf_token %}
+                <div class="panel-heading row cliente-container">
+                    <p><span class="glyphicon glyphicon-user btn-lg" aria-hidden="true"></span>Seleccionar Cliente (Opcional)</p>
+                    <div class="col-md-3">
+                        <button type="search" class="btn nuevo-cliente btn-lg " id="addCliente">Nuevo</button>
+                    </div>
+                    <div class="col-md-9">
+                        <input id="id_cliente" value="Cliente General" placeholder="Buscar Cliente" class="typeahead-cliente form-control input-lg" name="cliente">
+                    </div>
+                </div>
+                <div class="panel-body  text-center">
+                    <div class="container-resumen">
+                        <p><span class="glyphicon glyphicon-shopping-cart btn-lg" aria-hidden="true"></span>Resumen de la Venta</p>
+                        <div class="row">
+                            <div class="col-md-6 text-left">
+                                <p>Sub Total</p>
+                            </div>
+                            <div class="col-md-6 text-right ">
+                                <p>S/.<span id="r_sub_total">00.00</span></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 text-left">
+                                <p>IGV <span> 18% </span></p>
+                            </div>
+                            <div class="col-md-6 text-right">
+                                <p>S/.<span id="r_igv">00.00</span></p>
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-md-6 text-left">
+                                <p>Monto a pagar</p>
+                            </div>
+                            <div class="col-md-6 text-right">
+                                <p>S/.<span id="r_total">00.00 </span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" center-block">
+                        <button id="btn_pagar" type="submit" name='form' class="btn col-md-12 btn-lg pagar-button"> Pagar</button>
+                    </div>
+                </div>
+                {{ form.data_venta}}
+            </form>
+        </div>
+    </div>
+</div>
+<div id="add-new-cliente" class="modal fade" role="dialog" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Agregar cliente</h4>
+            </div>
+            <div class="modal-body"></div>
+        </div>
+    </div>
+</div>
+
+
+                {% endblock page_content %}
+                {% block extrajs %}
+                    <script type="text/javascript">
+                    $("#success-alert").hide();
+                    $(document).ready(function() {
+                    var stocks = new Bloodhound({
+                    limit: 10,
+                    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('nombre'),
+                    queryTokenizer: Bloodhound.tokenizers.whitespace,
+                    prefetch: {
+                    ttl: 1,
+                    url: '/producto/search/',
+                    },
+                    });
+                    stocks.initialize();
+                    $('.typeahead ').typeahead(
+                    null, {
+                    minLength: 1,
+                    hint: true,
+                    highlight: true,
+                    templates: {
+                    notFound: '<div class="tt-suggestion tt-none">Producto o Servicio no encontrado en Inventario</div>',
+                    },
+                    displayKey: 'nombre',
+                    source: stocks,
+                    }).on('typeahead:selected', function(event, data) {
+                    $('.typeahead').val(data.id);
+                    Venta.temp = data.id;
+                    });
+                    });
+                    //buscar cliente
+                    var Venta = {
+                    productos: [],
+                    igv: 0.00,
+                    sub_total: 0.00,
+                    total: 0.00,
+                    temp: -1,
+                    cliente: 1,
+                    };
+                    $(document).ready(function() {
+                    var stocks = new Bloodhound({
+                    limit: 5,
+                    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('persona', 'documento'),
+                    queryTokenizer: Bloodhound.tokenizers.whitespace,
+                    prefetch: {
+                    ttl: 1,
+                    url: '/cliente/search/',
+                    },
+                    });
+                    stocks.initialize();
+                    $('.typeahead-cliente').typeahead(
+                    null, {
+                    minLength: 5,
+                    hint: true,
+                    highlight: true,
+                    templates: {
+                    notFound: '<div class="tt-suggestion tt-none">Cliente  no  Encontrado</div>',
+                    },
+                    displayKey: 'persona',
+                    source: stocks.ttAdapter()
+                    }).on('typeahead:selected', function(event, data) {
+                    $('.typeahead-cliente').val(data.id);
+                    var id_cliente = data.id;
+                    Venta.cliente = data.id;
+                    draw();
+                    });
+                    });
+                    $('#btn_pagar').attr('disabled', true);
+                    (function() {
+                    function decimalAdjust(type, value, exp) {
+                    if (typeof exp === 'undefined' || +exp === 0) {
+                    return Math[type](value);
+                    }
+                    value = +value;
+                    exp = +exp;
+                    // Si el valor no es un número o el exp no es un entero...
+                    if (isNaN(value) || !(typeof exp === 'number' && exp % 1 === 0)) {
+                    return NaN;
+                    }
+                    // Shift
+                    value = value.toString().split('e');
+                    value = Math[type](+(value[0] + 'e' + (value[1] ? (+value[1] - exp) : -exp)));
+                    // Shift back
+                    value = value.toString().split('e');
+                    return +(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp));
+                    }
+                    // Decimal round
+                    if (!Math.round10) {
+                    Math.round10 = function(value, exp) {
+                    return decimalAdjust('round', value, exp);
+                    };
+                    }
+                    // Decimal floor
+                    if (!Math.floor10) {
+                    Math.floor10 = function(value, exp) {
+                    return decimalAdjust('floor', value, exp);
+                    };
+                    }
+                    // Decimal ceil
+                    if (!Math.ceil10) {
+                    Math.ceil10 = function(value, exp) {
+                    return decimalAdjust('ceil', value, exp);
+                    };
+                    }
+                    })();
+                    var i;
+                    $(document).ready(function() {
+                    $(".typeahead").keypress(function(event) {
+                    var keycode = (event.keyCode ? event.keyCode : event.which);
+                    if (keycode == '13') {
+                    not_exist();
+                    if ((not_exist(Venta.temp) && Venta.temp !== -1 && Venta.temp << 0)) {
+                    $.ajax({
+                    url: "{% url 'ventas:carro' %}",
+                    type: 'get',
+                    data: {
+                    p: Venta.temp
+                    },
+                    })
+                    .done(function(data) {
+                    var a = '';
+                    data[0].fields.cantidad = a;
+                    data[0].fields.importe = Math.ceil10((data[0].fields.precioV * data[0].fields.cantidad), -2);
+                    data[0].fields.igvp = Math.ceil10((data[0].fields.precioV * data[0].fields.cantidad) * 0.18, -2);
+                    data[0].fields.id = data[0].pk;
+                    Venta.productos.push(data[0].fields);
+                    $('#cantidad_producto').val("1");
+                    Venta.igv = Math.ceil10((Venta.igv + (data[0].fields.importe * 0.18)), -2);
+                    Venta.total = Math.ceil10(Venta.total + data[0].fields.importe, -2);
+                    Venta.sub_total = Math.ceil10(Venta.total - Venta.igv, -2);
+                    draw();
+                    $('#id' + i).focus();
+                    $('.typeahead').val('');
+                    })
+                    .fail(function() {
+                    console.log("error");
+                    })
+                    .always(function() {
+                    console.log("complete");
+                    });
+                    }
+                    }
+                    function not_exist(dd) {
+                    for (i in Venta.productos) {
+                    if (Venta.productos[i].id == dd) {
+                    $('.typeahead').focus();
+                    $('.typeahead ').val('');
+                    sms = '';
+                    sms = sms + "<strong>Producto o Servicio Ya existe en Carrito</strong>";
+                    $('.alerta-ventas').html(sms);
+                    $("#success-alert").show();
+                    $("#success-alert").delay(3000).slideUp(300, function() {
+                    $("#success-alert").hide();
+                    $(".typeahead").val('');
+                    });
+                    return false;
+                    }
+                    }
+                    return true;
+                    }
+                    });
+                    });
+                    var d;
+                    var c;
+                    function draw() {
+                    $("#r_sub_total").text(Venta.sub_total);
+                    $("#r_igv").text(Venta.igv);
+                    $("#r_total").text(Venta.total);
+                    var h = "";
+                    for (i in Venta.productos) {
+                    h = h + "<tr>" +
+                        "<td contenteditable='true'type='number' class='text-center  td-add' id='id" + i + "' onblur='change_p(" + i + ")'>" + Venta.productos[i].cantidad +
+                        "</td><td class='text-center td-add'>" + Venta.productos[i].existencia +
+                    "</td><td class='text-left td-add'>" + Venta.productos[i].nombre +
+                "</td><td class='text-center td-add'>" + Venta.productos[i].precioV +
+            "</td><td class='text-center td-add'>" + Venta.productos[i].importe +
+        "</td><td style='display:none;'class='col-hidden'>" + Venta.productos[i].igvp +
+        "</td><td class='text-center'><button type='button' onclick='delete_p(" + i + ")'class='btn  btn-danger btn-md'><apan class='glyphicon glyphicon-trash'></span></button></td></tr>";
+        }
+        $("#tabla_producto").html(h);
+        $("#id_data_venta").val(JSON.stringify(Venta));
+        }
+        function delete_p(d) {
+        Venta.productos.splice(d, 1);
+        Venta.total = 0.00;
+        for (var i in Venta.productos) {
+        Venta.total = Math.ceil10(Venta.total + Venta.productos[i].importe, -2);
+        }
+        Venta.igv = Math.ceil10(Venta.total * 0.18, -2);
+        Venta.sub_total = Math.ceil10(Venta.total - Venta.igv, -2);
+        draw();
+        $('.typeahead , #cantidad_producto').val('');
+        if ($("#id0").val() === '') {
+        $('#btn_pagar').attr('disabled', false);
+        } else {
+        $('#btn_pagar').attr('disabled', true);
+        }
+        }
+        function change_p(d) {
+        var sms = '';
+        Venta.productos[d].cantidad = $("#id" + d).text();
+        if (Venta.productos[d].existencia <= 0) {
+        sms = '';
+        sms = sms + "<strong>Stok " + Venta.productos[d].nombre + " Agotado</strong>";
+        $('.alerta-ventas').html(sms);
+        $("#success-alert").show();
+        $("#success-alert").delay(3000).slideUp(300, function() {
+        $("#success-alert").hide();
+        $(".typeahead").val('');
+        });
+        delete_p(d);
+        $('.typeahead').focus();
+        return false;
+        }
+        if (Venta.productos[d].cantidad <= parseFloat(Venta.productos[d].existencia)) {
+        if (Venta.productos[d].cantidad > 0) {
+        Venta.productos[d].importe = Math.ceil10(Venta.productos[d].cantidad * Venta.productos[d].precioV, -2);
+        Venta.productos[d].igvp = Math.ceil10((Venta.productos[d].cantidad * Venta.productos[d].precioV) * 0.18, -2);
+        Venta.total = 0.00;
+        for (i in Venta.productos) {
+        Venta.total = Math.ceil10(Venta.total + Venta.productos[i].importe, -2);
+        }
+        Venta.igv = Math.ceil10(Venta.total * 0.18, -2);
+        Venta.sub_total = Math.ceil10(Venta.total - Venta.igv, -2);
+        draw();
+        $('.typeahead').focus();
+        $('.typeahead , #cantidad_producto').val('');
+        } else if (Venta.productos[d].cantidad < 0) {
+        Venta.productos[d].cantidad = Venta.productos[d].cantidad * (-1);
+        Venta.productos[d].importe = Math.ceil10(Venta.productos[d].cantidad * Venta.productos[d].precioV, -2);
+        Venta.productos[d].igvp = Math.ceil10((Venta.productos[d].cantidad * Venta.productos[d].precioV) * 0.18, -2);
+        Venta.total = 0.00;
+        for (i in Venta.productos) {
+        Venta.total = Math.ceil10(Venta.total + Venta.productos[i].importe, -2);
+        }
+        Venta.igv = Math.ceil10(Venta.total * 0.18, -2);
+        Venta.sub_total = Math.ceil10(Venta.total - Venta.igv, -2);
+        draw();
+        $('.typeahead').val('');
+        } else if ($('.td-add').val('')) {
+        sms = '';
+        sms = sms + "Cantidad Incorrecta para <strong>" + Venta.productos[d].nombre + "</strong>";
+        $('.alerta-ventas').html(sms);
+        $("#success-alert").show();
+        $("#success-alert").delay(3000).slideUp(300, function() {
+        $("#success-alert").hide();
+        $(".typeahead").val('');
+        });
+        Venta.productos[d].cantidad = '';
+        Venta.productos[d].importe = Math.ceil10(Venta.productos[d].cantidad * Venta.productos[d].precioV, -2);
+        Venta.productos[d].igvp = Math.ceil10((Venta.productos[d].cantidad * Venta.productos[d].precioV) * 0.18, -2);
+        Venta.total = 0.00;
+        for (i in Venta.productos) {
+        Venta.total = Math.ceil10(Venta.total + Venta.productos[i].importe, -2);
+        }
+        Venta.igv = Math.ceil10(Venta.total * 0.18, -2);
+        Venta.sub_total = Math.ceil10(Venta.total - Venta.igv, -2);
+        draw();
+        $('#id' + i).focus();
+        $('.typeahead').val('');
+        }
+        } else {
+        sms = '';
+        sms = sms + "Cantidad Incorrecta para <strong>" + Venta.productos[d].nombre + "</strong>";
+        $('.alerta-ventas').html(sms);
+        $("#success-alert").show();
+        $("#success-alert").delay(3000).slideUp(300, function() {
+        $("#success-alert").hide();
+        $(".typeahead").val('');
+        });
+        Venta.productos[d].cantidad = '';
+        Venta.productos[d].importe = Math.ceil10(Venta.productos[d].cantidad * Venta.productos[d].precioV, -2);
+        Venta.productos[d].igvp = Math.ceil10((Venta.productos[d].cantidad * Venta.productos[d].precioV) * 0.18, -2);
+        Venta.total = 0.00;
+        for (i in Venta.productos) {
+        Venta.total = Math.ceil10(Venta.total + Venta.productos[i].importe, -2);
+        }
+        Venta.igv = Math.ceil10(Venta.total * 0.18, -2);
+        Venta.sub_total = Math.ceil10(Venta.total - Venta.igv, -2);
+        draw();
+        $('#id' + i).focus();
+        }
+        if ($("#id0").val() === '') {
+        $('#btn_pagar').attr('disabled', false);
+        } else {
+        $('#btn_pagar').attr('disabled', true);
+        }
+        }
+        $('#id_fecha_de_nacimiento').datetimepicker({
+        format: 'YYYY-MM-DD',
+        //format: 'YYYY-MM-DD hh:mm:ss', //pata datatimes
+        language: 'es',
+        pickTime: false,
+        //showMeridian: true,
+        autoclose: true,
+        todayHighlight: true,
+        });
+        $('#addCliente').click(function(event) {
+        event.preventDefault();
+        $('#add-new-cliente').modal({
+        backdrop: 'static',
+        keyboard: false
+        });
+        });
+        $('#save-cliente').click(function() {
+        var formArray = $("#new-form-cliente").serializeArray();
+        var formJson = JSON.stringify(formArray);
+        if (formArray[1].value.trim().length > 0&&formArray[2].value.trim().length > 0) {
+        var data={};
+        data[formArray[1].name]=formArray[1].value;
+        data[formArray[2].name]=formArray[2].value;
+        data[formArray[3].name]=formArray[3].value;
+        data[formArray[4].name]=formArray[4].value;
+        data[formArray[5].name]=formArray[5].value;
+        data[formArray[6].name]=formArray[6].value;
+        data[formArray[7].name]=formArray[7].value;
+        data[formArray[8].name]=formArray[8].value;
+        data[formArray[9].name]=formArray[9].value;
+        $.ajax({
+        url: '{% url "clinica:post_cliente_ajax" %}',
+        type: 'POST',
+        dataType: 'json',
+        data: data,
+        })
+        .done(function(d) {
+        if(d.error){
+        $('#success_message_cliente').attr('class', 'alert alert-danger').text(d.detail);
+        }else{
+        var select = $("#id_proveedor");
+        select.append('<option value="' + d.pk + '">' + d.name + '</option>');
+        select.val(d.pk);
+        //select.trigger("chosen:updated");
+        $('#add-new-cliente').modal('hide');
+        $('#id_cliente').val(d.name);
+        Venta.cliente=d.pk;
+        $("#id_data_venta").val(JSON.stringify(Venta));
+        }
+        })
+        .fail(function() {
+        console.log("error");
+        })
+        .always(function() {
+        console.log("complete");
+        });
+        } else {
+        $('#success_message_cliente').attr('class', 'alert alert-danger').text("Revise los datos ingresados nuevamente.");
+        }
+        });
+        function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+        var cookie = jQuery.trim(cookies[i]);
+        // Does this cookie string begin with the name we want?
+        if (cookie.substring(0, name.length + 1) == (name + '=')) {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+        }
+        }
+        }
+        return cookieValue;
+        }
+        var csrftoken = getCookie('csrftoken');
+        function csrfSafeMethod(method) {
+        // these HTTP methods do not require CSRF protection
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+        $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+        }
+        });
+        </script>
+        <!-- /#page-wrapper -->
+    {% endblock extrajs %}

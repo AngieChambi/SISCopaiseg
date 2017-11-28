@@ -1,0 +1,246 @@
+{% extends "main/dashboard.html" %}
+{% load i18n crispy_forms_tags staticfiles %}
+{% load i18n app_security %}
+{% load l10n humanize %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'assets/css/datepicker.css' %}" />{% endblock style %}
+{% block breadcrumbs_item %}
+<li><a href="#">{{ opts.verbose_name_plural|capfirst }}</a></li>
+<li class="active">{{ title }}</li>
+{% endblock breadcrumbs_item %}
+
+{% block page_title %}
+    <span class="text-bold">
+        <i class="fa fa-hospital-o text-bold"></i>
+        DATOS DE LA MASCOTA
+        {% for d in mascota  %}
+        {{d.nombre|upper}}
+        {% endfor %}
+    </span>
+{% endblock page_title %}
+
+{% block page_content %}
+<!-- #section:elements.tab -->
+<div class="tabbable">
+    <ul class="nav nav-tabs padding-30" id="myTab">
+        <li class="active">
+            <a data-toggle="tab" href="#perfil">
+                <i class="green ace-icon fa fa-github bigger-120"></i>
+                Perfil
+            </a>
+        </li>
+
+        <li>
+            <a id="tab-editar" data-toggle="tab" href="#editar">
+                <i class="purple ace-icon fa fa-edit bigger-120"></i>
+                Editar
+            </a>
+        </li>
+
+        <li>
+            <a data-toggle="tab" href="#historia_compras">
+                <i class="light-blue ace-icon fa fa-github bigger-120"></i>
+                Historial de compras
+            </a>
+        </li>
+
+        <li>
+            <a data-toggle="tab" href="#historia_medica">
+                <i class="red ace-icon fa fa-stethoscope bigger-120"></i>
+                Historia Clinica
+            </a>
+        </li>
+    </ul>
+
+    <div class="tab-content no-border padding-24">
+        <div id="perfil" class="tab-pane in active">
+            <div>
+                <div id="user-profile-1" class="user-profile row">
+                    {% for d in mascota %}
+                    <div class="col-xs-12 col-sm-3 center">
+                        <div>
+                            <!-- #section:pages/profile.picture -->
+                            <span class="profile-picture">
+                                <img id="avatar" class="editable img-responsive" alt="Alex's Avatar" src="{% static 'clivet/img/perfil_mascota.jpg' %}" />
+                            </span>
+                            <!-- /section:pages/profile.picture -->
+                            <div class="space-4"></div>
+                            <div class="width-80 label label-info label-xlg arrowed-in arrowed-in-right">
+                                <div class="inline position-relative">
+                                    <a href="#" class="user-title-label dropdown-toggle" data-toggle="dropdown">
+                                        <i class="ace-icon fa fa-circle light-green"></i>
+                                        &nbsp;
+                                        <span class="white">{{ d.nombre }}</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /section:custom/extra.grid -->
+                        <div class="hr hr10 dotted"></div>
+                    </div>
+                    <div class="col-xs-12 col-sm-7">
+                        <!-- #section:pages/profile.info -->
+                        <div class="profile-user-info profile-user-info-striped">
+                            <div class="profile-info-row">
+                                <div class="profile-info-name"> Dueño </div>
+                                <div class="profile-info-value">
+                                    <span class="editable" id="duenho">{{d.duenho}}</span>
+                                </div>
+                            </div>
+                            <div class="profile-info-row">
+                                <div class="profile-info-name"> Especie </div>
+                                <div class="profile-info-value">
+                                    <span class="editable" id="especie">{{d.especie}}</span>
+                                </div>
+                            </div>
+                            <div class="profile-info-row">
+                                <div class="profile-info-name"> Raza </div>
+                                <div class="profile-info-value">
+                                    <span class="editable" id="age">{{d.raza}}</span>
+                                </div>
+                            </div>
+                            <div class="profile-info-row">
+                                <div class="profile-info-name"> Color </div>
+                                <div class="profile-info-value">
+                                    <span class="editable" id="age">{{d.color}}</span>
+                                </div>
+                            </div>
+
+                            <div class="profile-info-row">
+                                <div class="profile-info-name"> F. Nacimiento</div>
+
+                                <div class="profile-info-value">
+                                    <span class="editable" id="fecha_nacimiento">{{d.fecha_nacimiento}}</span>
+                                </div>
+                            </div>
+
+                            <div class="profile-info-row">
+                                <div class="profile-info-name"> C. Corporal </div>
+
+                                <div class="profile-info-value">
+                                    <span class="editable" id="cond_corporal">{{d.cond_corporal}}</span>
+                                </div>
+                            </div>
+                            {% for dd in  d.historial_set.all %}
+                            <div class="profile-info-row">
+                                <div class="profile-info-name"> Caracter </div>
+                                <div class="profile-info-value">
+                                    <span class="editable" id="caracter">{{dd.caracter}}</span>
+                                </div>
+                            </div>
+                            <div class="profile-info-row">
+                                <div class="profile-info-name"> Actividad </div>
+                                <div class="profile-info-value">
+                                    <span class="editable" id="actividad">{{dd.actividad}}</span>
+                                </div>
+                            </div>
+                            <div class="profile-info-row">
+                                <div class="profile-info-name"> Alimentacion </div>
+                                <div class="profile-info-value">
+                                    <span class="editable" id="alimentacion">{{dd.alimentacion}}</span>
+                                </div>
+                            </div>
+                            <div class="profile-info-row">
+                                <div class="profile-info-name"> Caracter </div>
+                                <div class="profile-info-value">
+                                    <span class="editable" id="about">{{dd.caracter}}</span>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-2">
+                        <div class="center">
+                            <span class="btn btn-app btn-sm btn-pink no-hover">
+                                <span class="line-height-1 bigger-170"> 4 </span>
+                                <br />
+                                <span class="line-height-1 smaller-90"> Projects </span>
+                            </span>
+                            <span class="btn btn-app btn-sm btn-grey no-hover">
+                                <span class="line-height-1 bigger-170"> 23 </span>
+                                <br />
+                                <span class="line-height-1 smaller-90"> Reviews </span>
+                            </span>
+                            <span class="btn btn-app btn-sm btn-success no-hover">
+                                <span class="line-height-1 bigger-170"> 7 </span>
+                                <br />
+                                <span class="line-height-1 smaller-90"> Albums </span>
+                            </span>
+                            <span class="btn btn-app btn-sm btn-primary no-hover">
+                                <span class="line-height-1 bigger-170"> 55 </span>
+                                <br />
+                                <span class="line-height-1 smaller-90"> Contacts </span>
+                            </span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div id="editar" class="tab-pane">
+            <form  method="post">
+
+                {% crispy form %}
+                <div class="row">
+                        <div class="controls ">
+                            <button type="submit" name="submit" class="btn btn-primary text-bold btn-block" id="submit-id-submit" title="Grabar">
+                                <i class="btn-icon-onlyx fa fa-save"></i>
+                                <span class="hidden-xsx"> Grabar</span>
+                            </button>
+                        </div>
+                </div>
+            </form>
+        </div>
+
+        <div id="historia_compras" class="tab-pane fade">
+            <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade.</p>
+        </div>
+
+        <div id="historia_medica" class="tab-pane fade">
+            <div id="tab-historia-medica" class="">
+
+            </div>
+        </div>
+</div>
+</div>
+</div>
+
+{% endblock page_content %}
+
+{% block extrajs %}
+{{ block.super }}
+
+<script src="{% static 'assets/js/date-time/bootstrap-datepicker.js' %}"></script>
+<script type="text/javascript">
+    $.ajax({
+        url: '/clinica/mascota/historia/{{mascota_id }}',
+        type: 'GET',
+    })
+    .done(function(d) {
+        $("#tab-historia-medica").html(d);
+        console.log("success");
+    })
+    .fail(function() {
+        console.log("error");
+    })
+    .always(function() {
+        console.log("complete");
+    });
+
+    //datepicker plugin
+    //link
+    $('.date-picker').datepicker({
+        autoclose: true,
+        todayHighlight: true
+    })
+    //show datepicker when clicking on the icon
+    .next().on(ace.click_event, function(){
+        $(this).prev().focus();
+    });
+
+    //or change it into a date range picker
+    $('.input-daterange').datepicker({autoclose:true});
+</script>
+{% endblock extrajs %}

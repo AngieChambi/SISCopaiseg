@@ -1,0 +1,168 @@
+{% extends "main/dashboard.html" %}
+{% load i18n app_security %}
+{% load l10n humanize %}
+
+{% block breadcrumbs_item %}
+  <li class="active">{{ opts.verbose_name_plural|capfirst }}</li>
+{% endblock breadcrumbs_item %}
+
+{% block page_title %}
+<i class="fa fa-paw"></i>
+Sala de Espera
+<small>
+    <i class="ace-icon fa fa-angle-double-right"></i>
+    {{title}}
+</small>
+{% endblock page_title %}
+
+{% block page_content %}
+
+<div class="btn-toolbar btn-toolbar-top">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+              <select id="disabledSelect" class="form-control">
+                  <option>Cualquier Medico</option>
+              </select>
+            </div>
+        </div>
+        <div class="col-md-2 col-md-offset-5">
+            <a href="{% url 'clinica:lista_medica' %}" class="btn btn-info btn-block text-bold" title="Ver toda las colas medicas">
+                <span class="hidden-xs">Mostra Todo<span>
+            </a>
+        </div>
+        <div class="col-md-2 ">
+            <a href="#" class="btn btn-info btn-block text-bold" title="Ver toda las colas medicas">
+                <span class="hidden-xs"> Ir a Historias<span>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="container-overflow">
+    <table class="table table-bordered table-hover table-striped table-condensed table-responsive">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th class="col-hidden" data-search="fecha" data-order="fecha">Hora</th>
+                <th class="col-hidden">Paciente</th>
+                <th class="col-hidden">Propietario</th>
+                <th class="col-hidden text-center">Estado</th>
+                <th class="col-hidden text-center">Iniciar Atención</th>
+                <th class="btn-actions col-blocked text-center">Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for d in fecha %}
+            <tr>
+                <td>{% if is_paginated %}
+                    {{ page_obj.start_index|add:forloop.counter0 }}
+                    {% else %}
+                    {{ forloop.counter }}
+                    {% endif %}
+                </td>
+                <td>{{ d.hora|date:'h:i a' |upper}}</td>
+                <td><p class="text-success text-bold">{{ d.mascota }}</p>
+                    {{d.mascota.especie|upper}}  -  {{ d.mascota.raza|upper}} -  {{d.mascota.genero|upper}}</td>
+                <td class="text-primary">{{ d.mascota.duenho }}</td>
+                <td class="text-center">
+                    <span class=" text-{{ d.is_active|yesno:'danger,success' }}">
+                    {% if d.is_active %}
+                        <i class="fa fa-circle fa-lg"> </i>
+                    {% else %}
+                        <i class="fa fa-circle fa-lg"> </i>
+                    {% endif %}
+                </span>
+                </td>
+                <td class="text-center">
+                    {% if  d.atenciones_set.all %}
+                        {% for dd in  d.atenciones_set.all%}
+                        <a href="{% url 'clinica:atenciones_add' d.mascota.id d.pk %}" class="btn btn-warning btn-sm text-bold" title="{% trans 'Iniciar' %} {% trans 'Atencion' %}" rel="tooltip"><i class="btn-icon-only fa fa-stethoscope"></i></a>
+                        {% endfor %}
+                    {% else %}
+                    <form class="" action="{% url 'clinica:atenciones_add' d.mascota.id d.pk %}" method="post">
+                        {% csrf_token %}
+                        <button class="btn btn-info btn-sm text-bold" type="submit" name="submit"><i class="btn-icon-only fa fa-user-md"></i></button>
+                    </form>
+                    {% endif %}
+                </td>
+                <td class="text-center">
+                    <a class="btn btn-info btn-sm text-bold" data-container="body" data-toggle="popover" data-content="Medico asignado {{d.medico}}"><i class="btn-icon-only fa fa-user-md"></i></a>
+
+                    <a href="#" class="btn btn-success btn-sm up"><i class="fa fa-upload"></i></a>
+                    <a href="#" class="btn btn-success btn-sm down"><i class="fa fa-download"></i></a>
+                    {% if d.is_staff %}
+                    {% if d.is_active %}
+                    <a href="/clinica/atencion/terminada/ina/{{d.pk|key:'colamedica_ina'}}/" class="btn btn-success btn-sm text-bold" title="{% trans 'inactivate'|capfirst %} {% trans 'Mascota' %}" rel="tooltip"><i class="btn-icon-only fa fa-flag"></i></a>
+                    {% else %}
+                    <a href="/clinica/atencion/terminada/rea/{{d.pk|key:'colamedica_rea'}}/" class="btn btn-info btn-sm text-bold" title="{% trans 'reactivate'|capfirst %} {% trans 'Mascota' %}" rel="tooltip"><i class="btn-icon-only fa fa-flag"></i></a>
+                    {% endif %}
+                    {% endif %}
+
+
+                    <a href="{% url 'clinica:eliminar_medica' d.pk|key:'doc_del' %}" class="btn btn-danger btn-sm js-confirm text-bold" msg-title="Se le esta eliminando de la cola de espera" msg="Esta Seguro <br/>Recuerde esta operación no puede revertirse"  title="Eliminar de la cola de espera" rel="tooltip">
+                        <i class="btn-icon-only fa fa-minus"></i>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock page_content %}
+{% block extrajs %}
+{{ block.super }}
+<script type="text/javascript">
+
+
+$(function () {
+   var $popoverInbox = $('[data-toggle="popover"]').popover({
+        placement: 'top',
+        trigger:'manual',
+    });
+
+  var timerPopover, popover_parent;
+
+   function hidePopover(elem) {
+  	$(elem).popover('hide');
+	}
+
+   $('[data-toggle="popover"]').hover(
+		function() {
+			var self = this;
+			clearTimeout(timerPopover);
+			$('.popover-all').hide(); //Hide any open popovers on other elements.
+			popover_parent = self;
+			$(self).popover('show');
+		},
+		function() {
+			var self = this;
+			timerPopover = setTimeout(function(){hidePopover(self);},100);
+		}
+	);
+
+	$(document).on({
+		mouseenter: function() {
+			clearTimeout(timerPopover);
+		},
+		mouseleave: function() {
+			var self = this;
+			timerPopover = setTimeout(function(){hidePopover(popover_parent);},100);
+		}
+	}, '.popover-all');
+
+
+});
+
+
+    $(document).ready(function(){
+        $(".up, .down").click(function(){
+            var row = $(this).parents("tr:first");
+            if ($(this).is(".up")) {
+                row.insertBefore(row.prev());
+            } else {
+                row.insertAfter(row.next());
+            }
+        });
+    });
+</script>
+{% endblock extrajs %}

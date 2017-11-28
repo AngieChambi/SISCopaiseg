@@ -1,0 +1,8 @@
+# Local development dependencies go here
+-r test.txt
+django-debug-toolbar==1.7
+docutils==0.13.1
+django-smart-selects==1.5.1
+django-jfu
+django-bootstrap-typeahead
+psycopg2==2.7.1

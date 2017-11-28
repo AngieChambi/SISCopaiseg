@@ -1,0 +1,81 @@
+{% load i18n staticfiles %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE|default:"en-us" }}">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}base{% endblock title %}</title>
+        <!--===============Bootstrap=====================-->
+        <link href="{% static 'bootstrap-3.1.1-dist/css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'bootstrap-3.1.1-dist/css/bootstrap-theme.min.css' %}" rel="stylesheet">
+
+        <link href="{% static 'datetimepicker/css/bootstrap-datetimepicker.min.css' %}" rel="stylesheet">
+        <link href="{% static 'typehead/typehead.css' %}" rel="stylesheet">
+        <!--===============Fonts Awesone Icons=======================-->
+        <link href="{% static 'font-awesome-4.2.0/css/font-awesome.min.css' %}" rel="stylesheet">
+
+        <link rel="stylesheet" href="{% static 'assets/css/ace-skins.min.css' %}" />
+        <link rel="stylesheet" href="{% static 'assets/css/ace-rtl.min.css' %}" />
+        {% block extrastyle %}
+        {% block style %}
+        {% endblock style %}
+        {% endblock extrastyle %}
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="{% static 'jquery/jquery.min.js' %}"></script> 
+        {% block extrahead %}
+        {% endblock extrahead %}
+
+        {% block headjs %}
+        {% endblock headjs %}
+
+    </head>
+    <body class="no-skin">
+        <div id="navbar" class="navbar navbar-default">
+            <script type="text/javascript">
+                try{ace.settings.check('navbar' , 'fixed')}catch(e){}
+            </script>
+            {% block headerroot %}
+            {% endblock headerroot %}
+        </div>
+        <div class="main-container" id="main-container" >
+            <script type="text/javascript">
+                try{ace.settings.check('main-container', 'fixed' )}catch(e){}
+            </script>
+            {% block contentroot %}
+            {% endblock contentroot %}
+        </div>
+
+
+        <script type="text/javascript">
+			if('ontouchstart' in document.documentElement) document.write("<script src='{% static 'assets/js/jquery.mobile.custom.min.js' %}'>"+"<"+"/script>");
+		</script>
+
+        <script type="text/javascript" src="{% url 'django.views.i18n.javascript_catalog' %}"></script>
+
+        <script src="{% static 'bootstrap-3.1.1-dist/js/bootstrap.min.js' %}"></script>
+
+        <!-- http://www.jsdelivr.com/#!momentjs http://momentjs.com/timezone/-->
+        <script src="{% static 'moment/moment-with-locales.min.js' %}"></script>
+        <script src="{% static 'datetimepicker/js/bootstrap-datetimepicker.min.js' %}"></script>
+        <script src="{% static 'typehead/bootstrap.typehead.min.js' %}"></script>
+
+
+        <script src="{% static 'assets/js/ace-elements.js' %}"></script>
+        <script src="{% static 'assets/js/ace.js' %}"></script>
+
+        <!-- the following scripts are used in demo only for onpage help and you don't need them -->
+        <link rel="stylesheet" href="{% static 'assets/css/ace.onpage-help.css' %}" />
+
+
+        <script type="text/javascript"> ace.vars['base'] = '..'; </script>
+        <script src="{% static 'assets/js/ace/elements.onpage-help.js' %}"></script>
+        <script src="{% static 'assets/js/ace/ace.onpage-help.js' %}"></script>
+
+        {% block extrajs %}
+
+        {% block js %}
+        {% endblock js %}
+        {% endblock extrajs %}
+    </body>
+</html>

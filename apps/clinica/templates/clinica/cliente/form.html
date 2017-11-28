@@ -1,0 +1,35 @@
+{% extends "main/dashboard.html" %}
+{% load l10n i18n %}
+{% load crispy_forms_tags %}
+{% block breadcrumbs_item %}
+    <li><a href="{% url 'clinica:cliente_list' %}">{{ opts.verbose_name_plural|capfirst }}</a></li>
+    <li class="active">{{ title }}</li>
+{% endblock breadcrumbs_item %}
+
+{% block page_title %}
+    <i class="fa fa-user"></i> {{ title }}
+{% endblock page_title %}
+{% block page_content %}
+
+    <form action="" method="post">
+        {% csrf_token %}
+        {% crispy form %}
+    </form>
+
+{% endblock %}
+
+{% block extrajs %}
+    {{ block.super }}
+    <script type="text/javascript">
+        $('#id_fecha_de_nacimiento').datetimepicker({
+            format: 'YYYY-MM-DD',
+            //format: 'YYYY-MM-DD hh:mm:ss', //pata datatimes
+            language: 'es',
+            pickTime: false,
+            //showMeridian: true,
+            autoclose: true,
+            todayHighlight: true,
+        });
+
+    </script>
+{% endblock extrajs %}

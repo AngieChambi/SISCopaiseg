@@ -1,0 +1,100 @@
+{% extends "main/dashboard.html" %} {% load i18n staticfiles app_security %}
+{% load l10n humanize %}
+{% load i18n crispy_forms_tags staticfiles %}
+{% load l10n %}
+{% block style %}
+    <!--suppress CssInvalidPseudoSelector -->
+    <style media="screen">
+        .tab-content {
+            border: solid 1px rgba(67, 142, 185, 0.26);
+
+        }
+
+        .lista-antiparasitario {
+            list-style: none;
+            margin-top: 10px;
+            width: 19%;
+            margin-right: 10px;
+            padding: 0.5em;
+
+        }
+
+        .ul-antiparasitario {
+            margin-left: 0;
+        }
+    </style>
+{% endblock style %}
+{% block breadcrumbs_item %}
+    <li class="active">{{ opts.verbose_name_plural|capfirst }}</li>
+{% endblock breadcrumbs_item %}
+
+{% block page_title %}
+    <i class="fa fa-users"></i> Lista de {{ opts.verbose_name_plural }}
+{% endblock page_title %}
+
+{% block page_content %}
+    <div class="tabbable tabs-right">
+
+        <ul id="myTab" class="nav nav-tabs">
+            {% for d in object_list %}
+                <li {% if forloop.first %}class="active"{% endif %}>
+                    <a id="id_{{ d.id }}" href="#{{ d.nombre }}" data-toggle="tab">
+                        <span class="nombre-servicios label label-info arrowed "
+                              style="width: 90px;">{{ d.nombre }}</span>
+                    </a>
+                </li>
+            {% endfor %}
+
+        </ul>
+
+        <div class="tab-content">
+            {% for d in object_list %}
+
+                <div class="tab-pane {% if forloop.first %}in active{% endif %}" id="{{ d.nombre }}">
+                    <div id="aintiparasitario_content_{{ d.id }}"></div>
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+
+
+    <script type="text/javascript">
+        {% for d in object_list %}
+            {% if forloop.first %}
+                $.ajax({
+                    url: '/configuracion/antiparasitario/crear/{{ d.id }}/',
+                    type: 'GET',
+                }).done(function (d) {
+                    $('#aintiparasitario_content_{{ d.id }}').html(d)
+                    $('.especie').val({{ d.id }})
+                })
+                    .fail(function () {
+                        console.log("error");
+                    })
+                    .always(function () {
+                        console.log("complete");
+                    });
+            {% endif %}
+            $("#id_{{ d.id }}").click(function () {
+                $.ajax({
+                    url: '/configuracion/antiparasitario/crear/' +{{ d.id }},
+                    type: 'GET',
+                }).done(function (d) {
+                    $('#aintiparasitario_content_{{ d.id }}').html(d)
+                    $('.especie').val({{ d.id }})
+                })
+                    .fail(function () {
+                        console.log("error");
+                    })
+                    .always(function () {
+                        console.log("complete");
+                    });
+            });
+        {% endfor %}
+    </script>
+{% endblock page_content %}
+{% block extrajs %}
+    {{ block.super }}
+{% endblock extrajs %}

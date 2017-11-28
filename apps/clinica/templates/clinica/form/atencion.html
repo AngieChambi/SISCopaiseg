@@ -1,0 +1,51 @@
+{% extends "main/dashboard.html" %}
+{% load i18n crispy_forms_tags staticfiles %}
+{% load l10n %}
+
+
+{% block style %}
+<link href="{% static 'bootstrap-chosen-master/bootstrap-chosen.css' %}" rel="stylesheet">
+{% endblock style %}
+
+{% block headjs %}
+<script src="{% static 'bootstrap-chosen-master/chosen.jquery.js' %}"></script>
+<script>
+  $(function() {
+	$('.chosen-select').chosen();
+	$('.chosen-select-deselect').chosen({ allow_single_deselect: true });
+  });
+</script>
+{% endblock %}
+
+{% block breadcrumbs_item %}
+<li><a href="/clinica/colamedica/listar/">{% trans 'Cola' %} {% trans 'Medica' %}</a></li>
+<li class="active">{{ opts.verbose_name_plural|capfirst }}</li>
+{% endblock breadcrumbs_item %}
+
+{% block content_title %}
+{% endblock content_title %}
+
+{% block content %}
+
+{% crispy form %}
+
+{% endblock %}
+
+{% block extrajs %}
+{{ block.super }}
+
+<script type="text/javascript">
+
+$('#id_fecha_programada').datetimepicker({
+	format: 'YYYY-MM-DD',
+		//format: 'YYYY-MM-DD hh:mm:ss', //pata datatimes
+		language: '{{ LANGUAGE_CODE }}',
+		pickTime: false,
+		//showMeridian: true,
+		autoclose: true,
+		todayHighlight: true,
+	});
+
+
+</script>
+{% endblock extrajs %}

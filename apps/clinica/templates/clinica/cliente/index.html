@@ -1,0 +1,254 @@
+{% extends "main/dashboard.html" %} {% load i18n app_security %} {% load l10n humanize %}
+{% block style %}
+    <style media="screen">
+        .detail-row {
+            display: none;
+        }
+
+        .open.show_row {
+            display: table-row;
+        }
+    </style>
+{% endblock style %}
+{% block breadcrumbs_item %}
+    <li class="active">{{ title }}</li>
+{% endblock breadcrumbs_item %}
+
+{% block page_title %}
+    <i class="fa fa-users"></i> Lista de {{ opts.verbose_name_plural }}
+    <small>
+        <i class="ace-icon fa fa-angle-double-right"></i>
+        {{ title }}
+    </small>
+{% endblock page_title %}
+{% block page_content %}
+    <script type="text/javascript">
+        $(function () {
+            $('table').kgrid({
+                form_data: ['{{f}}', '{{q}}'],
+                form_to: '{% url 'clinica:cliente_list' %}?f={{f}}&q={{q}}',
+                order_attr: 'class=""',
+                order_to: '{% url 'clinica:cliente_list' %}?f={{f}}&q={{q}}',
+            });
+        });
+    </script>
+    <div class="btn-toolbar btn-toolbar-top">
+        <div class="row">
+            <div class="btn-actions col-md-9">
+                <a href="{% url 'clinica:cliente_add' %}" class="btn btn-primary text-bold" title="Agregar Cliente">
+                    <i class="fa fa-plus"></i>
+                    <span class="hidden-xs"> Agregar</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="container-overflow">
+        <table class="table table-bordered table-hover table-striped table-condensed table-responsive">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th class="detail-col">Detalle</th>
+                <th class="col-hidden" data-order="persona__last_name" data-search="persona__first_name">Apellidos y
+                    Nombres
+                </th>
+                <th class="col-hidden">E-mail</th>
+                <th class="col-hidden">
+                    <i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
+                    Update
+                </th>
+                <th class="col-hidden col-blocked text-center ">N° Mascotas</th>
+                <th class="text-center">Add Mascota</th>
+                <th class="btn-actions col-blocked text-center">Acción</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for d in object_list %}
+                <tr>
+                    <td>{% if is_paginated %} {{ page_obj.start_index|add:forloop.counter0 }} {% else %}
+                        {{ forloop.counter }} {% endif %}
+                    </td>
+                    <td class="center">
+                        <div class="action-buttons">
+                            <a href="#" class="green bigger-140 show-details-btn" title="Show Details">
+                                <i class="ace-icon fa fa-angle-double-down"></i>
+                                <span class="sr-only">Details</span>
+                            </a>
+                        </div>
+                    </td>
+                    <td>{{ d.persona.last_name }} {{ d.persona.first_name }} </td>
+                    <td><a>{{ d.email }}</a></td>
+                    <td>{{ d.updated }}</td>
+                    {% if d.mascotas.count %}
+                        <td><span class="badge badge-success">{{ d.mascotas.count }}</span></td>
+                    {% else %}
+                        <td><span class="badge badge-danger">{{ d.mascotas.count }}</span></td>
+                    {% endif %}
+
+
+                    <td>
+                        <a href="{% url 'clinica:mascota_list' d.pk %}"
+                           class="btn btn-warning btn-sm text-bold"
+                           title="Agregar Mascota" rel="tooltip">
+                            <i class="btn-icon-only fa fa-paw"></i>
+                        </a>
+                    </td>
+                    <td class="text-center">
+                        <a href="{% url 'clinica:cliente_upd' d.pk %}" class="btn btn-info btn-sm text-bold"
+                           title="Cambiar Cliente" rel="tooltip">
+                            <i class="btn-icon-only fa fa-edit"></i>
+                        </a>
+                        <a href="{% url 'clinica:cliente_del' d.pk|key:'doc_del' %}"
+                           class="btn btn-danger btn-sm js-confirm text-bold" msg-title="Eliminar Cliente?." msg="Esta Seguro
+                       <br/>Recuerde esta operación no puede revertirse" title="Eliminar Cliente" rel="tooltip">
+                            <i class="btn-icon-only fa fa-trash-o"></i>
+                        </a>
+                    </td>
+                </tr>
+                <tr class="detail-row">
+                    <td colspan="8">
+                        <div class="table-detail">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-2">
+                                    <div class="text-center">
+                                        <img height="150" class="thumbnail inline no-margin-bottom"
+                                             alt="Domain Owner's Avatar" src="{{ MEDIA_URL }}{{ d.persona.photo }}">
+                                        <br>
+                                        <div class="width-80 label label-info label-xlg arrowed-in arrowed-in-right">
+                                            <div class="inline position-relative">
+                                                <a class="user-title-label" href="#">
+                                                    <i class="ace-icon fa fa-circle light-green"></i>
+                                                    &nbsp;
+                                                    <span class="white">{{ d.persona.first_name }}</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-7">
+                                    <div class="space visible-xs"></div>
+
+                                    <div class="profile-user-info profile-user-info-striped">
+                                        <div class="profile-info-row">
+                                            <div class="profile-info-name"> Cliente</div>
+
+                                            <div class="profile-info-value">
+                                                <span>{{ d.persona.first_name }} {{ d.persona.last_name }} </span>
+                                            </div>
+                                        </div>
+                                        <div class="profile-info-row">
+                                            <div class="profile-info-name">{{ d.persona.identity_type }} </div>
+                                            <div class="profile-info-value">
+                                                <span>{{ d.persona.identity_num }} </span>
+                                            </div>
+                                        </div>
+
+                                        <div class="profile-info-row">
+                                            <div class="profile-info-name"> Ciudad</div>
+                                            <div class="profile-info-value">
+                                                <i class="fa fa-map-marker light-orange bigger-110"></i>
+                                                <span>{{ d.ciudad }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="profile-info-row">
+                                            <div class="profile-info-name"> Direccion</div>
+                                            <div class="profile-info-value">
+                                                <i class="fa fa-map-marker light-orange bigger-110"></i>
+                                                <span>{{ d.direccion }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="profile-info-row">
+                                            <div class="profile-info-name">F. Nacimiento</div>
+
+                                            <div class="profile-info-value">
+                                                <span>{{ d.persona.birth_date }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="profile-info-row">
+                                            <div class="profile-info-name">Telefono</div>
+                                            <div class="profile-info-value">
+                                                <span>{{ d.telefono }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="profile-info-row">
+                                            <div class="profile-info-name"> Registrado</div>
+
+                                            <div class="profile-info-value">
+                                                <span>{{ d.created }}</span>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="profile-info-row">
+                                            <div class="profile-info-name"> Ventas</div>
+
+                                            <div class="profile-info-value">
+                                                <span>{{ d.venta_set.count }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-3">
+                                    <div class="space visible-xs"></div>
+                                    <h4 class="header blue lighter less-margin">Enviar Mensaje
+                                        a {{ d.persona.first_name }}</h4>
+
+                                    <div class="space-6"></div>
+
+                                    <form>
+                                        <fieldset>
+                                            <textarea class="width-100" resize="none"
+                                                      placeholder="Escriba aqui…"></textarea>
+                                        </fieldset>
+
+                                        <div class="hr hr-dotted"></div>
+
+                                        <div class="clearfix">
+                                            <label class="pull-left">
+                                                <input type="checkbox" class="ace">
+                                                <span class="lbl"> Email me a copy</span>
+                                            </label>
+
+                                            <button class="pull-right btn btn-sm btn-primary btn-white btn-round"
+                                                    type="button">
+                                                Enviar
+                                                <i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        {% if is_paginated %} {% load paginator %} {% paginator %} {% else %}
+            <div class="col-md-12">
+                <ul class="breadcrumbpag">
+                    {{ object_list.count }} {% ifequal object_list.count 1 %}{{ opts.verbose_name|capfirst }}{% else %}
+                    {{ opts.verbose_name_plural|capfirst }}{% endifequal %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+{% endblock page_content %}
+{% block extrajs %} {{ block.super }}
+    <script type="text/javascript">
+        $('.show-details-btn').on('click', function (e) {
+            e.preventDefault();
+            var dd = $('.show-details-btn i ').css('color');
+            console.log("IMprimiedo:", dd);
+            console.log("holaaaaaaa");
+            $(this).closest('tr').next().toggleClass('open');
+            $(this).find(ace.vars['.icon']).toggleClass('fa-angle-double-down').toggleClass('fa-angle-double-up');
+            $('.detail-row').addClass('show_row');
+        });
+    </script>
+{% endblock extrajs %}

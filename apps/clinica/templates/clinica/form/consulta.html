@@ -1,0 +1,33 @@
+{% extends "main/dashboard.html" %}
+{% load i18n crispy_forms_tags %}
+{% load l10n %}
+
+{% block breadcrumbs_item %}
+<li><a href="/clinica/consulta/listar/">{{ opts.verbose_name_plural|capfirst }}</a></li>
+<li class="active">{{ title }}</li>
+{% endblock breadcrumbs_item %}
+
+{% block content_title %}
+<h3><i class="fa fa-paw"></i> {{ opts.verbose_name_plural|capfirst }} | <small>{{ subtitle }}</small></h3>
+{% endblock content_title %}
+
+{% block content %}
+<div class="ui-widget">
+  <label for="tags3">Tags: </label>
+  <input id="tags3">
+</div>
+{% crispy form %}
+{% endblock %}
+
+{% block extrajs %}
+{{ block.super }}
+<script type="text/javascript">
+	$(function() {
+		$("#tags3").autocomplete({
+			minLength:1,
+			source: "/clinica/consulta/solo_url/"
+		});
+	});
+</script>
+
+{% endblock extrajs %}

@@ -1,0 +1,28 @@
+{% extends "main/dashboard.html" %}
+<!--
+@copyright   Copyright (c) 2014 Submit Consulting
+@author      Angel Sullon (@asullom)
+@package     sad
+Descripcion: Create/Update group
+-->
+{% load i18n crispy_forms_tags %} {% load l10n %} 
+{% block breadcrumbs_item %}
+<li><a href="{% url 'ventas:departamento_list' %}">{{ opts.verbose_name_plural|capfirst }}</a></li>
+<li class="active">{{ title }}</li>
+{% endblock breadcrumbs_item %}
+
+{% block content_title %}
+<i class="fa fa-tag"></i> {{ title }}
+{% endblock content_title %}
+{% block content %}
+
+<div class="container panel panel-defaul">
+    <form action="" method="post">
+        {% crispy form %} {% csrf_token %}
+    </form>
+</div>
+
+{% endblock %} {% block extrajs %} {{ block.super }}
+<script type="text/javascript">
+</script>
+{% endblock extrajs %}

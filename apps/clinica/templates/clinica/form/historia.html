@@ -1,0 +1,88 @@
+{% extends "main/dashboard.html" %}
+{% load i18n crispy_forms_tags %}
+{% load l10n %}
+
+{% block style %}
+<style media="screen">
+	.form-control-mascota{
+		border-color: #00796b;
+	    background: #02a290 !important;
+	    color: #fff;
+	    font-size: 1.1em;
+		cursor: pointer !important;
+	}
+	.subtitle-mascota{
+		margin-top: 9px;
+		font-size: 1.6em;
+		color: #212121;
+	}
+	#div_id_num_historia{
+		margin-bottom: 5px;
+	}
+	.div-mascota-forms{
+		box-shadow:  1px 1px 1px 1px #009688;
+		margin-bottom: 20px;
+		padding: 7px 5px;
+		border-radius: 10px;
+	}
+
+	.estado-historia{
+		display: none;
+	}
+</style>
+{% endblock style %}
+{% block breadcrumbs_item %}
+<li><a href="/clinica/historia/listar/">{{ opts.verbose_name_plural|capfirst }}</a></li>
+<li class="active">{{ title }}</li>
+{% endblock breadcrumbs_item %}
+
+{% block page_title %}
+    <i class="fa fa-list-alt"></i> {{ subtitle }} {{cantidad}} dsdsddddddddd
+{% endblock page_title %}
+
+{% block page_content %}
+
+{% crispy form %}
+
+{% endblock page_content %}
+
+{% block extrajs %}
+{{ block.super }}
+
+<script type="text/javascript">
+$('#id_num_historia').attr('readonly', true);
+$('#id_nombre').attr('readonly', true);
+$('#id_duenho option:not(:selected)').attr('disabled',true);
+$('#id_fecha_nacimiento option:not(:selected)').attr('disabled',true);
+
+if('{{cantidad}}'<=9){
+	$("#id_num_historia").val('0000{{cantidad}}');
+}
+else if ('{{cantidad}}'<=99) {
+	$("#id_num_historia").val('000{{cantidad}}');
+}
+else if('{{cantidad}}'<=999) {
+	$("#id_num_historia").val('00{{cantidad}}');
+}
+else if('{{cantidad}}'<=9999){
+	$("#id_num_historia").val('0{{cantidad}}');
+}
+else{
+	$("#id_num_historia").val('{{cantidad}}');
+}
+
+$("#id_historia").attr('checked', true);
+
+$('#id_caracter, #id_actividad,#id_habitar,#id_alimentacion,#id_aptitup').append('<option value selected="selected" diseabled>Elige una opcion..</option>');
+$('#id_fecha_nacimiento').datetimepicker({
+	format: 'YYYY-MM-DD',
+		//format: 'YYYY-MM-DD hh:mm:ss', //pata datatimes
+		language: '{{ LANGUAGE_CODE }}',
+		pickTime: false,
+		//showMeridian: true,
+		autoclose: true,
+		todayHighlight: true,
+	});
+
+</script>
+{% endblock extrajs %}

@@ -1,0 +1,86 @@
+{% extends "main/dashboard.html" %} {% load i18n app_security %} {% load l10n humanize %} {% block breadcrumbs_item %}
+<li class="active">{{ title }}</li>
+{% endblock breadcrumbs_item %} {% block page_title %}
+<i class="fa fa-users"></i> Lista de {{ opts.verbose_name_plural }}
+<small>
+        <i class="ace-icon fa fa-angle-double-right"></i>
+        {{ title }}
+    </small> {% endblock page_title %} {% block page_content %}
+<script type="text/javascript">
+$(function() {
+    $('table').kgrid({
+        form_data: ['{{f}}', '{{q}}'],
+        form_to: '/compras/proveedor/listar/?f={{f}}&q={{q}}',
+        order_attr: 'class=""',
+        order_to: '/compras/proveedor/listar/?f={{f}}&q={{q}}',
+    });
+});
+</script>
+<div class="btn-toolbar btn-toolbar-top">
+    <div class="row">
+        <div class="btn-actions col-md-9" ,>
+            <a href="{% url 'compras:proveedor_add' %}" class="btn btn-primary text-bold" title="Agregar Proveedor">
+                <i class="fa fa-plus"></i>
+                <span class="hidden-xs"> Agregar</span>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="container-overflow">
+    <table class="table table-bordered table-hover table-striped table-condensed table-responsive">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th class="col-hidden" data-search="razon_social" data-order="razon_social">Razon social</th>
+                <th class="col-hidden" data-search="numdoc" data-order="numdoc">N° de documento</th>
+                <th class="col-hidden" data-search="representante_legal" data-order="representante_legal">Representante legal
+                </th>
+                <th class="col-hidden" data-search="direccion" data-order="direccion">Direccion</th>
+                <th class="col-hidden" data-search="telefono" data-order="telefono">Telefono</th>
+                <th class="col-hidden" data-search="email" data-order="email">Email</th>
+                <th class="col-hidden" data-search="enti_bancaria" data-order="enti_bancaria">Entidad bancaria</th>
+                <th class="col-hidden" data-search="num_cuenta" data-order="num_cuenta">N° de cuenta</th>
+                <th class="btn-actions col-blocked text-center">Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for d in object_list %}
+            <tr {% if not d.estado %}
+                    class="danger" title="Proveedor en baja"
+                {% endif %}>
+                <td>{% if is_paginated %} {{ page_obj.start_index|add:forloop.counter0 }} {% else %} {{ forloop.counter }} {% endif %}
+                </td>
+                <td>{{ d.razon_social }}</td>
+                <td>{{ d.numdoc }}</td>
+                <td>{{ d.representante_legal }}</td>
+                <td>{{ d.direccion }}</td>
+                <td>{{ d.telefono|default_if_none:"---" }}</td>
+                <td>{{ d.email|default_if_none:"---" }}</td>
+                <td>{{ d.enti_bancaria|default_if_none:"---" }}</td>
+                <td>{{ d.num_cuenta|default_if_none:"---" }}</td>
+                <td class="text-center">
+                    {% if  d.estado %}
+                        
+                    <a href="{% url 'compras:proveedor_upd' d.pk|key:'doc_upd' %}" class="btn btn-info btn-sm text-bold" title="Cambiar Proveedor" rel="tooltip">
+                        <i class="btn-icon-only fa fa-edit"></i>
+                    </a>
+                    {% endif %}
+                    <a href="{% url 'compras:proveedor_del' d.pk|key:'doc_del' %}" {% if d.estado %} class="btn btn-success btn-sm" title="Desactivar" {% else %} class="btn btn-danger btn-sm" title="Activar" {% endif %}>
+                        <i class="btn-icon-only fa fa-flag"></i>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div class="row">
+    {% if is_paginated %} {% load paginator %} {% paginator %} {% else %}
+    <div class="col-md-12">
+        <ul class="breadcrumbpag">
+            {{ object_list.count }} {% ifequal object_list.count 1 %}{{ opts.verbose_name|capfirst }}{% else %} {{ opts.verbose_name_plural|capfirst }}{% endifequal %}
+        </ul>
+    </div>
+    {% endif %}
+</div>
+{% endblock page_content %}

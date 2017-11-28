@@ -1,0 +1,149 @@
+{% load i18n user_menu %}
+<div class="sidebar-shortcuts" id="sidebar-shortcuts">
+    <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+        <button class="btn btn-success">
+            <i class="ace-icon fa fa-signal"></i>
+        </button>
+
+        <button class="btn btn-info">
+            <i class="ace-icon fa fa-pencil"></i>
+        </button>
+
+        <!-- #section:basics/sidebar.layout.shortcuts -->
+        <button class="btn btn-warning">
+            <i class="ace-icon fa fa-users"></i>
+        </button>
+
+        <button class="btn btn-danger">
+            <i class="ace-icon fa fa-cogs"></i>
+        </button>
+
+        <!-- /section:basics/sidebar.layout.shortcuts -->
+    </div>
+
+    <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+        <span class="btn btn-success"></span>
+
+        <span class="btn btn-info"></span>
+
+        <span class="btn btn-warning"></span>
+
+        <span class="btn btn-danger"></span>
+    </div>
+</div><!-- /.sidebar-shortcuts -->
+
+<ul class="nav nav-list">
+    <li>
+        <a href="/">							<i class="menu-icon fa fa-tachometer"></i>
+        <span class="menu-text"> Dashboard </span></a>
+        <b class="arrow"></b>
+    </li>
+    <!--     <li class="">
+            <a href="#" class="dropdown-toggle">
+                <i class="menu-icon fa fa-fw fa-arrows-v"></i>
+                <span class="menu-text">Recepción</span>
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+            <b class="arrow"></b>
+            <ul class="submenu">
+                <li class="">
+                    <a href="/ventas/"><i class="fa fa-fw fa-table"></i> Ventas</a>
+                    <b class="arrow"></b>
+                </li>
+                <li class="">
+                    <a href="{% url 'clinica:crear_medica' %}"><i class="fa fa-fw fa-table"></i> Atencion</a>
+                    <b class="arrow"></b>
+                </li>
+            </ul>
+        </li>
+        <li class="">
+            <a href="#" class="dropdown-toggle">
+                <i class="fa fa-fw fa-arrows-v"></i>
+                <span class="menu-text">Clinica</span>
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+            <b class="arrow"></b>
+            <ul class="submenu">
+                <li class="">
+                    <a href="{% url 'clinica:listar_medica' %}"><i class="fa fa-fw fa-table"></i> Cola Medica</a>
+                    <b class="arrow"></b>
+                </li>
+                <li class="">
+                    <a href="#"><i class="fa fa-fw fa-table"></i> Pacientes</a>
+                    <b class="arrow"></b>
+                </li>
+                <li class="">
+                    <a href="{% url 'clinica:listar_historia' %}"><i class="fa fa-fw fa-table"></i> Historias clinicas</a>
+                    <b class="arrow"></b>
+                </li>
+            </ul>
+        </li>
+        <li class="">
+                <a href="#" class="dropdown-toggle">
+                    <i class="fa fa-fw fa-arrows-v"></i>
+                    <span class="menu-text">Compras</span>
+                    <b class="arrow fa fa-angle-down"></b>
+                </a>
+                <b class="arrow"></b>
+                <ul class="submenu">
+                    <li class="">
+                        <a href="{% url 'compras:compra_add' %}"><i class="fa fa-fw fa-table"></i>Realizar Compra</a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="">
+                        <a href="{% url 'ventas:producto_list' %}"><i class="fa fa-fw fa-table"></i>Articulos</a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="">
+                        <a href="{% url 'compras:compra_list' %}"><i class="fa fa-fw fa-table"></i>Reporte</a>
+                        <b class="arrow"></b>
+                    </li>
+                </ul>
+            </li>
+            <li class="">
+                <a href="#" class="dropdown-toggle">
+                    <i class="fa fa-fw fa-arrows-v"></i>
+                    <span class="menu-text">Inventario</span>
+                    <b class="arrow fa fa-angle-down"></b>
+                </a>
+                <b class="arrow"></b>
+                    <ul class="submenu">
+                        <li class="">
+                            <a href="{% url 'ventas:categoria_list' %}"><i class="fa fa-fw fa-table"></i>Categoria</a>
+                            <b class="arrow"></b>
+                        </li>
+                        <li class="">
+                            <a href="{% url 'ventas:departamento_list' %}"><i class="fa fa-fw fa-table"></i>Departamento</a>
+                            <b class="arrow"></b>
+                        </li>
+                        <li class="">
+                            <a href="{% url 'ventas:unidad_medida_list' %}"><i class="fa fa-fw fa-table"></i>Unidad de Medida</a>
+                            <b class="arrow"></b>
+                        </li>
+                    </ul>
+                </li>
+            <li class="">
+                <a href="{% url 'clinica:cliente_list' %}"><i class="fa fa-fw fa-users"></i> <span class="menu-text">Clientes</span></a>
+            </li>
+            <li class="">
+                <a href="{% url 'citas:cita_add' %}"><i class="fa fa-fw fa-calendar"></i><span class="menu-text"> Citas</span></a>
+            </li>
+            <li class="">
+                <a href="{% url 'compras:proveedor_list' %}"><i class="fa fa-fw fa-file"></i> <span class="menu-text">Proveedores</span></a>
+            </li>
+        <li class="">
+            <a href="{% url 'ventas:reporte_ventas' %}"><i class="fa fa-fw fa-dashboard"></i> <span class="menu-text">Reportes</span></a>
+        </li>
+        <li class="">
+            <a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> <span class="menu-text">Configuración</span></a>
+        </li>/.nav-list -->
+</ul>
+
+{% view_menu_clivet request %}
+<!-- #section:basics/sidebar.layout.minimize -->
+<!-- #section:basics/sidebar.layout.minimize -->
+<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+    <i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+</div>
+
+<!-- /section:basics/sidebar.layout.minimize -->

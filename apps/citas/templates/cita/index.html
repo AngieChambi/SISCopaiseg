@@ -1,0 +1,75 @@
+{% extends "main/dashboard.html" %} {% load i18n app_security %} {% load l10n humanize %}
+{% block breadcrumbs_item %}
+<li class="active">Citas</li>
+{% endblock breadcrumbs_item %}
+
+
+{% block content_title %}
+<i class="fa fa-calendar"></i> Lista de Citas
+{% endblock content_title %}
+{% block content %}
+<div class="container-overflow">
+    <div id='calendar'></div>
+</div>
+<script>
+$(document).ready(function() {
+    $('#calendar').fullCalendar({
+        locale: 'es',
+        header: {
+            left: 'prev,next today',
+            center: 'title',
+            // right: 'month,basicWeek,basicDay,listWeek'
+            right: 'agendaDay,agendaWeek,month listDay,listWeek,listMonth,listYear',
+            // right: 'month,agendaWeek,agendaDay,listWeek,listDay,listMonth,listYear,list',
+        },
+        defaultView: 'agendaWeek',
+        buttonText:
+        {
+            today: 'Hoy',
+            month: 'Mes',
+            week: 'Semana',
+            day: 'Día',
+            listDay: 'Lista por dia',
+            listWeek: 'Lista por semana',
+            listMonth: 'Lista por mes',
+            listYear: 'Lista por año',
+        },
+        // header: {
+        //     left: '',
+        //     center: 'prev title next',
+        //     right: ''
+        // },
+        //defaultDate: '2016-01-12',
+        eventLimit: true, // allow "more" link when too many events
+        navLinks: true,
+        allDaySlot: false,//para mostar en el calendario todo el dia
+        scrollTime: '08:00:00',
+        minTime: "08:00:00",
+        maxTime: "18:00:00",
+        weekends: false,//si incluye fin de semanas or //hiddenDays: [ 1, 3, 5 ]
+        events: function(start, end, timezone, callback) {
+            $.ajax({
+                    url: '/citas/listar/',
+                    type: 'get',
+                    dataType: 'json',
+                    //data: {param1: 'value1'},
+                })
+                .done(function(dat) {
+                    console.log("success",dat);
+                    var events = [];
+                    for (var i in dat) {
+                        events.push(dat[i]);
+                    }
+                    callback(events);
+                })
+                .fail(function() {
+                    console.log("error");
+                })
+                .always(function() {
+                    console.log("complete");
+                });
+        }
+    });
+});
+</script>
+{% endblock content %}

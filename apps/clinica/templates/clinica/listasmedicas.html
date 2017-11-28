@@ -1,0 +1,92 @@
+{% extends "main/dashboard.html" %}
+{% load i18n app_security %}
+{% load l10n humanize %}
+
+{% block breadcrumbs_item %}
+  <li class="active">{{ opts.verbose_name_plural|capfirst }}</li>
+{% endblock breadcrumbs_item %}
+
+
+{% block content_title %}
+<i class="fa fa-list"></i> Registos de cola medica
+{% endblock content_title %}
+
+{% block content %}
+<script type="text/javascript">
+$(function() {
+    $('table').kgrid({
+        form_data : ['{{f}}', '{{q}}'],
+        form_to   : '/clinica/colamedica/listar/?f={{f}}&q={{q}}',
+        order_attr: 'class=""',
+        order_to  : '/clinica/colamedica/listar/?f={{f}}&q={{q}}',
+    });
+});
+</script>
+<div class="btn-toolbar btn-toolbar-top">
+    <div class="row">
+        <div class="btn-actions">
+        </div>
+    </div>
+</div>
+<div class="container-overflow">
+    <table class="table table-bordered table-hover table-striped table-condensed table-responsive">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th class="col-hidden" data-search="fecha" data-order="fecha">Hora</th>
+                <th class="col-hidden">Paciente</th>
+                <th class="col-hidden">N° Historia</th>
+                <th class="col-hidden">Propietario</th>
+                <th class="col-hidden">Descripcion</th>
+                <th class="col-hidden text-center">Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for d in object_list %}
+            <tr>
+                <td>{% if is_paginated %}
+                    {{ page_obj.start_index|add:forloop.counter0 }}
+                    {% else %}
+                    {{ forloop.counter }}
+                    {% endif %}
+                </td>
+                <td>{{ d.fecha }}</td>
+                <td>{{ d.historia.mascota }} - {{ d.historia.mascota.raza}}</td>
+                <td>{{ d.historia.num_historia }}</td>
+                <td>{{ d.historia.mascota.duenho }}</td>
+                <td>{{ d.descripcion }}</td>
+                <td class="text-center">
+                    <span class="label label-{{ d.estado|yesno:'success,danger' }}">
+                        {%  if d.estado %}{% trans 'A ' %}
+                        {% else %}{% trans 'E ' %}
+                        {% endif %}
+                    </span>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+</div>
+<div  class="row" >
+    {% if is_paginated %}
+    {% load paginator %}
+    {% paginator %}
+    {% else %}
+    <div class="col-md-12" >
+        <ul class="breadcrumbpag" >
+            {{ object_list.count }} {% ifequal object_list.count 1 %}{{ opts.verbose_name|capfirst }}{% else %}{{ opts.verbose_name_plural|capfirst }}{% endifequal %}
+        </ul>
+    </div>
+    {% endif %}
+</div>
+{% endblock content %}
+{% block extrajs %}
+{{ block.super }}
+
+<script type="text/javascript">
+$('#myModal').modal({
+  keyboard: false
+})
+</script>
+{% endblock extrajs %}

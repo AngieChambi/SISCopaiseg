@@ -1,0 +1,129 @@
+{% extends "main/dashboard.html" %} {% load i18n staticfiles app_security %} {% load l10n humanize %}
+{% block style %}
+
+{% endblock style %}
+{% block breadcrumbs_item %}
+<li class="active">{{ opts.verbose_name_plural|capfirst }}</li>
+{% endblock breadcrumbs_item %}
+
+{% block page_title %}
+<i class="fa fa-users"></i> Lista de {{opts.verbose_name_plural}}
+ {% endblock page_title %}
+ {% block page_content %}
+
+<div class="row">
+    <div class="col-xs-12">
+        <form id="especie-form" name="nombre" >
+            <span class="input-icon input-icon-right block">
+                <input type="text" name="nombre" id="nombre" class="form-control form-field-icon-2" placeholder="Registrar nueva especie">
+                    <i id="save-especie" class="ace-icon fa fa-check green" title="Guardar"></i>
+            </span>
+        </form>
+        <div class="alert alert-danger hide" role="alert" id="success_message_especie_error"></div>
+    </div>
+    <div id="list_especie">
+    </div>
+</div>
+
+{% endblock page_content %}
+{% block extrajs %}
+{{ block.super }}
+<script src="{% static 'assets/js/jquery.nestable.js' %}"></script>
+<script type="text/javascript">
+
+$.ajax({
+    url: '/configuracion/especie/listar/',
+    type: 'GET',
+})
+.done(function(d) {
+    $("#list_especie").html(d);
+    console.log("success");
+})
+.fail(function() {
+    console.log("error");
+})
+.always(function() {
+    console.log("complete");
+});
+
+$('#save-especie').click(function() {
+        var formArray = $("#especie-form").serializeArray();
+        var formJson = JSON.stringify(formArray);
+        console.log(formArray);
+
+        if (formArray[0].value.trim().length) {
+            console.log("aaaaaaaaaaaaa");
+            $.ajax({
+                    url: '{% url "configuracion:post_especie_ajax" %}',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        nombre: formArray[0].value,
+                    },
+                })
+                .done(function(d) {
+                    console.log("Registro satisfactoriamente");
+                    var html = "";
+                    html += '<div class="alert alert-success " role="alert"> <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>Se aplico la vacuna satisfactoriamente.</div>'
+                    $.ajax({
+                        url: '/configuracion/especie/listar/',
+                        type: 'GET',
+                    })
+                    .done(function(d) {
+                        $("#list_especie").html(d);
+                        console.log("success");
+                    })
+                    .fail(function() {
+                        console.log("error");
+                    })
+                    .always(function() {
+                        console.log("complete");
+                    });
+
+                    $('#nombre').val('')
+                    $('#flash-message').html(html)
+                })
+                .fail(function() {
+                    console.log("error");
+                })
+                .always(function() {
+                    console.log("complete");
+                });
+        }else {
+            $('#success_message_especie_error').attr('class', 'alert alert-danger').text("Revise los datos ingresados nuevamente.");
+        }
+    });
+
+
+
+
+
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+var csrftoken = getCookie('csrftoken');
+function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+$.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+    }
+});
+</script>
+{% endblock extrajs %}

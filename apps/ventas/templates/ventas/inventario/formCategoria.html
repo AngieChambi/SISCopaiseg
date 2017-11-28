@@ -1,0 +1,133 @@
+{% extends "main/dashboard.html" %}
+<!--
+@copyright   Copyright (c) 2014 Submit Consulting
+@author      Angel Sullon (@asullom)
+@package     sad
+
+Descripcion: Create/Update group
+-->
+{% load i18n crispy_forms_tags %}{% load l10n %}
+{% block breadcrumbs_item %}
+<li><a href="{% url 'ventas:categoria_list' %}">{{ opts.verbose_name_plural|capfirst }}</a></li>
+{% endblock breadcrumbs_item %}
+
+{% block content_title %}
+<i class="fa fa-tag"></i> {{ title }}
+{% endblock content_title %}
+{% block content %}
+
+<div class="container panel panel-defaul">
+    <form action="" method="post">
+        {% crispy form %} {% csrf_token %}
+    </form>
+</div>
+<div id="add-new-departamento" class="modal fade" role="dialog" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Agregar departamento</h4>
+            </div>
+            <div class="modal-body">
+                <form action="" method="post" id="new-form-departamento" name="new-form-departamento">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="nombre_departamento">Nombre
+                            <span class="required">*</span>
+                        </label>
+                        <input name="nombre_departamento" type="text" class="form-control" id="nombre_departamento" placeholder="Ingrese un nombre" minlength="4" maxlength="100" required="true">
+                    </div>
+                    <div class="alert alert-danger hide" role="alert" id="success_message_departamentos"></div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" name="submit" class="btn btn-primary text-bold" id="submit-departamento" title="Guardar departamento">
+                    <i class="btn-icon-onlyx fa fa-save"></i> <span class="hidden-xsx"> Guardar</span>
+                </button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" title="Cerrar modal">
+                    <i class="btn-icon-onlyx fa fa-ban"></i> <span class="hidden-xsx"> Cerrar</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+ {% comment %}
+ 	<form action="" method="post">
+     {{ form|crispy }}
+     {% csrf_token %}
+     <button type="submit" class="btn  btn-primary">Agregar</button>
+     <a href="{% url 'ventas:categoria_list' %}" class="btn btn-danger">Cancelar</a>
+     </form>
+ {% endcomment %}
+
+{% endblock %}
+
+{% block extrajs %}
+{{ block.super }}
+
+<script type="text/javascript">
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+var csrftoken = getCookie('csrftoken');
+
+function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+$.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+    }
+});
+
+$('#addDepartamento').click(function() {
+    $('#add-new-departamento').modal({
+                backdrop: 'static',
+                keyboard: false
+            });
+});
+$('#submit-departamento').click(function() {
+    var formArray = $("#new-form-departamento").serializeArray();
+    var formJson = JSON.stringify(formArray);
+    if (formArray[1].value.trim().length > 0) {
+        $.ajax({
+                url: '{% url "ventas:post_departamento_ajax" %}',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    des: formArray[1].value
+                },
+            })
+            .done(function(d) {
+                var select = $("#id_departamento");
+                select.append('<option value="' + d.pk + '">' + d.name + '</option>');
+                select.val(d.pk);
+                $('#add-new-departamento').modal('hide');
+            })
+            .fail(function() {
+                console.log("error");
+            })
+            .always(function() {
+                console.log("complete");
+            });
+    } else {
+        $('#success_message_departamentos').attr('class', 'alert alert-danger').text("Ingrese un nombre.");
+    }
+});
+</script>
+{% endblock extrajs %}

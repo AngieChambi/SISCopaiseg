@@ -1,0 +1,68 @@
+{% extends "main/dashboard.html" %}
+<!--
+@package     ventas
+Descripcion: Lista Tipo Documento
+-->
+{% load i18n app_security %} {% load l10n humanize %} 
+{% block breadcrumbs_item %}
+<li class="active">{{ opts.verbose_name_plural|capfirst }}</li>
+{% endblock breadcrumbs_item %}
+{% block content_title %}
+<i class="fa fa-tags"></i> Lista de {{opts.verbose_name_plural}}
+{% endblock content_title %}
+{% block content %}
+<div class="container"> 
+<div class="btn-toolbar btn-toolbar-top">
+    <div class="row">
+        <div class="btn-actions col-md-9">
+            <a href="{% url 'ventas:unidad_medida_add' %}" class="btn btn-primary text-bold" title="Agregar Uniada de Medida">
+                <i class="fa fa-plus"></i>
+                <span class="hidden-xs"> Agregar</span>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="container-overflow">
+    <table class="table table-bordered table-hover table-striped table-condensed table-responsive">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th class="col-hidden" data-search="descripcion" data-order="descripcion">Compras</th>
+                <th class="col-hidden" data-search="departamento" data-order="departamento"></th>
+                <th class="col-hidden" data-search="departamento" data-order="departamento">Ventas</th>
+                <th class="btn-actions col-blocked text-center">Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for d in object_list %}
+            <tr>
+                <td>{% if is_paginated %} {{ page_obj.start_index|add:forloop.counter0 }} {% else %} {{ forloop.counter }} {% endif %}
+                </td>
+                <td>1 {{ d.nombre }}({{ d.simbolo }}) </td>
+                <td>equivale a</td>
+                <td>{{ d.cant_equivalencia }} {{ d.unidad_medida_venta.nombre }}({{ d.unidad_medida_venta.simbolo }})</td>
+                <td class="text-center">
+                    <a href="{% url 'ventas:unidad_medida_upd' d.pk|key:'uni_upd' %}" class="btn btn-info btn-sm text-bold" title="Cambiar Unidad de Medida" rel="tooltip">
+                        <i class="btn-icon-only fa fa-edit"></i>
+                    </a>
+                    <a href="{% url 'ventas:unidad_medida_del' d.pk|key:'uni_del' %}" class="btn btn-danger btn-sm js-confirm text-bold" msg-title="Eliminar Unidad de Medida" msg="¿Esta Seguro de coninuar con la operación?
+                            <br/>Recuerde esta operación no puede revertirse" title="Eliminar Unidad de Medida" rel="tooltip">
+                        <i class="btn-icon-only fa fa-trash-o"></i>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div class="row">
+    {% if is_paginated %} {% load paginator %} {% paginator %} {% else %}
+    <div class="col-md-12">
+        <ul class="breadcrumbpag">
+            {{ object_list.count }} {% ifequal object_list.count 1 %}{{ opts.verbose_name|capfirst }}{% else %}{{ opts.verbose_name_plural|capfirst }}{% endifequal %}
+        </ul>
+    </div>
+    {% endif %}
+</div>
+</div>
+{% endblock content %}

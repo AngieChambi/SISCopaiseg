@@ -1,0 +1,559 @@
+{% extends "main/dashboard.html" %}
+{% load staticfiles i18n app_security %}{% load i18n crispy_forms_tags %} {% load l10n humanize %} {% block style %}
+    <link href="{% static 'clivet/compras.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/chosen.css' %}" rel="stylesheet">
+{% endblock style %} {% block breadcrumbs_item %}
+    <li><a href="{% url 'compras:compra_list' %}">{{ opts.verbose_name_plural|capfirst }}</a></li>
+    <li class="active">{{ title }}</li>
+{% endblock breadcrumbs_item %} {% block page_title %}
+    <i class="fa fa-shopping-cart"></i> {{ title }} {% endblock page_title %} {% block page_content %}
+    <script src="{% static 'clivet/chosen.jquery.js' %}" charset="utf-8"></script>
+    <script>
+        $(function () {
+            $('.chosen-select').chosen();
+        });
+    </script>
+    <div>
+        <form rule="" action="" method="post">
+            {% csrf_token %}
+            <div class="panel panel-compras-cliente">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label class="label-proveedor-buscar"><i class="fa fa-user"></i> {{ form.proveedor.label }}
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        {{ form.proveedor }}
+                                    </div>
+                                    <div class="col-md-3">
+                                        <button class="btn btn-success btn-block" id='addProveedor' type="button"><i
+                                                class="fa fa-plus"></i> Nuevo
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.col-lg-6 -->
+                        <div class="col-md-6 panel-titulo-detalle ">
+                            <div class="row" id="proveedor-info">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <span class="text-danger"> {{ form.proveedor.errors }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="panel panel-card-compra">
+                            <div class="panel-heading">
+                                <div class="row panel-titulo-detalle">
+                                    <div class="alert col-md-6 col-md-push-5 alerta-ventas" id="success-alert">
+                                    </div>
+                                    <div class="col-md-1 div-icon">
+                                        <label class="control-label"><span
+                                                class="glyphicon glyphicon-shopping-cart icon-producto"
+                                                aria-hidden="true"></span></label>
+                                    </div>
+                                    <div class="col-md-8">
+                                    <span class="input-icon input-icon-right" style="width:100%">
+                                    <input id="id_producto" type="text"
+                                           class="form-control ui-autocomplete-input typeahead" placeholder="Buscar...'"
+                                           data-value="data" autocomplete="off"><i
+                                            class="ace-icon fa fa-search purple"></i></span>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <button id="addProducto" class="btn btn-block btn-lg nuevo-cliente "><i
+                                                class="fa fa-plus"></i> Producto
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <table class="table table-condensed">
+                                    <thead>
+                                    <tr>
+                                        <th class="text-center th-carrito">Cantidad</th>
+                                        <th class="text-center th-carrito">Producto</th>
+                                        <th class="text-center th-carrito">Precio unitario</th>
+                                        <th class="text-center th-carrito">Precio total</th>
+                                        <th class="text-center th-carrito">Opciones</th>
+                                    </tr>
+                                    </tfoot>
+                                    <tbody id="tabla_producto">
+                                    </tbody>
+                                    </thead>
+                                    <tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="panel">
+                            <div class="panel-body  compras-resumen">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p class="text-center resumen-title"><span
+                                                class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>Resumen
+                                            de Compra Realizada</p>
+                                    </div>
+                                    <!--<div class="col-md-6">
+                                    {{ form.comprobante}}
+                                </div>-->
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <p class="label-resumen-compras">Total</p>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <p class="text-right label-resumen-compras">S/.<span
+                                                        id="r_total">00.00</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <button id="btn_pagar" type="submit" name='form'
+                                                class="col-md-12 pagar-button btn btn-block"> Guardar Compra
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{ form.data_compra }} {{ form.errors }}
+        </form>
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Agregar Proveedor</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="post" name="proveedor-form" id="proveedor-form">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="div_id_razon_social" class="form-group">
+                                    <label for="id_razon_social" class="control-label  requiredField">
+                                        Razon social<span class="asteriskField">*</span> </label>
+                                    <div class="controls ">
+                                        <input class="textinput textInput form-control" id="id_razon_social"
+                                               maxlength="50" name="razon_social"
+                                               placeholder="Ingrese el nombre de la empresa" type="text"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                                {{ form.tipo_doc|as_crispy_field }}
+                            </div>
+                            <div class="col-md-4">
+                                <div id="div_id_numdoc" class="form-group">
+                                    <label for="id_numdoc" class="control-label  requiredField">
+                                        Número de documento<span class="asteriskField">*</span> </label>
+                                    <div class="controls ">
+                                        <input class="numberinput form-control" id="id_numdoc" name="numdoc"
+                                               placeholder="Ingrese un número" type="number" min="0" maxlength="11">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="div_id_representante_legal" class="form-group">
+                                    <label for="id_representante_legal" class="control-label  requiredField">
+                                        Representante legal<span class="asteriskField">*</span> </label>
+                                    <div class="controls ">
+                                        <input class="textinput textInput form-control" id="id_representante_legal"
+                                               maxlength="50" name="representante_legal"
+                                               placeholder="Ingrese el nombre completo" type="text"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div id="div_id_direccion" class="form-group">
+                                    <label for="id_direccion" class="control-label  requiredField">
+                                        Direccion<span class="asteriskField">*</span> </label>
+                                    <div class="controls ">
+                                        <input class="textinput textInput form-control" id="id_direccion" maxlength="30"
+                                               name="direccion" placeholder="Ingrese un dirección" type="text"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div id="div_id_telefono" class="form-group">
+                                    <label for="id_telefono" class="control-label ">
+                                        Telefono
+                                    </label>
+                                    <div class="controls ">
+                                        <input class="numberinput form-control" id="id_telefono" name="telefono"
+                                               placeholder="Ingrese un número" type="number" min="0"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="div_id_email" class="form-group">
+                                    <label for="id_email" class="control-label ">
+                                        Email
+                                    </label>
+                                    <div class="controls ">
+                                        <input class="emailinput form-control" id="id_email" maxlength="30" name="email"
+                                               placeholder="Ingrese un correo" type="email"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div id="div_id_enti_bancaria" class="form-group">
+                                    <label for="id_enti_bancaria" class="control-label ">
+                                        Entidad bancaria
+                                    </label>
+                                    <div class="controls ">
+                                        <input class="textinput textInput form-control" id="id_enti_bancaria"
+                                               maxlength="30" name="enti_bancaria" placeholder="Ingrese el nombre"
+                                               type="text"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div id="div_id_num_cuenta" class="form-group">
+                                    <label for="id_num_cuenta" class="control-label ">
+                                        Número de cuenta
+                                    </label>
+                                    <div class="controls ">
+                                        <input class="numberinput form-control" id="id_num_cuenta" name="num_cuenta"
+                                               min="0" placeholder="Ingrese un número" type="number"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="alert alert-danger hide" role="alert" id="success_message_proveedor"></div>
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <div class="controls">
+                            <button type="submit" name="submit" class="btn btn-primary text-bold" id="save-proveedor"
+                                    title="Grabar">
+                                <i class="btn-icon-onlyx fa fa-save"></i> <span class="hidden-xsx"> Grabar</span>
+                            </button>
+                            <button type="button" name="cancel" class="btn btn btn-danger btn-back text-bold"
+                                    id="button-id-cancel" title="Cancel">
+                                <i class="btn-icon-onlyx fa fa-ban"></i> <span class="hidden-xs"> Cancelar</span>
+                            </button>
+                            <button type="reset" name="reset" class="btn btn btn-default text-bold" id="reset-id-reset"
+                                    title="Reset">
+                                <i class="btn-icon-onlyx fa fa-undo"></i> <span class="hidden-xs"> Limpiar</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock page_content %}
+{% block js %}
+    <script src="{% static 'jquery-ui/jquery-ui.js' %}"></script>
+    <script type="text/javascript">
+        $("#success-alert").hide();
+        $("#id_producto").autocomplete({
+            source: "{% url 'clinica:search_producto_recepcion' %}",
+            minLength: 0,
+            select: function (event, ui) {
+                not_exist();
+                if (not_exist(ui.item.id)) {
+                    ui.item.cantidad = 1;
+                    ui.item.importe = ui.item.precioC * ui.item.cantidad;
+                    Compra.productos.push(ui.item);
+                    Compra.total = Compra.total + ui.item.importe;
+                    Compra.cantidad_total = Compra.cantidad_total + parseInt(ui.item.cantidad);
+                    draw();
+                    $('#id' + i).focus();
+                    $('.typeahead').val('');
+                }
+
+                function not_exist(dd) {
+                    var result = true;
+                    for (i in Compra.productos) {
+                        if (Compra.productos[i].id == dd) {
+                            result = false;
+                            //mensaje error
+                            sms = '';
+                            sms = sms + "<strong>Producto o Servicio Ya existe en Carrito</strong>";
+                            $('.alerta-ventas').html(sms);
+                            $("#success-alert").show();
+                            $("#success-alert").delay(3000).slideUp(300, function () {
+                                $("#success-alert").hide();
+                            });
+                        }
+                    }
+                    return result;
+                }
+
+                $('#id' + i).focus();
+                $('#id_producto').val('');
+            }
+
+        });
+        $('#btn_pagar').attr('disabled', true);
+        (function () {
+            function decimalAdjust(type, value, exp) {
+                if (typeof exp === 'undefined' || +exp === 0) {
+                    return Math[type](value);
+                }
+                value = +value;
+                exp = +exp;
+                // Si el valor no es un número o el exp no es un entero...
+                if (isNaN(value) || !(typeof exp === 'number' && exp % 1 === 0)) {
+                    return NaN;
+                }
+                // Shift
+                value = value.toString().split('e');
+                value = Math[type](+(value[0] + 'e' + (value[1] ? (+value[1] - exp) : -exp)));
+                // Shift back
+                value = value.toString().split('e');
+                return +(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp));
+            }
+
+            // Decimal round
+            if (!Math.round10) {
+                Math.round10 = function (value, exp) {
+                    return decimalAdjust('round', value, exp);
+                };
+            }
+            // Decimal floor
+            if (!Math.floor10) {
+                Math.floor10 = function (value, exp) {
+                    return decimalAdjust('floor', value, exp);
+                };
+            }
+            // Decimal ceil
+            if (!Math.ceil10) {
+                Math.ceil10 = function (value, exp) {
+                    return decimalAdjust('ceil', value, exp);
+                };
+            }
+        })();
+        var Compra = {
+            productos: [],
+            total: 0.00,
+            cantidad_total: 0,
+            temp: -1,
+        };
+        var i;
+
+
+        function draw() {
+            $("#r_total").text(Compra.total);
+            var h = "";
+            for (i in Compra.productos) {
+                h = h + "<tr>" +
+                    "<td contenteditable='true' class='text-center' id='id" + i + "' onblur='change_p(" + i + ")'>" + Compra.productos[i].cantidad +
+                    "</td><td class='text-center'>" + Compra.productos[i].nombre +
+                    "</td><td class='text-center'>" + Compra.productos[i].precioC +
+                    "</td><td class='text-center'>" + Compra.productos[i].importe +
+                    "</td><td class='text-center'><button type='button' onclick='delete_p(" + i + ")'class='btn btn-danger btn-md'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></button></td></tr>";
+
+            }
+            $("#tabla_producto").html(h);
+
+            $("#id_data_compra").val(JSON.stringify(Compra));
+            console.log(Compra);
+
+        }
+
+        function delete_p(d) {
+            var deleted_product = Compra.productos.splice(d, 1);
+            Compra.total = Math.ceil10(Compra.total - deleted_product[0].importe, -2);
+            draw();
+            $('.typeahead').val('');
+            if ($("#id0").val() === '') {
+                $('#btn_pagar').attr('disabled', false);
+            } else {
+
+                $('#btn_pagar').attr('disabled', true);
+            }
+        }
+
+        $('#addProducto,#addProveedor').click(function (event) {
+            event.preventDefault();
+            $('#add-new-cliente').modal({
+                backdrop: 'static',
+                keyboard: false
+            });
+        });
+
+        function change_p(d) {
+            Compra.productos[d].cantidad = $("#id" + d).text();
+            if (Compra.productos[d].cantidad < 0) {
+                Compra.productos[d].cantidad = Math.ceil10(Compra.productos[d].cantidad * (-1), -2);
+                Compra.productos[d].importe = Math.ceil10(Compra.productos[d].cantidad * Compra.productos[d].precioC, -2);
+                Compra.total = 0.00;
+                for (i in Compra.productos) {
+                    Compra.total = Math.ceil10(Compra.total + Compra.productos[i].importe, -2);
+                }
+                draw();
+                $('.typeahead').val('');
+                $('.typeahead').focus();
+
+            } else if (Compra.productos[d].cantidad === 0) {
+                Compra.productos[d].cantidad = '';
+                Compra.productos[d].importe = Compra.productos[d].cantidad * Compra.productos[d].precioC;
+                Compra.total = 0.00;
+                for (i in Compra.productos) {
+                    Compra.total = Compra.total + Compra.productos[i].importe;
+                }
+                draw();
+                $('.typeahead').val('');
+                console.log('positive');
+            } else if (Compra.productos[d].cantidad > 0) {
+                Compra.productos[d].cantidad = Compra.productos[d].cantidad;
+                Compra.productos[d].importe = Compra.productos[d].cantidad * Compra.productos[d].precioC;
+                Compra.total = 0.00;
+                for (i in Compra.productos) {
+                    Compra.total = Compra.total + Compra.productos[i].importe;
+                }
+                draw();
+                $('.typeahead').val('');
+                $('.typeahead').focus();
+            } else {
+                sms = '';
+                sms = sms + "<strong>Cantidad  " + Compra.productos[d].nombre + " Incorrecta</strong>";
+                $('.alerta-ventas').html(sms);
+                $("#success-alert").show();
+                $("#success-alert").delay(3000).slideUp(300, function () {
+                    $("#success-alert").hide();
+                });
+                Compra.productos[d].cantidad = '';
+                Compra.productos[d].importe = Compra.productos[d].cantidad * Compra.productos[d].precioC;
+                Compra.total = 0.00;
+                for (i in Compra.productos) {
+                    Compra.total = Compra.total + Compra.productos[i].importe;
+                }
+                draw();
+                $('#id' + i).val('');
+                $('#id' + i).focus();
+
+            }
+            if ($("#id0").val() === '') {
+                $('#btn_pagar').attr('disabled', false);
+            } else {
+
+                $('#btn_pagar').attr('disabled', true);
+            }
+
+
+        }
+        $('#addProveedor').click(function () {
+            $('#myModal').modal('show');
+        });
+        $('#id_proveedor').change(function () {
+            getProveedor();
+        });
+        getProveedor();
+
+        function getProveedor() {
+            $.ajax({
+                url: "{% url 'compras:get_proveedor_ajax' %}",
+                type: 'get',
+                data: {
+                    pk: $('#id_proveedor').val()
+                },
+            })
+
+                .done(function (data) {
+                    console.log(data);
+                    $('#proveedor-info').html('<div class="col-md-8 contenedor-proveedor"><p class="label-proveedor">Representante legal:<span class="span-proveedor">' + data.representante_legal + '</span></p></div><div class="col-md-4 contenedor-proveedor"><p class="label-proveedor">' + data.tipodoc + ':<span class="span-proveedor">' + data.numdoc + '</span></p></div>');
+                })
+                .fail(function () {
+                    console.log("error");
+                })
+                .always(function () {
+                    console.log("complete");
+                });
+        }
+        $('#save-proveedor').click(function () {
+            var formArray = $("#proveedor-form").serializeArray();
+            var formJson = JSON.stringify(formArray);
+            console.log(formArray);
+            if (formArray[1].value.trim().length > 0 &&
+                formArray[3].value.trim().length > 0 &&
+                formArray[4].value.trim().length > 0 &&
+                formArray[5].value.trim().length > 0) {
+                $.ajax({
+                    url: '{% url "compras:post_proveedor_ajax" %}',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        rs: formArray[1].value,
+                        td: formArray[2].value,
+                        nd: formArray[3].value,
+                        rl: formArray[4].value,
+                        d: formArray[5].value,
+                        t: formArray[6].value,
+                        e: formArray[7].value,
+                        c: formArray[8].value,
+                        nc: formArray[9].value,
+                    },
+                })
+                    .done(function (d) {
+                        var select = $("#id_proveedor");
+                        select.append('<option value="' + d.pk + '">' + d.name + '</option>');
+                        select.val(d.pk);
+                        select.trigger("chosen:updated");
+                        $('#myModal').modal('hide');
+                        getProveedor();
+                    })
+                    .fail(function () {
+                        console.log("error");
+                    })
+                    .always(function () {
+                        console.log("complete");
+                    });
+            } else {
+                $('#success_message_proveedor').attr('class', 'alert alert-danger').text("Revise los datos ingresados nuevamente.");
+            }
+        });
+
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        var csrftoken = getCookie('csrftoken');
+
+        function csrfSafeMethod(method) {
+            // these HTTP methods do not require CSRF protection
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+        $.ajaxSetup({
+            beforeSend: function (xhr, settings) {
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            }
+        });
+    </script>
+    <!-- /#page-wrapper -->
+{% endblock js %}

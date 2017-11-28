@@ -1,0 +1,103 @@
+{% extends "main/dashboard.html" %}
+{% load i18n crispy_forms_tags staticfiles %}
+{% load l10n  %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'assets/css/bootstrap-duallistbox.css' %}" />
+<style media="screen">
+input[type=checkbox].ace.ace-switch.ace-switch-7 + .lbl::before {
+  content: "NO\a0\a0\a0\a0\a0\a0\a0\a0\a0\a0\a0\a0\a0\a0SI" !important;
+  }
+    .finalizar{
+        display: none;
+    }
+</style>
+{% endblock style %}
+{% block headjs %}
+{% endblock %}
+{% block breadcrumbs_item %}
+<li><a href="/clinica/mascota/listar/">{{ opts.verbose_name_plural|capfirst }}</a></li>
+<li class="active">{{ title }}</li>
+{% endblock breadcrumbs_item %}
+
+{% block page_title %}
+<i class="fa fa-paw"></i> {{ subtitle }}
+{% endblock page_title %}
+{% block page_content %}
+{% crispy form %}
+{% endblock %}
+
+{% block extrajs %}
+{{ block.super }}
+
+<script src="{% static 'assets/js/jquery.bootstrap-duallistbox.js' %}"></script>
+<script src="{% static 'assets/js/fuelux/fuelux.wizard.js' %}"></script>
+<script src="{% static 'assets/js/ace/elements.wizard.js' %}"></script>
+<script type="text/javascript">
+
+//$("[name='esterelizado']").bootstrapSwitch();
+$(".wizard-actions button").addClass('finalizar');
+
+$("#id_esterelizado").addClass("ace ace-switch ace-switch-7");
+
+var tamaño = ['next'];
+    $("#next").click(function () {
+        var data = $(this).val('data-last');
+        for (var i = 0; i <  data.length; i++) {
+            var dataa = data[i].innerText;
+        }
+        tamaño.push(dataa);
+        console.log(tamaño);
+        if (tamaño.length===4) {
+            $(".wizard-actions button").removeClass('finalizar');
+            $(this).addClass('finalizar');
+        }
+    });
+
+    $("#prev").click(function () {
+        var dato = $(this).val('data-last');
+        console.log(dato);
+        tamaño.splice(1,1);
+        console.log(tamaño);
+        if (dato!='Finish') {
+            $(".wizard-actions button").addClass('finalizar');
+            $("#next").removeClass('finalizar');
+        }
+    });
+
+
+    jQuery(function($) {
+
+        var $validation = false;
+        $('#fuelux-wizard-container')
+        .ace_wizard({
+            //step: 2 //optional argument. wizard will jump to step "2" at first
+            //buttons: '.wizard-actions:eq(0)'
+        })
+        .on('actionclicked.fu.wizard' , function(e, info){
+            if(info.step == 1 && $validation) {
+                if(!$('#validation-form').valid()) e.preventDefault();
+            }
+        })
+        .on('finished.fu.wizard', function(e) {
+
+        }).on('stepclick.fu.wizard', function(e){
+            //e.preventDefault();//this will prevent clicking and selecting steps
+        });
+    })
+
+    $(".wizard-actions #next").attr('disabled', 'disabled');
+
+
+$('#id_fecha_nacimiento').datetimepicker({
+	format: 'YYYY-MM-DD',
+		//format: 'YYYY-MM-DD hh:mm:ss', //pata datatimes
+		language: '{{ LANGUAGE_CODE }}',
+		pickTime: false,
+		//showMeridian: true,
+		autoclose: true,
+		todayHighlight: true,
+	});
+
+</script>
+{% endblock extrajs %}

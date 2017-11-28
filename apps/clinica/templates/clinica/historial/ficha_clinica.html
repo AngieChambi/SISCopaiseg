@@ -1,0 +1,221 @@
+
+{% load i18n crispy_forms_tags staticfiles %}
+
+<style media="screen">
+    .page-clivet{
+        display: none;
+    }
+    .detail-cabecera{
+        padding: 10px 10px 0;
+    }
+
+    .detail-title{
+        margin-top: 0;
+        color: #00796B;
+        font-weight: 900;
+        font-size: 2.4em;
+    }
+
+    .detail-form-title, .detail-label-title{
+        color: #212121;
+        font-size: 1.2em;
+        padding-top: 5px !important;
+        text-align: center;
+    }
+    .detail-form-title{
+        border: 1px solid #B2DFDB;
+        border-radius: 3px;
+    }
+    .detail-form, .detail-label{
+        color: #212121;
+        font-size: 1.2em;
+        padding-top: 5px !important;
+        margin-bottom: 15px;
+        text-align: left;
+    }
+    .detail-label{
+        padding-left: 25px;
+    }
+    .detail-form{
+        padding-left: 15px;
+        border: 1px solid #B2DFDB;
+        border-radius: 3px;
+    }
+    .detail-subtitle{
+        border-top: 1px solid #B2DFDB;
+        border-bottom: 1px solid #B2DFDB;
+        font-size: 1.5em;
+        color: #00796B;
+        font-weight: 700;
+        margin-top: 10px;
+    }
+    .panel{
+        border-color: #B2DFDB;
+    }
+</style>
+{% for d in ficha_clinica %}
+<div class="panel panel-default">
+        <div class="row detail-cabecera">
+            <div class="col-md-4">
+                <img src="/media/clivet/logo.png" class="img-responsive  img-thumbnail" alt="Responsive image">
+            </div>
+            <div class="col-md-5 col-md-offset-1">
+                <h1 class="detail-title">HISTORIA CLINICA</h1>
+                <div class="row">
+                    <div class="form-group col-md-7 col-md-offset-5 form-horizontal">
+                        <label class="col-sm-5 control-label detail-label-title">H.C. N°</label>
+                        <div class="col-sm-7">
+                            <div class="form-control-static detail-form-title">{{ d.num_historia }}</div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <img src="/media/clivet/images.jpg" alt="..." class="img-responsive img-rounded img-thumbnail">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="text-center detail-subtitle">DATOS DEL PROPIETARIO</h2>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label detail-label">Dueño: </label>
+                    <div class="col-sm-8">
+                        <p class="form-control-static detail-form"> {{ d.mascota.duenho.persona.first_name }} {{ d.mascota.duenho.persona.last_name }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label detail-label"> Ciudad: </label>
+                    <div class="col-sm-8">
+                        <p class="form-control-static detail-form"> {{ d.mascota.duenho.ciudad }} </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label detail-label">Dirección: </label>
+                    <div class="col-sm-8">
+                        <p class="form-control-static detail-form"> {{ d.mascota.duenho.direccion }} </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                <label class="col-sm-4 control-label detail-label"> N° Celular: </label>
+                    <div class="col-sm-8">
+                        <p class="form-control-static detail-form"> {{ d.mascota.duenho.telefono }} </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="text-center detail-subtitle">DATOS DEL PACIENTE</h2>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="col-sm-4 control-labe detail-label"> Especie: </label>
+                    <div class="col-sm-8">
+                        <p class="form-control-static detail-form"> {{ d.mascota.especie }} </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label detail-label">Nombre: </label>
+                    <div class="col-sm-8">
+                        <p class="form-control-static detail-form"> {{ d.mascota.nombre }} </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label detail-label">Nacimiento:</label>
+                    <div class="col-sm-8">
+                        <p class="form-control-static detail-form"> {{ d.mascota.fecha_nacimiento }} </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label detail-label"> Raza: </label>
+                    <div class="col-sm-8">
+                        <p class="form-control-static detail-form"> {{ d.mascota.raza }} </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label detail-label"> Color: </label>
+                    <div class="col-sm-8">
+                        <p class="form-control-static detail-form"> {{ d.mascota.color }} </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label detail-label"> Genero: </label>
+                    <div class="col-sm-8">
+                        <p class="form-control-static detail-form"> {{ d.mascota.genero }} </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label detail-label"> Alimentación: </label>
+                    <div class="col-sm-8">
+                        <p class="form-control-static detail-form"> {{ d.alimentacion }} </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label detail-label"> Actividad: </label>
+                    <div class="col-sm-8">
+                        <p class="form-control-static detail-form"> {{ d.actividad }} </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+{% endfor %}
+
+
+<script src="{% static 'admin/js/core.js' %}"></script>
+<script src="{% static 'admin/js/jquery.js' %}"></script>
+<script src="{% static 'admin/js/jquery.init.js' %}"></script>
+
+<script src="{% static 'admin/js/SelectBox.js' %}"></script>
+<script src="{% static 'admin/js/SelectFilter2.js' %}"></script>
+
+<script type="text/javascript">
+$(function(){
+	$('#id_photo').fileinput({
+		showUpload: false,
+		showRemove: false,
+		showBrowse: false,
+		initialCaption: '{{ form.photo.value }}',
+		initialPreview: ['<img src="{{ MEDIA_URL }}{{ form.photo.value }}">',],
+		browseClass: 'btn btn-warning',
+
+	});
+
+	jQuery.each($('#id_hgroups'), function () {
+        // "Locations" can be any label you want
+        SelectFilter.init('id_hgroups', "{% trans 'groups'|capfirst %}", false, '/static/admin/');
+    });
+	jQuery.each($('#id_egroups'), function () {
+        // "Locations" can be any label you want
+        SelectFilter.init('id_egroups', "{% trans 'groups'|capfirst %}", false, '/static/admin/');
+    });
+    jQuery.each($('#id_agroups'), function () {
+        // "Locations" can be any label you want
+        SelectFilter.init('id_agroups', "{% trans 'groups'|capfirst %}", false, '/static/admin/');
+    });
+
+
+});
+</script>

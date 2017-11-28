@@ -1,0 +1,95 @@
+{% extends "main/dashboard.html" %}
+{% load i18n app_security %}
+{% load l10n humanize %}
+
+{% block breadcrumbs_item %}
+<li class="active">{{ opts.verbose_name_plural|capfirst }}</li>
+{% endblock breadcrumbs_item %}
+
+{% block content_title %}
+<h3><i class="fa fa-paw"></i> Listado de {{ opts.verbose_name_plural|capfirst }} | <small>{{ title }}</small></h3>
+{% endblock content_title %}
+
+{% block content %}
+<script type="text/javascript">
+$(function() {
+    $('table').kgrid({
+        form_data : ['{{f}}', '{{q}}'],
+        form_to   : '/clinica/atencion/listar/?f={{f}}&q={{q}}',
+        order_attr: 'class=""',
+        order_to  : '/clinica/atencion/listar/?f={{f}}&q={{q}}',
+    });
+});
+</script>
+<div class="btn-toolbar btn-toolbar-top">
+    <div class="row">
+        <div class="btn-actions">
+            <a href="#" class="btn btn-primary text-bold" title="Agregar Tipo Documento Identidad">
+                <i class="fa fa-plus"></i>
+                <span class="hidden-xs"> Agregar</span>
+                <span class="hidden-xs"> {{ cantidad }}</span>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="container-overflow">
+    <table class="table table-bordered table-hover table-striped table-condensed table-responsive">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th class="col-hidden">N° Historia</th>
+                <th class="col-hidden">Descripcion</th>
+                <th class="col-hidden col-blocked text-center">Estado</th>
+                <th class="btn-actions col-blocked text-center">Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for d in object_list %}
+            <tr>
+                <td>{% if is_paginated %}
+                    {{ page_obj.start_index|add:forloop.counter0 }}
+                    {% else %}
+                    {{ forloop.counter }}
+                    {% endif %}
+                </td>
+                <td>{{ d.colamedica }}</td>
+                <td>{{ d.colamedica.descripcion }}</td>
+                <td class="text-center">{{ d.anamnesis }}</td>
+                <td class="text-center">
+                    <a href="{% url 'clinica:colamedica_detail' d.pk|key:'aten_det' %}" class="btn btn-info btn-sm text-bold" title="Atencion mascota" rel="tooltip">
+                        <i class="btn-icon-only fa fa-paw"></i>
+                    </a>
+                    <a href="/clinica/atencion/crear/{{d.pk|key:'medica_cre'}}/" class="btn btn-warning btn-sm text-bold" title="{% trans 'Crear' %} {% trans 'Historia' %}" rel="tooltip"><i class="btn-icon-only fa fa-hospital-o"></i></a>
+
+                    <a href="{% url 'clinica:actualizar_medica' d.pk|key:'doc_upd' %}" class="btn btn-info btn-sm text-bold" title="Ediatar datos de tipo mascota" rel="tooltip">
+                        <i class="btn-icon-only fa fa-edit"></i>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+</div>
+<div  class="row" >
+    {% if is_paginated %}
+    {% load paginator %}
+    {% paginator %}
+    {% else %}
+    <div class="col-md-12" >
+        <ul class="breadcrumbpag" >
+            {{ object_list.count }} {% ifequal object_list.count 1 %}{{ opts.verbose_name|capfirst }}{% else %}{{ opts.verbose_name_plural|capfirst }}{% endifequal %}
+        </ul>
+    </div>
+    {% endif %}
+</div>
+{% endblock content %}
+{% block extrajs %}
+{{ block.super }}
+
+<script type="text/javascript">
+$('#myModal').modal({
+  keyboard: false
+})
+</script>
+{% endblock extrajs %}

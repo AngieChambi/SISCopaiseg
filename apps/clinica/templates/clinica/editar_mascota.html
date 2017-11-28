@@ -1,0 +1,100 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4 class="panel-title">Nueva Mascota</h4>
+    </div>
+    <div class="panel-body">
+        <form action="" method="post" class="form-horizontal"> {% csrf_token %}
+            <div class="row">
+                <div class="col-xm-12 col-md-6">
+                    <div class="form-group row">
+                        <label class="control-label col-xs-3">N° Historia</label>
+                        <div class="col-xs-9">{{  form.num_historia }}</div>
+                        <span id="helpBlock2" class="help-block">{{ form.errors.num_historia }}</span>
+                    </div>
+                </div>
+                <div class="col-xm-12 col-md-6">
+                    <div class="form-group row">
+                        <label class="control-label col-xs-3">Nombre</label>
+                        <div class="col-xs-9">{{  form.nombre }}</div>
+                        <span id="helpBlock2" class="help-block">{{ form.errors.nombre }}</span>
+                    </div>
+                </div>
+                <div class="col-xm-12 col-md-6">
+                    <div class="form-group row">
+                        <label class="control-label col-xs-3">Dueño:</label>
+                        <div class="col-xs-9">{{  form.duenho }}</div>
+                    </div>
+                </div>
+                <div class="col-xm-12 col-md-6">
+                    <div class="form-group row">
+                        <label class="control-label col-xs-3">F. Nacimiento:</label>
+                        <div class="col-xs-9">{{  form.fecha_nacimiento }}</div>
+                    </div>
+                </div>
+                <div class="col-xm-12 col-md-6">
+                    <div class="form-group row">
+                        <label class="control-label col-xs-3">Especie:</label>
+                        <div class="col-xs-9 ">{{  form.especie }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xm-12 col-md-6">
+                    <div class="form-group row">
+                        <label class="control-label col-xs-3">Raza:</label>
+                        <div class="col-xs-9">{{  form.raza }}</div>
+                    </div>
+                </div>
+                <div class="col-xm-12 col-md-6">
+                    <div class="form-group row">
+                        <label class="control-label col-xs-3">Color:</label>
+                        <div class="col-xs-9">{{  form.color }}</div>
+                    </div>
+                </div>
+                <div class="col-xm-12 col-md-6">
+                    <div class="form-group row">
+                        <label class="control-label col-xs-3">Genero:</label>
+                        <div class="col-xs-9">
+                            <label class="checkbox-inline">{{  form.genero }}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xm-12 col-md-6">
+                    <div class="form-group row">
+                        <label class="control-label col-xs-3">C.C.:</label>
+                        <div class="col-xs-9">{{  form.cond_corporal }} </div>
+                    </div>
+                </div>
+                <div class="col-xm-12 col-md-6">
+                    <div class="form-group row">
+                        <label class="control-label col-xs-3">Esterelizado:</label>
+                        <div class="col-xs-9">{{  form.esterelizado }}</div>
+                    </div>
+                </div>
+                <div class="col-xm-12 col-md-6">
+                    <div class="form-group row">
+                        <label class="control-label col-xs-3">Estado:</label>
+                        <div class="col-xs-9">{{  form.estado }}</div>
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="form-group row">
+                        <label class="control-label col-xs-2">Descripción:</label>
+                        <div class="col-xs-10">{{  form.descripcion }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <button type="submit" class="btn btn-primary text-bold">
+                        <i class="btn-icon-onlyx fa fa-save"></i>
+                        <span> Grabar</span>
+                    </button>
+                    <a href="#" class="btn btn-danger btn-back text-bol">
+                        <i class="btn-icon-onlyx fa fa-ban"></i>
+                        <span class="hidden-xs"> Cancel</span>
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

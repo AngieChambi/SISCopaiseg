@@ -1,0 +1,46 @@
+{% extends "main/dashboard.html" %} {% load i18n app_security staticfiles %} {% load l10n humanize %} 
+{% block style %}
+<link href="{% static 'clivet/compras.css' %}" rel="stylesheet"> 
+{% endblock style %}
+{% block breadcrumbs %}
+<li class="active">{{ opts.verbose_name_plural|capfirst }}</li>
+{% endblock breadcrumbs %} {% block content_title %} {% endblock content_title %} {% block content %}
+<div class="panel panel-default">
+    <div class="panel-heading panel-titulo-detalle">
+        <div class="row">
+            <!--<div class="col-xs-12 col-md-3 img-container">
+                <img class="img-responsive" src='{% static "clivet/img/DogShop.png" %}'>
+            </div>
+            <div class="col-md-9 text-center col-xs-12">-->
+                <p class="col-xs-12 detalle-titulo">DETALLE DE COMPRA</p>
+                <p class="label-d text-left col-md-4  hidden-sm hidden-xs">Razon Social : <span class="cliente-show">{{compras.proveedor.razon_social}}</span></p>
+                <p class="label-d text-left col-md-2 hidden-xs">{{compras.proveedor.tipodoc}} : <span class="cliente-show">{{compras.proveedor.numdoc}}</span></p>
+                <p class="label-d text-left col-md-4  hidden-sm hidden-xs">Representante Legal :<span class="cliente-show">{{compras.proveedor.representante_legal}}</span></p>
+                <p class="label-d text-center col-md-2">Fecha: <span class="fehca-show">{{compras.fe_compra|date:'Y-m-d'}}</span></p>
+        </div> 
+    </div>
+    <div class="panel-body">
+        <table class="table table-hover table-striped table-condensed table-responsive">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th class="text-center">Producto</th>
+                    <th class="text-center">Cantidad</th>
+                    <th class="text-center">Importe</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for d in lista %}
+                <tr>
+                    <td>{% if is_paginated %} {{ page_obj.start_index|add:forloop.counter0 }} {% else %} {{ forloop.counter }} {% endif %}
+                    </td>
+                    <td>{{ d.producto.nombre }}</td>
+                    <td class="text-center">{{ d.cantidad }}  {{ d.producto.unidad_medida.nombre }}</td>
+                    <td class="text-right">{{ d.precio_total}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}

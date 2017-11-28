@@ -1,0 +1,16 @@
+
+
+<table>
+	<thead></thead>
+	<tbody>
+		{% for dd in request.session.detalle %}
+			<tr>
+				<td>#{{forloop.counter}}</td>
+				<td>{{dd.nombre}}</td>
+				<td><input type="" value="{{dd.igv}}" name=""></td>
+				<td>{{dd.igv}}</td>
+			</tr>
+		{% endfor %}
+
+	</tbody>
+</table>

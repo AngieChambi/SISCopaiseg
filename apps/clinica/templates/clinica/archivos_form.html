@@ -1,0 +1,21 @@
+{% extends 'jfu/upload_form.html' %}
+{% block JS_OPTS %}
+    sequentialUploads: true,
+    acceptFileTypes: /(\.|\/)(pdf|png|gif|jpe?g)$/i,
+{% endblock %}
+{% block JS_JQUERY %}
+    {% comment %}
+    This is already included.
+    {% endcomment %}
+{% endblock %}
+
+{% block CSS_BOOTSTRAP %}
+    {% comment %}
+    This is already included.
+    {% endcomment %}
+{% endblock %}
+{% block JS_BOOTSTRAP %}
+    {% comment %}
+    This is already included.
+    {% endcomment %}
+{% endblock %}

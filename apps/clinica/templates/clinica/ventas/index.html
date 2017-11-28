@@ -1,0 +1,401 @@
+<div class="row">
+            <div class="col-md-8 ">
+                <div class="widget-box widget-color-green ui-sortable-handle widget-box-ventas">
+                <div class="widget-header headding-buscador-producto">
+                    {{ form.producto }}
+                    <span class="alerta-ventas" id="success-alert"></span>
+                </div>
+                <div>
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th class="text-center th-carrito">Cantidad</th>
+                                <th class="text-center th-carrito">Stok</th>
+                                <th class="text-center th-carrito">Descripcion</th>
+                                <th class="text-center th-carrito">Precio unitario</th>
+                                <th class="text-center th-carrito">Importe</th>
+                                <th class="text-center th-carrito">Opciones</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                        </tfoot>
+                        <tbody id="tabla_producto">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            </div>
+    <div class="col-md-4">
+        <div class="widget-box widget-color-green ui-sortable-handle widget-box-ventas" style="border-bottom:none">
+            <div class="widget-header headding-buscador-producto">
+                <div class="text-center ">
+                       <h4 class="text-bold">RESUMEN</h4>
+                   </div>
+            </div>
+            <div class="widget-body">
+
+
+            <form rule="" action="{% url 'clinica:crear_venta' %}" method="post">{% csrf_token %}
+                        <div class="text-center ">
+                            <div class="container-resumen">
+                                <div class="row">
+                                    <div class="col-md-6 text-left">
+                                        <p>Sub Total</p>
+                                    </div>
+                                    <div class="col-md-6 text-right ">
+                                        <p>S/.<span id="r_sub_total">00.00</span></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 text-left">
+                                        <p>IGV <span> 18% </span></p>
+                                    </div>
+                                    <div class="col-md-6 text-right">
+                                        <p>S/.<span id="r_igv">00.00</span></p>
+                                    </div>
+                                </div>
+                                <div class="row ">
+                                    <div class="col-md-6 text-left">
+                                        <p>Monto a pagar</p>
+                                    </div>
+                                    <div class="col-md-6 text-right">
+                                        <p>S/.<span id="r_total">00.00 </span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                <button id="btn_pagar" type="submit" name='form' class=" btn btn-success btl-bold btn-block   "><i class="ace-icon fa fa-check bigger-120 "></i> Realizar Pago</button>
+                    {{ form.data_venta}}
+            </form>
+        </div>
+                    </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+var i;
+var d;
+var c;
+$(document).ready(function() {
+    $(".busqueda-producto-imput").autocomplete({
+
+        source: "{% url 'clinica:search_producto_recepcion' %}",
+        minLength: 0,
+        select: function(event, ui) {
+            console.log(event, ui);
+            console.log(ui.item.precioV);
+            id_producto = ui.item.id;
+            Venta.temp = ui.item.id;
+            if ((not_exist(Venta.temp) && Venta.temp !== -1 && Venta.temp << 0)) {
+
+                var a = '';
+                console.log(">>>>>>>>>>>" + ui.item.precioV);
+                ui.item.cantidad = a;
+                ui.item.importe = Math.ceil10((ui.item.precioV * ui.item.cantidad), -2);
+                ui.item.igvp = Math.ceil10((ui.item.precioV * ui.item.cantidad) * 0.18, -2);
+                ui.item.id = ui.item.id;
+                Venta.productos.push(ui.item);
+                $('#cantidad_producto').val("1");
+                Venta.igv = Math.ceil10((Venta.igv + (ui.item.importe * 0.18)), -2);
+                Venta.total = Math.ceil10(Venta.total + ui.item.importe, -2);
+                Venta.sub_total = Math.ceil10(Venta.total - Venta.igv, -2);
+                draw();
+
+            }
+
+            function not_exist(dd) {
+                for (i in Venta.productos) {
+                    if (Venta.productos[i].id == dd) {
+
+                        sms = '';
+                        sms = sms + "<strong>Producto o Servicio Ya existe en Carrito</strong>";
+                        $('.alerta-ventas').html(sms);
+                        $("#success-alert").show();
+                        $("#success-alert").delay(3000).slideUp(300, function() {
+                            $("#success-alert").hide();
+                        });
+
+                        return false;
+                    }
+                }
+                return true;
+            }
+            $('#id' + i).focus();
+            $('.busqueda-producto-imput').val('');
+        }
+
+    });
+});
+
+
+
+
+$("#success-alert").hide();
+
+//buscar cliente
+var Venta = {
+    productos: [],
+    igv: 0.00,
+    sub_total: 0.00,
+    total: 0.00,
+    temp: -1,
+    cliente: 1,
+};
+$('#btn_pagar').attr('disabled', true);
+(function() {
+    function decimalAdjust(type, value, exp) {
+        if (typeof exp === 'undefined' || +exp === 0) {
+            return Math[type](value);
+        }
+        value = +value;
+        exp = +exp;
+        // Si el valor no es un número o el exp no es un entero...
+        if (isNaN(value) || !(typeof exp === 'number' && exp % 1 === 0)) {
+            return NaN;
+        }
+        // Shift
+        value = value.toString().split('e');
+        value = Math[type](+(value[0] + 'e' + (value[1] ? (+value[1] - exp) : -exp)));
+        // Shift back
+        value = value.toString().split('e');
+        return +(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp));
+    }
+    // Decimal round
+    if (!Math.round10) {
+        Math.round10 = function(value, exp) {
+            return decimalAdjust('round', value, exp);
+        };
+    }
+    // Decimal floor
+    if (!Math.floor10) {
+        Math.floor10 = function(value, exp) {
+            return decimalAdjust('floor', value, exp);
+        };
+    }
+    // Decimal ceil
+    if (!Math.ceil10) {
+        Math.ceil10 = function(value, exp) {
+            return decimalAdjust('ceil', value, exp);
+        };
+    }
+})();
+
+function draw() {
+    $("#r_sub_total").text(Venta.sub_total);
+    $("#r_igv").text(Venta.igv);
+    $("#r_total").text(Venta.total);
+    var h = "";
+    for (i in Venta.productos) {
+        h = h + "<tr>" +
+            "<td contenteditable='true'type='number' class='text-center  td-add' id='id" + i + "' onblur='change_p(" + i + ")'>" + Venta.productos[i].cantidad +
+            "</td><td class='text-center td-add'>" + Venta.productos[i].existencia +
+            "</td><td class='text-left td-add'>" + Venta.productos[i].nombre +
+            "</td><td class='text-center td-add'>" + Venta.productos[i].precioV +
+            "</td><td class='text-center td-add'>" + Venta.productos[i].importe +
+            "</td><td style='display:none;'class='col-hidden'>" + Venta.productos[i].igvp +
+            "</td><td class='text-center'><button type='button' onclick='delete_p(" + i + ")'class='btn  btn-danger btn-sm'><apan class='fa fa-remove'></span></button></td></tr>";
+    }
+    $("#tabla_producto").html(h);
+    $("#id_data_venta").val(JSON.stringify(Venta));
+}
+
+function delete_p(d) {
+    Venta.productos.splice(d, 1);
+    Venta.total = 0.00;
+    for (var i in Venta.productos) {
+        Venta.total = Math.ceil10(Venta.total + Venta.productos[i].importe, -2);
+    }
+    Venta.igv = Math.ceil10(Venta.total * 0.18, -2);
+    Venta.sub_total = Math.ceil10(Venta.total - Venta.igv, -2);
+    draw();
+    $('.busqueda-producto-imput , #cantidad_producto').val('');
+    if ($("#id0").val() === '') {
+        $('#btn_pagar').attr('disabled', false);
+    } else {
+        $('#btn_pagar').attr('disabled', true);
+    }
+}
+
+
+function change_p(d) {
+    var sms = '';
+    Venta.productos[d].cantidad = $("#id" + d).text();
+    if (Venta.productos[d].existencia <= 0) {
+        sms = '';
+        sms = sms + "<strong>Stok " + Venta.productos[d].nombre + " Agotado</strong>";
+        $('.alerta-ventas').html(sms);
+        $("#success-alert").show();
+        $("#success-alert").delay(3000).slideUp(300, function() {
+            $("#success-alert").hide();
+            $(".busqueda-producto-imput").val('');
+        });
+        delete_p(d);
+        $('.busqueda-producto-imput').focus();
+        return false;
+    }
+    if (Venta.productos[d].cantidad <= parseFloat(Venta.productos[d].existencia)) {
+        if (Venta.productos[d].cantidad > 0) {
+            Venta.productos[d].importe = Math.ceil10(Venta.productos[d].cantidad * Venta.productos[d].precioV, -2);
+            Venta.productos[d].igvp = Math.ceil10((Venta.productos[d].cantidad * Venta.productos[d].precioV) * 0.18, -2);
+            Venta.total = 0.00;
+            for (i in Venta.productos) {
+                Venta.total = Math.ceil10(Venta.total + Venta.productos[i].importe, -2);
+            }
+            Venta.igv = Math.ceil10(Venta.total * 0.18, -2);
+            Venta.sub_total = Math.ceil10(Venta.total - Venta.igv, -2);
+            draw();
+            $('.busqueda-producto-imput').focus();
+            $('.busqueda-producto-imput , #cantidad_producto').val('');
+        } else if (Venta.productos[d].cantidad < 0) {
+            Venta.productos[d].cantidad = Venta.productos[d].cantidad * (-1);
+            Venta.productos[d].importe = Math.ceil10(Venta.productos[d].cantidad * Venta.productos[d].precioV, -2);
+            Venta.productos[d].igvp = Math.ceil10((Venta.productos[d].cantidad * Venta.productos[d].precioV) * 0.18, -2);
+            Venta.total = 0.00;
+            for (i in Venta.productos) {
+                Venta.total = Math.ceil10(Venta.total + Venta.productos[i].importe, -2);
+            }
+            Venta.igv = Math.ceil10(Venta.total * 0.18, -2);
+            Venta.sub_total = Math.ceil10(Venta.total - Venta.igv, -2);
+            draw();
+            $('.busqueda-producto-imput').val('');
+        } else if ($('.td-add').val('')) {
+            sms = '';
+            sms = sms + "Cantidad Incorrecta para <strong>" + Venta.productos[d].nombre + "</strong>";
+            $('.alerta-ventas').html(sms);
+            $("#success-alert").show();
+            $("#success-alert").delay(3000).slideUp(300, function() {
+                $("#success-alert").hide();
+                $(".busqueda-producto-imput").val('');
+            });
+            Venta.productos[d].cantidad = '';
+            Venta.productos[d].importe = Math.ceil10(Venta.productos[d].cantidad * Venta.productos[d].precioV, -2);
+            Venta.productos[d].igvp = Math.ceil10((Venta.productos[d].cantidad * Venta.productos[d].precioV) * 0.18, -2);
+            Venta.total = 0.00;
+            for (i in Venta.productos) {
+                Venta.total = Math.ceil10(Venta.total + Venta.productos[i].importe, -2);
+            }
+            Venta.igv = Math.ceil10(Venta.total * 0.18, -2);
+            Venta.sub_total = Math.ceil10(Venta.total - Venta.igv, -2);
+            draw();
+            $('#id' + i).focus();
+            $('.busqueda-producto-imput').val('');
+        }
+    } else {
+        sms = '';
+        sms = sms + "Cantidad Incorrecta para <strong>" + Venta.productos[d].nombre + "</strong>";
+        $('.alerta-ventas').html(sms);
+        $("#success-alert").show();
+        $("#success-alert").delay(3000).slideUp(300, function() {
+            $("#success-alert").hide();
+            $(".busqueda-producto-imput").val('');
+        });
+        Venta.productos[d].cantidad = '';
+        Venta.productos[d].importe = Math.ceil10(Venta.productos[d].cantidad * Venta.productos[d].precioV, -2);
+        Venta.productos[d].igvp = Math.ceil10((Venta.productos[d].cantidad * Venta.productos[d].precioV) * 0.18, -2);
+        Venta.total = 0.00;
+        for (i in Venta.productos) {
+            Venta.total = Math.ceil10(Venta.total + Venta.productos[i].importe, -2);
+        }
+        Venta.igv = Math.ceil10(Venta.total * 0.18, -2);
+        Venta.sub_total = Math.ceil10(Venta.total - Venta.igv, -2);
+        draw();
+        $('#id' + i).focus();
+    }
+    if ($("#id0").val() === '') {
+        $('#btn_pagar').attr('disabled', false);
+    } else {
+        $('#btn_pagar').attr('disabled', true);
+    }
+}
+$('#id_fecha_de_nacimiento').datetimepicker({
+    format: 'YYYY-MM-DD',
+    //format: 'YYYY-MM-DD hh:mm:ss', //pata datatimes
+    language: 'es',
+    pickTime: false,
+    //showMeridian: true,
+    autoclose: true,
+    todayHighlight: true,
+});
+$('#addCliente').click(function(event) {
+    event.preventDefault();
+    $('#add-new-cliente').modal({
+        backdrop: 'static',
+        keyboard: false
+    });
+});
+$('#save-cliente').click(function() {
+    var formArray = $("#new-form-cliente").serializeArray();
+    var formJson = JSON.stringify(formArray);
+    if (formArray[1].value.trim().length > 0 && formArray[2].value.trim().length > 0) {
+        var data = {};
+        data[formArray[1].name] = formArray[1].value;
+        data[formArray[2].name] = formArray[2].value;
+        data[formArray[3].name] = formArray[3].value;
+        data[formArray[4].name] = formArray[4].value;
+        data[formArray[5].name] = formArray[5].value;
+        data[formArray[6].name] = formArray[6].value;
+        data[formArray[7].name] = formArray[7].value;
+        data[formArray[8].name] = formArray[8].value;
+        data[formArray[9].name] = formArray[9].value;
+        $.ajax({
+                url: '{% url "clinica:post_cliente_ajax" %}',
+                type: 'POST',
+                dataType: 'json',
+                data: data,
+            })
+            .done(function(d) {
+                if (d.error) {
+                    $('#success_message_cliente').attr('class', 'alert alert-danger').text(d.detail);
+                } else {
+                    var select = $("#id_proveedor");
+                    select.append('<option value="' + d.pk + '">' + d.name + '</option>');
+                    select.val(d.pk);
+                    //select.trigger("chosen:updated");
+                    $('#add-new-cliente').modal('hide');
+                    $('#id_cliente').val(d.name);
+                    Venta.cliente = d.pk;
+                    $("#id_data_venta").val(JSON.stringify(Venta));
+                }
+            })
+            .fail(function() {
+                console.log("error");
+            })
+            .always(function() {
+                console.log("complete");
+            });
+    } else {
+        $('#success_message_cliente').attr('class', 'alert alert-danger').text("Revise los datos ingresados nuevamente.");
+    }
+});
+
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+var csrftoken = getCookie('csrftoken');
+
+function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+$.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+    }
+});
+</script>

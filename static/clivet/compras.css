@@ -1,0 +1,560 @@
+
+.panel-compras-cliente{
+    background: #009688;
+}
+.panel-compras-cliente .panel-body{
+    padding: 10px;
+}
+.panel-compras-cliente .form-group{
+    margin-bottom: 0px;
+}
+.div-icon{
+    padding-right: 0px;
+}
+.panel-card-compra{
+    border: 1px solid #009688;
+}
+.panel-card-compra .panel-body{
+    padding: 0px;
+}
+/*ddddddddddddddd*/
+
+.typeahead,
+.tt-query,
+.tt-hint {
+    border: 2px;
+    font-size: 15px;
+    line-height: 30px;
+    outline: none;
+    color: rgba(0, 0, 0, .7);
+}
+
+.typeahead:focus {
+    border: none;
+}
+
+.typeahead {
+    font-weight: bold;
+    background: rgba(255, 255, 255, .9) !important;
+}
+
+.tt-menu {
+    width: auto;
+    background: rgb(0, 110, 106);
+    border-radius: 0em 0em .3em .3em;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+}
+
+.tt-suggestion {
+    width: auto;
+    font-size: 15px;
+    line-height: 24px;
+    color: #E0EAF1;
+}
+
+.tt-suggestion.tt-cursor {
+    border: 2px solid #0097A7;
+    width: auto;
+    font-size: 1.2em;
+    font-weight: bold;
+    background: rgb(0, 150, 136) !important;
+    color: white;
+}
+
+.panel-titulo {
+    background: #009688 !important;
+}
+
+.titulo-busqueda {
+    font-size: 1em;
+    letter-spacing: .08em;
+    font-style: normal;
+    font-weight: bold;
+    color: white;
+}
+
+.th-carrito {
+    - letter-spacing: .2em;
+}
+
+.typeahead::-webkit-input-placeholder {
+    color: color: rgba(0, 0, 0, .7);
+    ;
+}
+
+.contenedor-cantidad-input {
+    position: relative;
+    left: -13px;
+    background: transparent;
+}
+
+.cantidad-input {
+    position: relative;
+    left: -13px;
+    background: rgb(0, 110, 106)!important;
+    font-weight: bold;
+    opacity: 0.9;
+    color: white;
+    border: 0.5px solid rgb(0, 105, 106);
+}
+
+.cantidad-input:focus {
+    border: 0px solid #0097cf;
+}
+
+.enviar-producto {
+    position: absolute;
+    right: 3%;
+    background: #8BC34A;
+    color: white;
+    font-weight: bold;
+}
+
+.enviar-producto:hover {
+    color: white;
+    background: rgb(139, 165, 74);
+}
+
+.detalle-titulo {
+    font-size: 1.5em;
+    font-weight: bold;
+    letter-spacing: .1em;
+    border-bottom: 1px solid #ddd;
+}
+
+.label-d {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.label-d span {
+    font-size: .9em;
+    font-weight: normal;
+    padding-left: 1.5em;
+}
+
+img {
+    margin: 0;
+    background-image: red;
+}
+
+.panel-titulo-detalle {
+    align-items: center;
+    text-align: center;
+    color: white !important;
+}
+
+.proveedor-buscar {
+    align-items: center;
+    text-align: left;
+    color: black;
+}
+
+.contenedor-proveedor {
+    padding: 0;
+}
+
+.chosen-single {
+    width: 100%;
+}
+
+.label-proveedor-buscar {
+    letter-spacing: .1em;
+    font-weight: 700;
+    color: #fff;
+}
+.label-proveedor {
+    font-weight: 700;
+    margin: .5em;
+    text-transform: capitalize;
+    letter-spacing: .1em;
+}
+
+.addProveedor {
+    padding: 0;
+}
+
+.icon-producto {
+    font-size: 3em;
+}
+
+.label-add-producto {
+    padding: 0;
+    margin: 0;
+}
+
+.span-proveedor {
+    font-weight: normal;
+    margin: .5em;
+    text-transform: capitalize;
+    letter-spacing: .1em;
+}
+
+.label-resumen-compras {
+    font-size: 1.5em;
+}
+
+.label-resumen-compras>span {
+    font-weight: bold;
+}
+
+.td-producto {
+    letter-spacing: .3em;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.title-th-d {
+    text-transform: capitalize;
+    font-size: 1.2em;
+    letter-spacing: .13em;
+}
+
+.th-descripcion {
+    letter-spacing: .5em;
+}
+
+.cantidades-table {
+    letter-spacing: .3em;
+}
+
+.soles {
+    font-weight: bold;
+    font-style: oblique;
+}
+
+.container-footer-detalle {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.trabajador {
+    text-decoration: overline;
+    letter-spacing: .23em;
+    color: #757575;
+}
+
+.cancelado {
+    letter-spacing: 1em;
+    color: #616161;
+    font-weight: bold;
+}
+
+.resumen-d {
+    letter-spacing: .23em;
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #317095;
+}
+
+.resumen-v {
+    letter-spacing: .30em;
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #317095;
+}
+
+.total-v {
+    text-shadow: 1px 0px #757575;
+}
+
+.resumen-v >span {
+    font-weight: bold;
+    font-style: oblique;
+}
+
+.panel-footer {
+    background: #B2DFDB;
+}
+
+.panel-footer:hover {
+    background: rgba(177, 222, 200, 1);
+    color: red !important;
+}
+
+.container-heading-reporte {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.tr-title-reporte {
+    font-size: 1.3em;
+    color: grey;
+    letter-spacing: .1em;
+}
+
+.totales {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.resumen-reporte {
+    text-decoration: overline;
+    font-size: 1.4em;
+    color: #757575;
+    letter-spacing: .7em;
+}
+
+.resumen-fecha {
+    font-size: 1.7em;
+    color: #616161;
+    font-weight: bold;
+    letter-spacing: .4em;
+}
+
+.td-reporte {
+    letter-spacing: .3em;
+    font-weight: bold;
+}
+
+.soles-reporte {
+    letter-spacing: .2em;
+}
+
+.input-cliente {
+    border: 2px;
+    font-size: 15px;
+    line-height: 30px;
+    outline: none;
+    background: rgb(255, 255, 255)!important;
+    color: rgba(0, 0, 0, .7);
+    font-weight: bold;
+}
+
+.input-cliente::-webkit-input-placeholder {
+    color: rgba(0, 0, 0, .7);
+}
+
+.typeahead-cliente {
+    border: 2px;
+    font-size: 15px;
+    line-height: 30px;
+    outline: none;
+    background: rgb(255, 255, 255)!important;
+    color: rgba(0, 0, 0, .7);
+    font-weight: bold;
+}
+
+.typeahead.cliente:focus {
+    border: 0px solid #0097cf;
+}
+
+.cliente-container {
+    background: #009688;
+    color: white;
+    font-size: 1em;
+    font-weight: bold;
+    letter-spacing: .08em;
+}
+
+.typeahead-cliente::-webkit-input-placeholder {
+    color: rgba(0, 0, 0, .7);
+    ;
+}
+
+.nuevo-cliente {
+    background: #8BC34A;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+.nuevo-cliente:hover {
+    background: rgb(139, 165, 74);
+    color: white;
+}
+
+.pagar-button {
+    background: #8BC34A;
+    border: 0;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5em;
+    margin-bottom: 0.2em;
+}
+
+.pagar-button:hover {
+    color: white;
+    background: rgb(139, 165, 74);
+}
+
+
+.compras-resumen {
+    box-shadow: 2px 2px 5px 2px rgba(74, 82, 74, 0.5);
+    padding: 0em 1em 0em 1em;
+    margin: 0 0 0 0 ;
+    letter-spacing: .2em;
+}
+.compras-resumen .resumen-title{
+    padding: 10px 16px;
+        font-size: 18px;
+}
+.inputModificado {
+    margin: 10px 0px 10px 50px;
+    clear: both;
+}
+
+.inputImagen {
+    background: #ffcc99;
+    opacity: 0.5;
+    box-shadow: 0px 0px 5px black, inset 0 0px 5px 2px black;
+    padding: 5px;
+    border-radius: 4px;
+    color: #000;
+    font-weight: bold;
+    float: left;
+    margin-top: -2px;
+}
+
+.botonInputFileModificado {
+    position: relative;
+    border-radius: 10px;
+    background-color: #fff;
+    color: #000;
+    border: 2px solid #666;
+    padding-bottom: 2px;
+    box-shadow: inset 0 0px 8px 2px black;
+    width: 100px;
+    margin-left: 180px;
+}
+
+.botonInputFileModificado:hover {
+    border: 2px solid #fff;
+    background-color: #333;
+    color: #fff;
+}
+
+.botonInputFileModificado .inputImagenOculto {
+    position: relative;
+    margin-left: -125px;
+    width: 225px;
+}
+
+.botonInputFileModificado .boton {
+    text-align: center;
+}
+
+.alerta-ventas {
+    width: auto;
+    left: auto;
+    right: 0;
+    position: absolute;
+    text-align: center;
+    padding: 1.2em;
+    top: 0em;
+    z-index: 1;
+    border: none;
+    background: rgba(255, 0, 0, .7);
+    border-color: rgba(200, 11, 34, .5);
+    border-radius: 2em 0em 0em 0em;
+    color: white;
+    box-shadow: 2px 3px 13px 1px rgba(64, 14, 14, 1);
+}
+
+.td-add {
+    letter-spacing: .2em;
+}
+
+.panel-heading {
+    background: #009688 !important;
+}
+
+.do-buy {
+    background: #8BC34A;
+    border: 0;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.do-buy:hover {
+    color: white;
+    background: rgb(139, 165, 74);
+}
+
+.btn-fecha {
+    font-size: 20px;
+    background: #8BC34A;
+    border: 0;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-fecha:hover {
+    color: white;
+    background: rgb(139, 165, 74);
+}
+
+.datepicker {
+    color: rgba(0, 0, 0, .7);
+    border: 2px;
+    width: auto;
+    font-weight: bold;
+    background: rgb(255, 255, 255)!important;
+}
+
+.datepicker-dropdown {
+    box-shadow: 3px 6px 39px -2px rgba(0, 0, 0, 0.76);
+}
+
+.prev:hover,
+.next:hover,
+.day:hover,
+.today:hover,
+.datepicker-switch:hover,
+.month:hover {
+    color: rgba(0, 0, 0, .7);
+    background: rgb(139, 165, 74) !important;
+    box-shadow: 3px 6px 39px -2px rgba(0, 0, 0, 0.76);
+    border-radius: 3px;
+}
+
+.dow,
+.day,
+.today,
+.prev,
+.next,
+.datepicker-switch,
+.month {
+    text-align: center;
+    color: rgba(0, 0, 0, .7);
+    letter-spacing: .2em;
+}
+
+.img-container {
+    background: rgba(0, 0, 0, .5);
+    padding: 1em;
+    border-radius: .3em;
+}
+
+.btn-success:hover {
+    color: white;
+    background: rgb(139, 165, 74) !important;
+}
+
+
+/*REPORTE COMPRAS*/
+
+.clivet-title {
+    font-weight: bold;
+    color: rgba(0, 0, 0, .5);
+}
+
+.buscarde_talle_compras {
+    background: rgba(52,175,212, .5);
+border-radius: .3em;
+    border: 0;
+    color: white;
+    width: auto;
+    height: 2.3em;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+
+.busqueda-container{
+    padding-top:1em;
+}

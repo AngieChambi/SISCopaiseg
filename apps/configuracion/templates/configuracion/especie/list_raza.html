@@ -1,0 +1,129 @@
+<form name="form" id="raza-form{{id_form}}" method="post">
+    {% csrf_token %}
+    <span class="input-icon input-icon-right block">
+        <input type="text" name="nombre" class="form-control form-field-icon-2" placeholder="Registrar nueva raza">
+        <i id="save-raza{{id_form}}"  data-id="{{id_form}}" class=" ace-icon fa fa-leaf green"></i>
+	</span>
+    <input id="id_especie{{id_form}}" class="hidden" name="motivo" type="text">
+    </form>
+<div class="alert alert-danger hide" role="alert" id="success_message_vacunacion_error{{id_form}}"></div>
+{% for d in especie_raza %}
+                         <li class="dd-item dd-collapsed" >
+                             <button data-action="collapse" id="collapse{{d.id}}" class="collapse" type="button" style="display: none;">Collapse</button>
+                            <button class="expand" data-value="{{d.id}}" id="expand{{d.id}}" data-action="expand"  type="button" style="display: block;">Expand</button>
+                             <div class="dd-handle">
+                                {{d.nombre}}
+                                    <div class="pull-right action-buttons">
+                                          <a class="blue" href="#">
+                                              <i class="ace-icon fa fa-plus bigger-130"></i>
+                                          </a>
+                                          <a class="green" href="#">
+                                              <i class="ace-icon fa fa-pencil bigger-130"></i>
+                                          </a>
+                                          <a class="red" href="#">
+                                              <i class="ace-icon fa fa-trash-o bigger-130"></i>
+                                          </a>
+                                    </div>
+                             </div>
+                             <ol class="dd-list">
+                                 <div class="row">
+                                     <div class="col-xs-12">
+                                         <div id="list_color{{d.id}}"></div>
+                                     </div>
+                                 </div>
+                             </ol>
+                         </li>
+                                 {% endfor %}
+                                 {{id_especie}}
+                                 {{id_form}}
+<script type="text/javascript">
+
+
+{% for d in  especie_raza %}
+$("#expand{{d.id}}").click(function(event) {
+    var id = $(this).attr("data-value");
+    $("this").attr("data-value");
+    console.log("data",id);
+    $.ajax({
+        url: '/configuracion/color/listar/{{id_especie}}/'+id,
+        success: function(d) {
+            $('#list_color'+id).html(d);
+            $("#id_raza"+id).val(id);
+            $("#id_especie{{id_especie}}_raza"+id).val('{{id_especie}}');
+            }
+    });
+});
+{% endfor %}
+
+
+$('#save-raza{{id_form}}').click(function() {
+        var id = $(this).attr("data-id");
+        console.log("id", id);
+        var formArray = $("#raza-form{{id_form}}").serializeArray();
+        var formJson = JSON.stringify(formArray);
+        console.log(formArray);
+
+        if (formArray[1].value.trim().length > 0 && formArray[2].value.trim().length > 0) {
+            console.log("aaaaaaaaaaaaa");
+            $.ajax({
+                    url: '{% url "configuracion:post_raza_ajax" %}',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        nombre: formArray[1].value,
+                        id: formArray[2].value,
+                    },
+                })
+                .done(function(d) {
+                    console.log("Registro satisfactoriamente");
+                    var html = "";
+                    html += '<div class="alert alert-success " role="alert"> <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>Se aplico la vacuna satisfactoriamente.</div>'
+                    $(".form-field-icon-2").val('');
+                    $.ajax({
+                        url: '/configuracion/raza/listar/'+id,
+                        success: function(data) {
+                          $('#list_raza{{id_form}}').html(data);
+                          $("#id_especie{{id_form}}").val(id);
+                          }
+                      });
+                    $('#flash-message').html(html)
+                })
+                .fail(function() {
+                    console.log("error");
+                })
+                .always(function() {
+                    console.log("complete");
+                });
+        } else {
+            $('#success_message_vacunacion_error'+id).attr('class', 'alert alert-danger').text("Revise los datos ingresados nuevamente.");
+        }
+    });
+
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    var csrftoken = getCookie('csrftoken');
+    function csrfSafeMethod(method) {
+        // these HTTP methods do not require CSRF protection
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+        }
+    });
+</script>

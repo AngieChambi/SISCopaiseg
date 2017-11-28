@@ -1,0 +1,411 @@
+{% extends "main/dashboard.html" %}
+{% load i18n crispy_forms_tags staticfiles %}
+{% load l10n %}
+
+{% block style %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'assets/css/bootstrap-duallistbox.css' %}" />
+<style media="screen">
+    .input-group-addon{
+        background-color: #A069C3!important;
+        border-color:#9585BF;
+        color: #fff;
+        font-weight: bolder;
+    }
+    .has-error .input-group-addon{
+        background-color: #A94442!important;
+        border-color: #A94442;
+        color: #fff;
+    }
+    .finalizar{
+        display: none;
+    }
+</style>
+
+{% endblock style %}
+{% block headjs %}
+{% endblock %}
+
+{% block breadcrumbs_item %}
+<li><a href="/clinica/colamedica/listar/">{% trans 'Cola' %} {% trans 'Medica' %}</a></li>
+<li class="active">{{ opts.verbose_name_plural|capfirst }}</li>
+{% endblock breadcrumbs_item %}
+
+{% block page_title %}
+<span class="fa fa-hospital-o purple">  {{mascota_nombre|upper}} /<small>{{mascota_raza|upper}} -- {{mascota_genero|upper}},</small> <label>PROPIETARIO:<small>{{ mascota_dueño|upper }}</small></label></span>
+{% endblock page_title %}
+{% block page_content %}
+{% crispy form %}
+{{ form.data_diagnostico}}
+{{ form.tipo_diagnostico}}
+{% endblock %}
+{% block extrajs %}
+{{ block.super }}
+
+<script src="{% static 'assets/js/jquery.bootstrap-duallistbox.js' %}"></script>
+<script src="{% static 'assets/js/fuelux/fuelux.wizard.js' %}"></script>
+<script src="{% static 'assets/js/ace/elements.wizard.js' %}"></script>
+<script src="{% static 'assets/js/bootbox.js' %}"></script>
+<script src="{% static 'assets/js/jquery.validate.js' %}"></script>
+<script src="{% static 'assets/js/jquery-ui.js' %}"></script>
+<script type="text/javascript">
+
+$(".wizard-actions button").addClass('finalizar');
+var tamaño = ['next'];
+    $("#next").click(function () {
+        var data = $(this).val('data-last');
+        for (var i = 0; i <  data.length; i++) {
+            var dataa = data[i].innerText;
+        }
+        tamaño.push(dataa);
+        console.log(tamaño);
+        if (tamaño.length===4) {
+            $(".wizard-actions button").removeClass('finalizar');
+            $(this).addClass('finalizar');
+        }
+    });
+
+    $("#prev").click(function () {
+        var dato = $(this).val('data-last');
+        console.log(dato);
+        tamaño.splice(1,1);
+        console.log(tamaño);
+        if (dato!='Finish') {
+            $(".wizard-actions button").addClass('finalizar');
+            $("#next").removeClass('finalizar');
+        }
+    });
+
+
+
+
+
+
+    jQuery(function($) {
+
+        var $validation = false;
+        $('#fuelux-wizard-container')
+        .ace_wizard({
+            //step: 2 //optional argument. wizard will jump to step "2" at first
+            //buttons: '.wizard-actions:eq(0)'
+        })
+        .on('actionclicked.fu.wizard' , function(e, info){
+            if(info.step == 1 && $validation) {
+                if(!$('#validation-form').valid()) e.preventDefault();
+            }
+        })
+        .on('finished.fu.wizard', function(e) {
+
+        }).on('stepclick.fu.wizard', function(e){
+            //e.preventDefault();//this will prevent clicking and selecting steps
+        });
+    })
+
+    $(".wizard-actions #next").attr('disabled', 'disabled');
+jQuery(function($){
+    var demo1 = $('select[name="hallasgos_clinicos"]').bootstrapDualListbox({
+        infoText: 'Mostrando {0}',
+        infoTextFiltered: '<span class="label label-success label-lg text-bold">Filtrando {0} de {1}</span>',
+        infoTextEmpty:'Lista Vacia',
+        filterPlaceHolder:'Buscar hallasgos clinicos',
+        filterTextClear:'Mostrar Todo'
+    });
+    var container1 = demo1.bootstrapDualListbox('getContainer');
+    container1.find('.btn').addClass('btn-white btn-info btn-bold');
+    $(document).one('ajaxloadstart.page', function(e) {
+        $('[class*=select2]').remove();
+        $('select[name="hallasgos_clinicos"]').bootstrapDualListbox('destroy');
+        $('.rating').raty('destroy');
+        $('.multiselect').multiselect('destroy');
+    });
+});
+
+
+
+
+var Consulta = {
+    diagnosticos: [],
+    pruebas_auxiliares: [],
+    tratamientos: [],
+    hallasgos: [],
+    temp: -1,
+};
+
+function draw() {
+    var h = "";
+    var afirmar = 'Afirmativo'
+
+    for (var i in Consulta.diagnosticos) {
+        console.log("var1:",Consulta.diagnosticos[i].tipo_diagnostico);
+        console.log("var2:",afirmar);
+        if (Consulta.diagnosticos[i].tipo_diagnostico === afirmar) {
+            var selected1 = 'selected';
+            var selected2 = '';
+            console.log("son iguales");
+        }else {
+            var selected2 = 'selected';
+            var selected1 = '';
+            console.log("no son iglaues");
+        }
+        h = h + "<tr>" +
+        "<td>" + Consulta.diagnosticos[i].nombre+
+        "</td><td class='tipo_asesor'> <select class='form-control valor-select '  id='id_tipo_diagnostico" + i + "'  onblur='change_tipo_diagnostico(" + i + ")'><option class='value1' value='Afirmativo' "+selected1+">Afirmativo</option><option class='value2' value='Presuntivo' "+selected2+">Presuntivo</option></select></td><td class='text-center'><a onclick='delete_d(" + i + ")'class='btn btn-danger'><i class='fa fa-remove' aria-hidden='true'></i></a></td></tr>";
+    }
+    $("#datos_diagnostico").html(h);
+    $("#id_data_diagnostico").val(JSON.stringify(Consulta));
+    console.log(Consulta);
+
+    $(".valor-select").change(function(d){
+        valor_select = $('#id_tipo_diagnostico').val($(this).val());
+        console.log("selecionando el valor: ",valor_select);
+     });
+}
+
+var valor_select =""; //EN etsa variable se almacenara el valor que se obtiene al hacer cambios en el select
+
+function change_tipo_diagnostico(d) {
+        var valor_select_option = "Afirmativo"; //EN esta variable se almacena el valor del selcect > obtion
+        for (var i = 0; i < valor_select.length; i++) {
+            valor_select_option=valor_select[i].value
+            console.log("imprimiendo:",  valor_select_option);
+        }
+
+        if (Consulta.diagnosticos[d].tipo_diagnostico === valor_select_option ) {
+            console.log("son iguales por lo tanto no se puede hacer cambios");
+        }else {
+            if (valor_select_option === 'Afirmativo') {
+                Consulta.diagnosticos[d].tipo_diagnostico = $('#id_tipo_diagnostico' +d+' .value1').text();
+                console.log("dddddd",d);
+                draw();
+            }else {
+                console.log("no son iguales");
+                Consulta.diagnosticos[d].tipo_diagnostico = $("#id_tipo_diagnostico" +d+' .value2').text();
+                console.log("dddddd",d);
+                draw();
+            }
+        }
+
+    }
+function delete_d(d) {
+        var deleted_diagnostico = Consulta.diagnosticos.splice(d, 1);
+        draw();
+    }
+
+
+var id="";
+var diagnostico="";
+$( "#id_diagnosticos" ).autocomplete({
+    source: "/clinica/api/diagnostico",
+    minLength: 0,
+    select: function( event, ui ) {
+        console.log(event,ui);
+        id = ui.item.id
+        diagnostico = ui.item.value
+    }
+});
+$( "#ui-id-1" ).on('click', function () {
+        var valores = {
+            id: '',
+            nombre: '',
+            tipo_diagnostico: 'Afirmativo',
+        };
+        valores.id = id;
+        valores.nombre = diagnostico;
+
+        console.log(valores);
+        //Validación  que no se repita un mismo Docente
+        if (sinoExiste(valores.id)) {
+            Consulta.diagnosticos.push(valores);
+            draw();
+            var html = ''
+            html += '<div class="alert alert-success" role="alert">'
+            html += '<button type="button" class="close" data-dismiss="alert">'
+            html += '<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>'
+            html += '</button>'
+            html += 'Selecciono al diagnostico '+ valores.nombre+'</div>'
+            $('#flash-message').html(html);
+        }else {
+            var html = ''
+            html += '<div class="alert alert-warning" role="alert">'
+            html += '<button type="button" class="close" data-dismiss="alert">'
+            html += '<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>'
+            html += '</button>'
+            html += 'Ya se agrego el diagnostico '+ valores.nombre+'</div>'
+            $('#flash-message').html(html);
+        }
+        //función que verifica si existe o no un elemento en el array Proyecto asesores
+        function sinoExiste(id){
+            var r = true;
+            Consulta.diagnosticos.forEach(function(item){
+                if(item.id==id){
+                    r = false
+                }
+            })
+            return r;
+        }
+    });
+
+
+var id="";
+var pruebas_auxiliares="";
+$( "#id_prueba_auxiliar" ).autocomplete({
+    source: "/clinica/api/pruebas_auxiliares",
+    minLength: 0,
+    select: function( event, ui ) {
+        console.log(event,ui);
+        id = ui.item.id
+        pruebas_auxiliares = ui.item.value
+    }
+});
+
+$( "#ui-id-2" ).on('click', function () {
+        var valores = {
+            id: '',
+            nombre: '',
+            indicacion: 'Ninguno',
+        };
+        valores.id = id;
+        valores.nombre = pruebas_auxiliares;
+
+        console.log(valores);
+        //Validación  que no se repita un mismo Docente
+        if (sinoExiste(valores.id)) {
+            Consulta.pruebas_auxiliares.push(valores);
+            pruebas();
+            var html = ''
+            html += '<div class="alert alert-success" role="alert">'
+            html += '<button type="button" class="close" data-dismiss="alert">'
+            html += '<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>'
+            html += '</button>'
+            html += 'Selecciono a la pprueba auxiliar '+ valores.nombre+'</div>'
+            $('#flash-message').html(html);
+        }else {
+            var html = ''
+            html += '<div class="alert alert-warning" role="alert">'
+            html += '<button type="button" class="close" data-dismiss="alert">'
+            html += '<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>'
+            html += '</button>'
+            html += 'Ya se agrego la prueba auxiliar '+ valores.nombre+'</div>'
+            $('#flash-message').html(html);
+        }
+        //función que verifica si existe o no un elemento en el array Proyecto asesores
+        function sinoExiste(id){
+            var r = true;
+            Consulta.pruebas_auxiliares.forEach(function(item){
+                if(item.id==id){
+                    r = false
+                }
+            })
+            return r;
+        }
+    });
+
+
+function pruebas() {
+        var h = "";
+
+        for (var i in Consulta.pruebas_auxiliares) {
+            h = h + "<tr>" +
+            "<td>" + Consulta.pruebas_auxiliares[i].nombre+
+            "</td><td contenteditable='true' class='' id='id_indicacion" + i + "' onblur='change_indicacion(" + i + ")'>"+ Consulta.pruebas_auxiliares[i].indicacion+
+            "</td><td class='text-center'><a onclick='delete_p(" + i + ")'class='btn btn-danger'><i class='fa fa-remove' aria-hidden='true'></i></a></td></tr>";
+        }
+        $("#datos_pruebas").html(h);
+        $("#id_data_diagnostico").val(JSON.stringify(Consulta));
+        console.log(Consulta);
+    }
+
+    function change_indicacion(d) {
+        Consulta.pruebas_auxiliares[d].indicacion= $("#id_indicacion" + d).text();
+        console.log('valor de la indicacion:', Consulta.pruebas_auxiliares[d].indicacion);
+        pruebas();
+    }
+    function delete_p(d) {
+        var deleted_pruebas = Consulta.pruebas_auxiliares.splice(d, 1);
+        pruebas();
+    }
+
+
+var id = "";
+var tratamiento_value = "";
+
+$( "#id_tratamientos" ).autocomplete({
+    source: "/clinica/api/tratamientos",
+    minLength: 0,
+    select: function( event, ui ) {
+        console.log(event,ui);
+        id = ui.item.id
+        tratamiento_value = ui.item.value
+    }
+});
+
+$( "#ui-id-3" ).on('click', function () {
+        var valores = {
+            id: '',
+            nombre: '',
+            indicacion: 'Ninguno',
+        };
+        valores.id = id;
+        valores.nombre = tratamiento_value;
+
+        console.log(valores);
+        //Validación  que no se repita un mismo Docente
+        if (sinoExiste(valores.id)) {
+            Consulta.tratamientos.push(valores);
+            tratamiento();
+            var html = ''
+            html += '<div class="alert alert-success" role="alert">'
+            html += '<button type="button" class="close" data-dismiss="alert">'
+            html += '<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>'
+            html += '</button>'
+            html += 'Selecciono a la pprueba auxiliar '+ valores.nombre+'</div>'
+            $('#flash-message').html(html);
+        }else {
+            var html = ''
+            html += '<div class="alert alert-warning" role="alert">'
+            html += '<button type="button" class="close" data-dismiss="alert">'
+            html += '<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>'
+            html += '</button>'
+            html += 'Ya se agrego la prueba auxiliar '+ valores.nombre+'</div>'
+            $('#flash-message').html(html);
+        }
+        //función que verifica si existe o no un elemento en el array Proyecto asesores
+        function sinoExiste(id){
+            var r = true;
+            Consulta.tratamientos.forEach(function(item){
+                if(item.id==id){
+                    r = false
+                }
+            })
+            return r;
+        }
+    });
+
+
+function tratamiento() {
+        var h = "";
+
+        for (var i in Consulta.tratamientos) {
+            h = h + "<tr>" +
+            "<td>" + Consulta.tratamientos[i].nombre+
+            "</td><td contenteditable='true' class='' id='id_indicaciont" + i + "' onblur='change_indicaciont(" + i + ")'>"+ Consulta.tratamientos[i].indicacion+
+            "</td><td class='text-center'><a onclick='delete_t(" + i + ")'class='btn btn-danger'><i class='fa fa-remove' aria-hidden='true'></i></a></td></tr>";
+        }
+        $("#datos_tratamiento").html(h);
+        $("#id_data_diagnostico").val(JSON.stringify(Consulta));
+        console.log(Consulta);
+    }
+
+    function change_indicaciont(d) {
+        Consulta.tratamientos[d].indicacion= $("#id_indicaciont" + d).text();
+        console.log('valor de la indicacion:', Consulta.tratamientos[d].indicacion);
+        tratamiento();
+    }
+    function delete_t(d) {
+        var deleted_pruebas = Consulta.tratamientos.splice(d, 1);
+        tratamiento();
+    }
+
+
+</script>
+{% endblock extrajs %}

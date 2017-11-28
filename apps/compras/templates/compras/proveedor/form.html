@@ -1,0 +1,16 @@
+{% extends "main/dashboard.html" %}
+{% load i18n crispy_forms_tags %} {% load l10n %}
+{% block breadcrumbs_item %}
+    <li><a href="{% url 'compras:proveedor_list' %}">{{ opts.verbose_name_plural|capfirst }}</a></li>
+    <li class="active">{{ title }}</li>
+{% endblock breadcrumbs_item %}
+{% block page_title %}
+    <i class="fa fa-user"></i> {{ title }}
+{% endblock page_title %} {% block page_content %}
+    <form action="" method="post">
+        {% crispy form %} {% csrf_token %}
+    </form>
+{% endblock %} {% block extrajs %} {{ block.super }}
+    <script type="text/javascript">
+    </script>
+{% endblock extrajs %}
