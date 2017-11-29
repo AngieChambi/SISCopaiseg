@@ -74,7 +74,7 @@
     }
 
     .panel-cliente .panel-footer{
-    color: #D15B47;
+    color: #FF0000;
     font-size: 16px;
     }
     .panel-compra .panel-footer {
@@ -144,79 +144,12 @@
             </div>
             <!-- /.page-header -->
             {% block page_content %}
-            <div class="col-md-12">
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-citas">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-calendar fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">{{cita}}</div>
-                                    <div class="hugel">Citas</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="{%url 'citas:cita_add' %}">
-                            <div class="panel-footer">
-                                <span class="pull-left">Ver</span>
-                                <span class="pull-right"><i class="fa fa-eye"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-mascota">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-github-alt fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">{{mascota}}</div>
-                                    <div>Mascotas</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="{%url 'clinica:cliente_list' %}">
-                            <div class="panel-footer">
-                                <span class="pull-left">Ver</span>
-                                <span class="pull-right"><i class="fa fa-eye"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-compra">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-shopping-cart fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">{{compra}}</div>
-                                    <div>Compras</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="{% url 'compras:compra_add' %}">
-                            <div class="panel-footer">
-                                <span class="pull-left">Ver</span>
-                                <span class="pull-right"><i class="fa fa-eye"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
+            <div class="col-lg-3 col-md-6">
                     <div class="panel panel-venta">
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">
-                                    <i class="fa fa-credit-card fa-5x"></i>
+                                    <i class="fa fa-briefcase" style="font-size:24px"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge">{{venta}}</div>
@@ -234,11 +167,57 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-mascota">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">{{mascota}}</div>
+                                    <div>Acopio</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{%url 'clinica:cliente_list' %}">
+                            <div class="panel-footer">
+                                <span class="pull-left">Ver</span>
+                                <span class="pull-right"><i class="fa fa-eye"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-compra">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">{{compra}}</div>
+                                    <div>Compras</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{% url 'compras:compra_add' %}">
+                            <div class="panel-footer">
+                                <span class="pull-left">Ver</span>
+                                <span class="pull-right"><i class="fa fa-eye"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
                     <div class="panel panel-cliente">
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">
-                                    <i class="fa fa-users fa-5x"></i>
+                                    <i class="fa fa-users" aria-hidden="true"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge">{{cliente}}</div>
@@ -255,38 +234,17 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-atencion">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-user-md fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">{{atencion}}</div>
-                                    <div>Atenciones</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="{% url 'clinica:listar_medica' %}">
-                            <div class="panel-footer">
-                                <span class="pull-left">Ver</span>
-                                <span class="pull-right"><i class="fa fa-eye"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+                
                 <div class="col-lg-3 col-md-6">
                     <div class="panel panel-proveedor">
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">
-                                    <i class="fa fa-car fa-5x"></i>
+                                    <i class="fa fa-smile-o" style="font-size:36px"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge">{{proveedor}}</div>
-                                    <div>Proveedores</div>
+                                    <div>Socios</div>
                                 </div>
                             </div>
                         </div>
@@ -299,17 +257,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-colamedica">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-list-alt fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">{{colamedica}}</div>
-                                    <div>Cola Medica</div>
-                                </div>
+                
                             </div>
                         </div>
                         <a href="{% url 'compras:proveedor_list' %}">

@@ -1,0 +1,3 @@
+[2017-11-28 10:12:08] [WARNING] [apps.compras.views.Proveedor:214] [/compras/proveedor/actualizar/1.6286ea55900a3310fb2f8d190539bbde/] [127.0.0.1] [admin] Proveedor "321 abc one" fue cambiado satisfacoriamente.
+[2017-11-28 10:20:29] [WARNING] [apps.compras.views.Proveedor:163] [/compras/proveedor/crear/] [127.0.0.1] [admin]  Proveedor "1243432 copaiseg" fue creado satisfactoriamente.
+[2017-11-28 21:23:14] [WARNING] [apps.clinica.views.cliente:220] [/clinica/cliente/actualizar/2/] [127.0.0.1] [admin] Cliente "pancho Jihuaña" fue cambiado satisfacoriamente.

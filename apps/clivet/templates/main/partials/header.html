@@ -1,21 +1,14 @@
 {% load i18n user_menu %}
 {% load i18n staticfiles %}
-    <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
-        <span class="sr-only">Toggle sidebar</span>
-        <span class="icon-bar"></span>
-
-        <span class="icon-bar"></span>
-
-        <span class="icon-bar"></span>
-    </button>
+    
 
         <!-- /section:basics/sidebar.mobile.toggle -->
-        <div class="navbar-header pull-left">
+        <div class="red">
             <!-- #section:basics/navbar.layout.brand -->
             <a href="#" class="navbar-brand">
                 <small>
                     <i class="fa fa-leaf"></i>
-                    CLIVET
+                    COPAISEG
                 </small>
             </a>
 
@@ -28,7 +21,7 @@
         <!-- #section:basics/navbar.dropdown -->
         <div class="navbar-buttons navbar-header pull-right" role="navigation">
             <ul class="nav ace-nav">
-                <li class="grey">
+                <li class="red">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <i class="ace-icon fa fa-tasks"></i>
                         <span class="badge badge-grey">4</span>
@@ -44,7 +37,7 @@
                             <ul class="dropdown-menu dropdown-navbar">
                                 <li>
                                     <a href="#">
-                                        <div class="clearfix">
+                                        <div class="red">
                                             <span class="pull-left">Software Update</span>
                                             <span class="pull-right">65%</span>
                                         </div>
@@ -105,7 +98,7 @@
                     </ul>
                 </li>
 
-                <li class="purple">
+                <li class="red">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <i class="ace-icon fa fa-bell icon-animated-bell"></i>
                         <span class="badge badge-important">8</span>
@@ -173,7 +166,7 @@
                     </ul>
                 </li>
 
-                <li class="green">
+                <li class="red">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <i class="ace-icon fa fa-envelope icon-animated-vertical"></i>
                         <span class="badge badge-success">5</span>
@@ -192,7 +185,7 @@
                                         <img src="{% static 'assets/avatars/avatar.png' %}" class="msg-photo" alt="Alex's Avatar" />
                                         <span class="msg-body">
                                             <span class="msg-title">
-                                                <span class="blue">Alex:</span>
+                                                <span class="red">Alex:</span>
                                                 Ciao sociis natoque penatibus et auctor ...
                                             </span>
 
@@ -209,7 +202,7 @@
                                         <img src="{% static 'assets/avatars/avatar3.png' %}" class="msg-photo" alt="Susan's Avatar" />
                                         <span class="msg-body">
                                             <span class="msg-title">
-                                                <span class="blue">Susan:</span>
+                                                <span class="red">Susan:</span>
                                                 Vestibulum id ligula porta felis euismod ...
                                             </span>
 
@@ -226,7 +219,7 @@
                                         <img src="{% static 'assets/avatars/avatar4.png' %}" class="msg-photo" alt="Bob's Avatar" />
                                         <span class="msg-body">
                                             <span class="msg-title">
-                                                <span class="blue">Bob:</span>
+                                                <span class="red">Bob:</span>
                                                 Nullam quis risus eget urna mollis ornare ...
                                             </span>
 
@@ -243,7 +236,7 @@
                                         <img src="{% static 'assets/avatars/avatar2.png' %}" class="msg-photo" alt="Kate's Avatar" />
                                         <span class="msg-body">
                                             <span class="msg-title">
-                                                <span class="blue">Kate:</span>
+                                                <span class="red">Kate:</span>
                                                 Ciao sociis natoque eget urna mollis ornare ...
                                             </span>
 
@@ -260,7 +253,7 @@
                                         <img src="{% static 'assets/avatars/avatar5.png' %}" class="msg-photo" alt="Fred's Avatar" />
                                         <span class="msg-body">
                                             <span class="msg-title">
-                                                <span class="blue">Fred:</span>
+                                                <span class="red">Fred:</span>
                                                 Vestibulum id penatibus et auctor  ...
                                             </span>
 
@@ -284,7 +277,7 @@
                 </li>
 
                 <!-- #section:basics/navbar.user_menu -->
-                <li class="light-blue">
+                <li class="red">
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
                         <img class="nav-user-photo" src="{{MEDIA_URL}}{{user.person.photo}}" alt="
                         {{user}}'s Photo" />
@@ -313,7 +306,7 @@
                         <li class="divider"></li>
                         <li>
                             <li>
-                                <a href="/accounts/logout/"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                                <a href="/accounts/logout/"><i class="fa fa-fw fa-power-off"></i>Salir</a>
                             </li>
                         </li>
                     </ul>
