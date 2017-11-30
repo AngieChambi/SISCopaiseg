@@ -144,19 +144,7 @@
             </div>
             <!-- /.page-header -->
             {% block page_content %}
-            <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-venta">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-briefcase" style="font-size:24px"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">{{venta}}</div>
-                                    <div>Ventas</div>
-                                </div>
-                            </div>
-                        </div>
+            
                         <a href="{% url 'clinica:crear_medica' %}">
                             <div class="panel-footer">
                                 <span class="pull-left">Ver</span>
@@ -198,7 +186,7 @@
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge">{{compra}}</div>
-                                    <div>Compras</div>
+                                    <div>Acopios</div>
                                 </div>
                             </div>
                         </div>
