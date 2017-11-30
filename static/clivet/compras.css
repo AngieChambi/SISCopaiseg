@@ -1,6 +1,6 @@
 
 .panel-compras-cliente{
-    background: #009688;
+    background: #FF5733;
 }
 .panel-compras-cliente .panel-body{
     padding: 10px;
@@ -12,7 +12,7 @@
     padding-right: 0px;
 }
 .panel-card-compra{
-    border: 1px solid #009688;
+    border: 1px solid #FF5733;
 }
 .panel-card-compra .panel-body{
     padding: 0px;
@@ -459,7 +459,7 @@ img {
 }
 
 .panel-heading {
-    background: #009688 !important;
+    background: #FF5733 !important;
 }
 
 .do-buy {

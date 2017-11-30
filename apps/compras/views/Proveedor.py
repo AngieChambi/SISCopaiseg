@@ -50,16 +50,14 @@ def PostProveedorAjax(request):
             d.razon_social = request.POST.get('rs')
             d.tipodoc = request.POST.get('td')
             d.numdoc = request.POST.get('nd')
-            d.representante_legal = request.POST.get('rl')
+            d.representante_legal = request.POST.get('rs')
             d.direccion = request.POST.get('d')
-            if request.GET.get('t'):
-                d.telefono = request.POST.get('t')
-            if request.GET.get('q'):
-                d.email = request.POST.get('e')
-            if request.GET.get('q'):
-                d.enti_bancaria = request.POST.get('c')
-            if request.GET.get('q'):
-                d.num_cuenta = request.POST.get('nc')
+            d.telefono = request.POST.get('t')
+            d.email = request.POST.get('e')
+            # if request.GET.get('q'):
+            #     d.enti_bancaria = request.POST.get('c')
+            # if request.GET.get('q'):
+            #     d.num_cuenta = request.POST.get('nc')
             d.save()
             obj = Proveedor.objects.last()
             unidad_json = {}
@@ -153,6 +151,7 @@ class ProveedorCreateView(CreateView):
     def form_valid(self, form):
         """"Empresa Crete View  form valid."""
         self.object = form.save(commit=True)
+        self.object.representante_legal = form.cleaned_data['razon_social']
 
         msg = _(' %(name)s "%(obj)s" fue creado satisfactoriamente.') % {
             'name': capfirst(force_text(self.model._meta.verbose_name)),

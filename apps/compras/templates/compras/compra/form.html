@@ -20,7 +20,7 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <label class="label-proveedor-buscar"><i class="fa fa-user"></i> {{ form.proveedor.label }}
+                            <label class="label-proveedor-buscar"><i class="fa fa-user"></i> Socios
                             </label>
                         </div>
                         <div class="col-md-6">
@@ -30,7 +30,7 @@
                                         {{ form.proveedor }}
                                     </div>
                                     <div class="col-md-3">
-                                        <button class="btn btn-success btn-block" id='addProveedor' type="button"><i
+                                        <button class="btn btn-primary btn-block" id='addProveedor' type="button"><i
                                                 class="fa fa-plus"></i> Nuevo
                                         </button>
                                     </div>
@@ -68,11 +68,11 @@
                                            data-value="data" autocomplete="off"><i
                                             class="ace-icon fa fa-search purple"></i></span>
                                     </div>
-                                    <div class="col-md-3">
+                                    <!--<div class="col-md-3">
                                         <button id="addProducto" class="btn btn-block btn-lg nuevo-cliente "><i
                                                 class="fa fa-plus"></i> Producto
                                         </button>
-                                    </div>
+                                    </div>-->
                                 </div>
                             </div>
                             <div class="panel-body">
@@ -101,7 +101,7 @@
                                     <div class="col-md-12">
                                         <p class="text-center resumen-title"><span
                                                 class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>Resumen
-                                            de Compra Realizada</p>
+                                            de Acopio Realizado</p>
                                     </div>
                                     <!--<div class="col-md-6">
                                     {{ form.comprobante}}
@@ -119,7 +119,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <button id="btn_pagar" type="submit" name='form'
-                                                class="col-md-12 pagar-button btn btn-block"> Guardar Compra
+                                                class="col-md-12 pagar-button btn btn-block"> Guardar Acopio
                                         </button>
                                     </div>
                                 </div>
@@ -138,7 +138,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title" id="myModalLabel">Agregar Proveedor</h4>
+                    <h4 class="modal-title" id="myModalLabel">Agregar Socio</h4>
                 </div>
                 <div class="modal-body">
                     <form action="" method="post" name="proveedor-form" id="proveedor-form">
@@ -147,11 +147,11 @@
                             <div class="col-md-12">
                                 <div id="div_id_razon_social" class="form-group">
                                     <label for="id_razon_social" class="control-label  requiredField">
-                                        Razon social<span class="asteriskField">*</span> </label>
+                                        Nombres y Apellidos<span class="asteriskField">*</span> </label>
                                     <div class="controls ">
                                         <input class="textinput textInput form-control" id="id_razon_social"
                                                maxlength="50" name="razon_social"
-                                               placeholder="Ingrese el nombre de la empresa" type="text"></div>
+                                               placeholder="Ingrese nombres y apellidos" type="text"></div>
                                 </div>
                             </div>
                         </div>
@@ -165,22 +165,13 @@
                                         Número de documento<span class="asteriskField">*</span> </label>
                                     <div class="controls ">
                                         <input class="numberinput form-control" id="id_numdoc" name="numdoc"
-                                               placeholder="Ingrese un número" type="number" min="0" maxlength="11">
+                                               placeholder="Ingrese número" type="number" min="0" maxlength="11">
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-12">
-                                <div id="div_id_representante_legal" class="form-group">
-                                    <label for="id_representante_legal" class="control-label  requiredField">
-                                        Representante legal<span class="asteriskField">*</span> </label>
-                                    <div class="controls ">
-                                        <input class="textinput textInput form-control" id="id_representante_legal"
-                                               maxlength="50" name="representante_legal"
-                                               placeholder="Ingrese el nombre completo" type="text"></div>
-                                </div>
-                            </div>
+                            
                         </div>
                         <div class="row">
                             <div class="col-md-8">
@@ -207,7 +198,7 @@
                             <div class="col-md-12">
                                 <div id="div_id_email" class="form-group">
                                     <label for="id_email" class="control-label ">
-                                        Email
+                                        Correo Electrónico
                                     </label>
                                     <div class="controls ">
                                         <input class="emailinput form-control" id="id_email" maxlength="30" name="email"
@@ -216,27 +207,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-8">
-                                <div id="div_id_enti_bancaria" class="form-group">
-                                    <label for="id_enti_bancaria" class="control-label ">
-                                        Entidad bancaria
-                                    </label>
-                                    <div class="controls ">
-                                        <input class="textinput textInput form-control" id="id_enti_bancaria"
-                                               maxlength="30" name="enti_bancaria" placeholder="Ingrese el nombre"
-                                               type="text"></div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div id="div_id_num_cuenta" class="form-group">
-                                    <label for="id_num_cuenta" class="control-label ">
-                                        Número de cuenta
-                                    </label>
-                                    <div class="controls ">
-                                        <input class="numberinput form-control" id="id_num_cuenta" name="num_cuenta"
-                                               min="0" placeholder="Ingrese un número" type="number"></div>
-                                </div>
-                            </div>
+                            
                         </div>
                     </form>
                     <div class="alert alert-danger hide" role="alert" id="success_message_proveedor"></div>
@@ -246,12 +217,14 @@
                         <div class="controls">
                             <button type="submit" name="submit" class="btn btn-primary text-bold" id="save-proveedor"
                                     title="Grabar">
-                                <i class="btn-icon-onlyx fa fa-save"></i> <span class="hidden-xsx"> Grabar</span>
+                                <i class="btn-icon-onlyx fa fa-save"></i> <span class="hidden-xsx"> Guardar</span>
                             </button>
-                            <button type="button" name="cancel" class="btn btn btn-danger btn-back text-bold"
-                                    id="button-id-cancel" title="Cancel">
+
+                            <a type="reset" name="cancel" class="btn btn btn-danger close"
+                                    id="" title="" data-dismiss="modal">
                                 <i class="btn-icon-onlyx fa fa-ban"></i> <span class="hidden-xs"> Cancelar</span>
-                            </button>
+                            </a>
+
                             <button type="reset" name="reset" class="btn btn btn-default text-bold" id="reset-id-reset"
                                     title="Reset">
                                 <i class="btn-icon-onlyx fa fa-undo"></i> <span class="hidden-xs"> Limpiar</span>
@@ -499,12 +472,12 @@
                         rs: formArray[1].value,
                         td: formArray[2].value,
                         nd: formArray[3].value,
-                        rl: formArray[4].value,
-                        d: formArray[5].value,
-                        t: formArray[6].value,
-                        e: formArray[7].value,
-                        c: formArray[8].value,
-                        nc: formArray[9].value,
+                        // rl: formArray[4].value,
+                        d: formArray[4].value,
+                        t: formArray[5].value,
+                        e: formArray[6].value,
+                        // c: formArray[8].value,
+                        // nc: formArray[9].value,
                     },
                 })
                     .done(function (d) {

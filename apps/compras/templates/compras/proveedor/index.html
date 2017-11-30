@@ -21,7 +21,7 @@ $(function() {
         <div class="btn-actions col-md-9" ,>
             <a href="{% url 'compras:proveedor_add' %}" class="btn btn-primary text-bold" title="Agregar Proveedor">
                 <i class="fa fa-plus"></i>
-                <span class="hidden-xs"> Agregar</span>
+                <span class="hidden-xs">Agregar</span>
             </a>
         </div>
     </div>
@@ -31,16 +31,12 @@ $(function() {
         <thead>
             <tr>
                 <th>#</th>
-                <th class="col-hidden" data-search="razon_social" data-order="razon_social">Razon social</th>
+                <th class="col-hidden" data-search="razon_social" data-order="razon_social">Nombres y Apellidos</th>
                 <th class="col-hidden" data-search="numdoc" data-order="numdoc">N° de documento</th>
-                <th class="col-hidden" data-search="representante_legal" data-order="representante_legal">Representante legal
-                </th>
                 <th class="col-hidden" data-search="direccion" data-order="direccion">Direccion</th>
                 <th class="col-hidden" data-search="telefono" data-order="telefono">Telefono</th>
                 <th class="col-hidden" data-search="email" data-order="email">Email</th>
                 <th class="col-hidden" data-search="enti_bancaria" data-order="enti_bancaria">Entidad bancaria</th>
-                <th class="col-hidden" data-search="num_cuenta" data-order="num_cuenta">N° de cuenta</th>
-                <th class="btn-actions col-blocked text-center">Acción</th>
             </tr>
         </thead>
         <tbody>
@@ -52,12 +48,9 @@ $(function() {
                 </td>
                 <td>{{ d.razon_social }}</td>
                 <td>{{ d.numdoc }}</td>
-                <td>{{ d.representante_legal }}</td>
                 <td>{{ d.direccion }}</td>
                 <td>{{ d.telefono|default_if_none:"---" }}</td>
                 <td>{{ d.email|default_if_none:"---" }}</td>
-                <td>{{ d.enti_bancaria|default_if_none:"---" }}</td>
-                <td>{{ d.num_cuenta|default_if_none:"---" }}</td>
                 <td class="text-center">
                     {% if  d.estado %}
                         

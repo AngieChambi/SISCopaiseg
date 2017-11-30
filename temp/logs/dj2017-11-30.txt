@@ -1,0 +1,341 @@
+[2017-11-30 00:01:41] DEBUG [django.db.backends:89] (0.035) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+[2017-11-30 00:01:41] DEBUG [django.db.backends:89] (0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+[2017-11-30 00:01:45] DEBUG [django.db.backends:89] (0.003) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2017-11-30 05:01:45.425066' AND "django_session"."session_key" = 'ut7297mmx22cpzw9x4lp9tao1urbg2eo'); args=('2017-11-30 05:01:45.425066', 'ut7297mmx22cpzw9x4lp9tao1urbg2eo')
+[2017-11-30 00:01:45] DEBUG [django.db.backends:89] (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined", "auth_user"."last_headquar_id", "auth_user"."last_module_id", "auth_user"."person_id" FROM "auth_user" WHERE "auth_user"."id" = 1; args=(1,)
+[2017-11-30 00:01:45] DEBUG [django.template:927] Exception while resolving variable 'site_title' in template 'compras/compra/form.html'.
+Traceback (most recent call last):
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/base.py", line 883, in _resolve_lookup
+    current = current[bit]
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/context.py", line 77, in __getitem__
+    raise KeyError(key)
+KeyError: 'site_title'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/base.py", line 889, in _resolve_lookup
+    if isinstance(current, BaseContext) and getattr(type(current), bit):
+AttributeError: type object 'RequestContext' has no attribute 'site_title'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/base.py", line 898, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'site_title'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [site_title] in "[{'False': False, 'None': None, 'True': True}, {'request': <WSGIRequest: GET '/compras/compra/crear/'>, 'perms': <django.contrib.auth.context_processors.PermWrapper object at 0x7f8b3839fa90>, 'STATIC_URL': '/static/', 'csrf_token': <SimpleLazyObject: <function csrf.<locals>._get_val at 0x7f8b383fc7b8>>, 'user': <SimpleLazyObject: <User: admin>>, 'LANGUAGE_BIDI': False, 'LANGUAGES': (('ja', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x7f8b3dae72b0>), ('zh-tw', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x7f8b3d811ac8>), ('fr', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x7f8b3d811b00>), ('de', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x7f8b3efb35c0>), ('en', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x7f8b3d8299b0>), ('es', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x7f8b3d829940>), ('es-ar', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x7f8b3d829978>), ('es-pe', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x7f8b3d8299e8>), ('pt', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x7f8b3d829a20>), ('pt-br', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x7f8b3d829a90>)), 'TIME_ZONE': '-05', 'LANGUAGE_CODE': 'en', 'DEFAULT_MESSAGE_LEVELS': {'DEBUG': 10, 'SUCCESS': 25, 'INFO': 20, 'ERROR': 40, 'WARNING': 30}, 'messages': <django.contrib.messages.storage.fallback.FallbackStorage object at 0x7f8b39662a20>, 'MEDIA_URL': '/media/'}, {}, {'opts': <Options for Compra>, 'form': <CompraForm bound=False, valid=Unknown, fields=(total;proveedor;comprobante;producto;data_compra;tipo_doc)>, 'title': 'Nuevo Acopio', 'view': <apps.compras.views.compra.CompraCreateView object at 0x7f8b3966be80>}, {'block': <Block Node: title. Contents: [<Variable Node: title>, <TextNode: ' | '>, <Variable Node: site_title|default:_('CLIVET site admin')>, <TextNode: ' '>]>}]"
+[2017-11-30 00:01:45] DEBUG [django.db.backends:89] (0.000) SELECT "params_person"."id", "params_person"."identity_type", "params_person"."identity_num", "params_person"."first_name", "params_person"."last_name", "params_person"."birth_date", "params_person"."photo" FROM "params_person" WHERE "params_person"."id" = 2; args=(2,)
+[2017-11-30 00:01:45] DEBUG [django.db.backends:89] (0.007) SELECT DISTINCT "sad_menu"."id", "sad_menu"."module", "sad_menu"."title", "sad_menu"."url", "sad_menu"."pos", "sad_menu"."icon", "sad_menu"."is_active", "sad_menu"."description", "sad_menu"."created_at", "sad_menu"."updated_at", "sad_menu"."permission_id", "sad_menu"."parent_id" FROM "sad_menu" INNER JOIN "sad_menu" T2 ON ("sad_menu"."id" = T2."parent_id") WHERE (T2."id" IN (SELECT U0."id" FROM "sad_menu" U0 WHERE (U0."id" IS NOT NULL AND U0."module" = 'CLINICA' AND U0."is_active" = 1)) AND "sad_menu"."module" = 'CLINICA' AND "sad_menu"."is_active" = 1) ORDER BY "sad_menu"."pos" ASC; args=('CLINICA', True, 'CLINICA', True)
+[2017-11-30 00:01:45] DEBUG [django.db.backends:89] (0.000) SELECT "sad_menu"."id", "sad_menu"."module", "sad_menu"."title", "sad_menu"."url", "sad_menu"."pos", "sad_menu"."icon", "sad_menu"."is_active", "sad_menu"."description", "sad_menu"."created_at", "sad_menu"."updated_at", "sad_menu"."permission_id", "sad_menu"."parent_id" FROM "sad_menu" WHERE ("sad_menu"."id" IS NOT NULL AND "sad_menu"."parent_id" = 101 AND "sad_menu"."module" = 'CLINICA' AND "sad_menu"."is_active" = 1) ORDER BY "sad_menu"."pos" ASC; args=(101, 'CLINICA', True)
+[2017-11-30 00:01:45] DEBUG [django.db.backends:89] (0.000) SELECT "sad_menu"."id", "sad_menu"."module", "sad_menu"."title", "sad_menu"."url", "sad_menu"."pos", "sad_menu"."icon", "sad_menu"."is_active", "sad_menu"."description", "sad_menu"."created_at", "sad_menu"."updated_at", "sad_menu"."permission_id", "sad_menu"."parent_id" FROM "sad_menu" WHERE ("sad_menu"."id" IS NOT NULL AND "sad_menu"."parent_id" = 103 AND "sad_menu"."module" = 'CLINICA' AND "sad_menu"."is_active" = 1) ORDER BY "sad_menu"."pos" ASC; args=(103, 'CLINICA', True)
+[2017-11-30 00:01:45] DEBUG [django.db.backends:89] (0.000) SELECT "sad_menu"."id", "sad_menu"."module", "sad_menu"."title", "sad_menu"."url", "sad_menu"."pos", "sad_menu"."icon", "sad_menu"."is_active", "sad_menu"."description", "sad_menu"."created_at", "sad_menu"."updated_at", "sad_menu"."permission_id", "sad_menu"."parent_id" FROM "sad_menu" WHERE ("sad_menu"."id" IS NOT NULL AND "sad_menu"."parent_id" = 121 AND "sad_menu"."module" = 'CLINICA' AND "sad_menu"."is_active" = 1) ORDER BY "sad_menu"."pos" ASC; args=(121, 'CLINICA', True)
+[2017-11-30 00:01:45] DEBUG [django.db.backends:89] (0.000) SELECT "sad_menu"."id", "sad_menu"."module", "sad_menu"."title", "sad_menu"."url", "sad_menu"."pos", "sad_menu"."icon", "sad_menu"."is_active", "sad_menu"."description", "sad_menu"."created_at", "sad_menu"."updated_at", "sad_menu"."permission_id", "sad_menu"."parent_id" FROM "sad_menu" WHERE ("sad_menu"."id" IS NOT NULL AND "sad_menu"."parent_id" = 106 AND "sad_menu"."module" = 'CLINICA' AND "sad_menu"."is_active" = 1) ORDER BY "sad_menu"."pos" ASC; args=(106, 'CLINICA', True)
+[2017-11-30 00:01:45] DEBUG [django.db.backends:89] (0.000) SELECT "sad_menu"."id", "sad_menu"."module", "sad_menu"."title", "sad_menu"."url", "sad_menu"."pos", "sad_menu"."icon", "sad_menu"."is_active", "sad_menu"."description", "sad_menu"."created_at", "sad_menu"."updated_at", "sad_menu"."permission_id", "sad_menu"."parent_id" FROM "sad_menu" WHERE ("sad_menu"."id" IS NOT NULL AND "sad_menu"."parent_id" = 126 AND "sad_menu"."module" = 'CLINICA' AND "sad_menu"."is_active" = 1) ORDER BY "sad_menu"."pos" ASC; args=(126, 'CLINICA', True)
+[2017-11-30 00:01:45] DEBUG [django.db.backends:89] (0.000) SELECT "sad_menu"."id", "sad_menu"."module", "sad_menu"."title", "sad_menu"."url", "sad_menu"."pos", "sad_menu"."icon", "sad_menu"."is_active", "sad_menu"."description", "sad_menu"."created_at", "sad_menu"."updated_at", "sad_menu"."permission_id", "sad_menu"."parent_id" FROM "sad_menu" WHERE ("sad_menu"."id" IS NOT NULL AND "sad_menu"."parent_id" = 108 AND "sad_menu"."module" = 'CLINICA' AND "sad_menu"."is_active" = 1) ORDER BY "sad_menu"."pos" ASC; args=(108, 'CLINICA', True)
+[2017-11-30 00:01:45] DEBUG [django.db.backends:89] (0.000) SELECT "compras_proveedor"."id", "compras_proveedor"."tipodoc", "compras_proveedor"."numdoc", "compras_proveedor"."razon_social", "compras_proveedor"."representante_legal", "compras_proveedor"."direccion", "compras_proveedor"."telefono", "compras_proveedor"."email", "compras_proveedor"."enti_bancaria", "compras_proveedor"."num_cuenta", "compras_proveedor"."estado" FROM "compras_proveedor"; args=()
+[2017-11-30 00:01:45] DEBUG [django.template:927] Exception while resolving variable 'tag' in template 'bootstrap3/field.html'.
+Traceback (most recent call last):
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/base.py", line 883, in _resolve_lookup
+    current = current[bit]
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/context.py", line 77, in __getitem__
+    raise KeyError(key)
+KeyError: 'tag'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/base.py", line 889, in _resolve_lookup
+    if isinstance(current, BaseContext) and getattr(type(current), bit):
+AttributeError: type object 'Context' has no attribute 'tag'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/base.py", line 898, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'tag'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [tag] in "[{'False': False, 'None': None, 'True': True}, {'False': False, 'None': None, 'form_show_labels': True, 'field': <django.forms.boundfield.BoundField object at 0x7f8b3834f6a0>, 'form_show_errors': True, 'True': True}]"
+[2017-11-30 00:01:45] DEBUG [django.template:927] Exception while resolving variable 'wrapper_class' in template 'bootstrap3/field.html'.
+Traceback (most recent call last):
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/base.py", line 883, in _resolve_lookup
+    current = current[bit]
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/context.py", line 77, in __getitem__
+    raise KeyError(key)
+KeyError: 'wrapper_class'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/base.py", line 889, in _resolve_lookup
+    if isinstance(current, BaseContext) and getattr(type(current), bit):
+AttributeError: type object 'Context' has no attribute 'wrapper_class'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/base.py", line 898, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'wrapper_class'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [wrapper_class] in "[{'False': False, 'None': None, 'True': True}, {'False': False, 'None': None, 'form_show_labels': True, 'field': <django.forms.boundfield.BoundField object at 0x7f8b3834f6a0>, 'form_show_errors': True, 'True': True}]"
+[2017-11-30 00:01:45] DEBUG [django.template:927] Exception while resolving variable 'label_class' in template 'bootstrap3/field.html'.
+Traceback (most recent call last):
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/base.py", line 883, in _resolve_lookup
+    current = current[bit]
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/context.py", line 77, in __getitem__
+    raise KeyError(key)
+KeyError: 'label_class'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/base.py", line 889, in _resolve_lookup
+    if isinstance(current, BaseContext) and getattr(type(current), bit):
+AttributeError: type object 'Context' has no attribute 'label_class'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/base.py", line 898, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'label_class'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [label_class] in "[{'False': False, 'None': None, 'True': True}, {'False': False, 'None': None, 'form_show_labels': True, 'field': <django.forms.boundfield.BoundField object at 0x7f8b3834f6a0>, 'form_show_errors': True, 'True': True}]"
+[2017-11-30 00:01:45] DEBUG [django.template:927] Exception while resolving variable 'field_class' in template 'bootstrap3/field.html'.
+Traceback (most recent call last):
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/base.py", line 883, in _resolve_lookup
+    current = current[bit]
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/context.py", line 77, in __getitem__
+    raise KeyError(key)
+KeyError: 'field_class'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/base.py", line 889, in _resolve_lookup
+    if isinstance(current, BaseContext) and getattr(type(current), bit):
+AttributeError: type object 'Context' has no attribute 'field_class'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/base.py", line 898, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'field_class'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [field_class] in "[{'False': False, 'None': None, 'True': True}, {'False': False, 'None': None, 'form_show_labels': True, 'field': <django.forms.boundfield.BoundField object at 0x7f8b3834f6a0>, 'form_show_errors': True, 'True': True}]"
+[2017-11-30 00:01:45] DEBUG [django.template:927] Exception while resolving variable 'html5_required' in template 'bootstrap3/field.html'.
+Traceback (most recent call last):
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/base.py", line 883, in _resolve_lookup
+    current = current[bit]
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/context.py", line 77, in __getitem__
+    raise KeyError(key)
+KeyError: 'html5_required'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/base.py", line 889, in _resolve_lookup
+    if isinstance(current, BaseContext) and getattr(type(current), bit):
+AttributeError: type object 'Context' has no attribute 'html5_required'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/base.py", line 898, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'html5_required'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [html5_required] in "[{'False': False, 'None': None, 'True': True}, {'False': False, 'None': None, 'form_show_labels': True, 'field': <django.forms.boundfield.BoundField object at 0x7f8b3834f6a0>, 'form_show_errors': True, 'True': True}]"
+[2017-11-30 00:01:45] DEBUG [django.template:927] Exception while resolving variable 'help_text_inline' in template 'bootstrap3/field.html'.
+Traceback (most recent call last):
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/base.py", line 883, in _resolve_lookup
+    current = current[bit]
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/context.py", line 77, in __getitem__
+    raise KeyError(key)
+KeyError: 'help_text_inline'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/base.py", line 889, in _resolve_lookup
+    if isinstance(current, BaseContext) and getattr(type(current), bit):
+AttributeError: type object 'Context' has no attribute 'help_text_inline'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/base.py", line 898, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'help_text_inline'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [help_text_inline] in "[{'False': False, 'None': None, 'True': True}, {'False': False, 'None': None, 'form_show_labels': True, 'field': <django.forms.boundfield.BoundField object at 0x7f8b3834f6a0>, 'form_show_errors': True, 'True': True}, {}]"
+[2017-11-30 00:01:45] DEBUG [django.template:927] Exception while resolving variable 'error_text_inline' in template 'bootstrap3/field.html'.
+Traceback (most recent call last):
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/base.py", line 883, in _resolve_lookup
+    current = current[bit]
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/context.py", line 77, in __getitem__
+    raise KeyError(key)
+KeyError: 'error_text_inline'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/base.py", line 889, in _resolve_lookup
+    if isinstance(current, BaseContext) and getattr(type(current), bit):
+AttributeError: type object 'Context' has no attribute 'error_text_inline'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/base.py", line 898, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'error_text_inline'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [error_text_inline] in "[{'False': False, 'None': None, 'True': True}, {'False': False, 'None': None, 'form_show_labels': True, 'field': <django.forms.boundfield.BoundField object at 0x7f8b3834f6a0>, 'form_show_errors': True, 'True': True}, {}]"
+[2017-11-30 00:01:45] DEBUG [django.template:927] Exception while resolving variable 'help_text_inline' in template 'bootstrap3/field.html'.
+Traceback (most recent call last):
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/base.py", line 883, in _resolve_lookup
+    current = current[bit]
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/context.py", line 77, in __getitem__
+    raise KeyError(key)
+KeyError: 'help_text_inline'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/base.py", line 889, in _resolve_lookup
+    if isinstance(current, BaseContext) and getattr(type(current), bit):
+AttributeError: type object 'Context' has no attribute 'help_text_inline'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/base.py", line 898, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'help_text_inline'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [help_text_inline] in "[{'False': False, 'None': None, 'True': True}, {'False': False, 'None': None, 'form_show_labels': True, 'field': <django.forms.boundfield.BoundField object at 0x7f8b3834f6a0>, 'form_show_errors': True, 'True': True}, {}]"
+[2017-11-30 00:01:45] DEBUG [django.template:927] Exception while resolving variable 'tag' in template 'bootstrap3/field.html'.
+Traceback (most recent call last):
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/base.py", line 883, in _resolve_lookup
+    current = current[bit]
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/context.py", line 77, in __getitem__
+    raise KeyError(key)
+KeyError: 'tag'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/base.py", line 889, in _resolve_lookup
+    if isinstance(current, BaseContext) and getattr(type(current), bit):
+AttributeError: type object 'Context' has no attribute 'tag'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/base.py", line 898, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'tag'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/template/base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [tag] in "[{'False': False, 'None': None, 'True': True}, {'False': False, 'None': None, 'form_show_labels': True, 'field': <django.forms.boundfield.BoundField object at 0x7f8b3834f6a0>, 'form_show_errors': True, 'True': True}]"
+[2017-11-30 00:01:46] DEBUG [django.db.backends:89] (0.003) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2017-11-30 05:01:46.596561' AND "django_session"."session_key" = 'ut7297mmx22cpzw9x4lp9tao1urbg2eo'); args=('2017-11-30 05:01:46.596561', 'ut7297mmx22cpzw9x4lp9tao1urbg2eo')
+[2017-11-30 00:01:47] DEBUG [django.db.backends:89] (0.004) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2017-11-30 05:01:47.646437' AND "django_session"."session_key" = 'ut7297mmx22cpzw9x4lp9tao1urbg2eo'); args=('2017-11-30 05:01:47.646437', 'ut7297mmx22cpzw9x4lp9tao1urbg2eo')
+[2017-11-30 00:01:50] DEBUG [django.db.backends:89] (0.004) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2017-11-30 05:01:50.123607' AND "django_session"."session_key" = 'ut7297mmx22cpzw9x4lp9tao1urbg2eo'); args=('2017-11-30 05:01:50.123607', 'ut7297mmx22cpzw9x4lp9tao1urbg2eo')
+[2017-11-30 00:01:50] ERROR [django.request:284] Internal Server Error: /compras/proveedor/get/ajax/
+Traceback (most recent call last):
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/roger/proyectosdjango/cliv/SISCopaiseg/apps/compras/views/Proveedor.py", line 28, in GetProveedorAjax
+    cat = Proveedor.objects.get(id=request.GET.get('pk'))
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/db/models/manager.py", line 122, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/db/models/query.py", line 378, in get
+    clone = self.filter(*args, **kwargs)
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/db/models/query.py", line 790, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/db/models/query.py", line 808, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/db/models/sql/query.py", line 1243, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/db/models/sql/query.py", line 1269, in _add_q
+    allow_joins=allow_joins, split_subq=split_subq,
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/db/models/sql/query.py", line 1203, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/db/models/sql/query.py", line 1099, in build_lookup
+    return final_lookup(lhs, rhs)
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/db/models/lookups.py", line 19, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/db/models/lookups.py", line 57, in get_prep_lookup
+    return self.lhs.output_field.get_prep_lookup(self.lookup_name, self.rhs)
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/db/models/fields/__init__.py", line 744, in get_prep_lookup
+    return self.get_prep_value(value)
+  File "/home/roger/.virtualenvs/cliv/lib/python3.5/site-packages/django/db/models/fields/__init__.py", line 976, in get_prep_value
+    return int(value)
+ValueError: invalid literal for int() with base 10: ''
+[2017-11-30 00:01:50] DEBUG [django.db.backends:89] (0.000) SELECT "compras_proveedor"."id", "compras_proveedor"."tipodoc", "compras_proveedor"."numdoc", "compras_proveedor"."razon_social", "compras_proveedor"."representante_legal", "compras_proveedor"."direccion", "compras_proveedor"."telefono", "compras_proveedor"."email", "compras_proveedor"."enti_bancaria", "compras_proveedor"."num_cuenta", "compras_proveedor"."estado" FROM "compras_proveedor" LIMIT 21; args=()
+[2017-11-30 00:01:50] DEBUG [django.db.backends:89] (0.000) SELECT "compras_proveedor"."id", "compras_proveedor"."tipodoc", "compras_proveedor"."numdoc", "compras_proveedor"."razon_social", "compras_proveedor"."representante_legal", "compras_proveedor"."direccion", "compras_proveedor"."telefono", "compras_proveedor"."email", "compras_proveedor"."enti_bancaria", "compras_proveedor"."num_cuenta", "compras_proveedor"."estado" FROM "compras_proveedor" LIMIT 21; args=()
+[2017-11-30 00:01:50] DEBUG [django.db.backends:89] (0.000) SELECT "compras_proveedor"."id", "compras_proveedor"."tipodoc", "compras_proveedor"."numdoc", "compras_proveedor"."razon_social", "compras_proveedor"."representante_legal", "compras_proveedor"."direccion", "compras_proveedor"."telefono", "compras_proveedor"."email", "compras_proveedor"."enti_bancaria", "compras_proveedor"."num_cuenta", "compras_proveedor"."estado" FROM "compras_proveedor" LIMIT 21; args=()
+[2017-11-30 00:01:50] DEBUG [django.db.backends:89] (0.000) SELECT "compras_proveedor"."id", "compras_proveedor"."tipodoc", "compras_proveedor"."numdoc", "compras_proveedor"."razon_social", "compras_proveedor"."representante_legal", "compras_proveedor"."direccion", "compras_proveedor"."telefono", "compras_proveedor"."email", "compras_proveedor"."enti_bancaria", "compras_proveedor"."num_cuenta", "compras_proveedor"."estado" FROM "compras_proveedor" LIMIT 21; args=()
+[2017-11-30 00:02:16] DEBUG [django.db.backends:89] (0.003) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+[2017-11-30 00:02:16] DEBUG [django.db.backends:89] (0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
