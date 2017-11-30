@@ -1,0 +1,1 @@
+[2017-11-29 14:16:12] [WARNING] [apps.compras.views.compra:139] [/compras/compra/crear/] [127.0.0.1] [admin1]  Compra "8" fue creado satisfactoriamente.

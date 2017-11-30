@@ -24,5 +24,6 @@ class Compra(models.Model):
         permissions = (
             ('compra', 'Can ALL compra'),
         )
+
     def __str__(self):
         return "%s" % (self.id)
