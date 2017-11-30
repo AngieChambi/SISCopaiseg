@@ -8,7 +8,7 @@ from django.contrib.auth.admin import UserAdmin
 
 
 # models
-from .models import User, UserStatus, ON, OFF, UserHeadquar, UserEnterprise, UserAssociation
+from .models import User, UserStatus, ON, OFF, UserHeadquar, UserEnterprise, UserAssociation, Menu
 #from django.contrib.auth.models import User as UserOld
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Permission
@@ -131,3 +131,4 @@ admin.site.register(UserHeadquar)
 admin.site.register(UserEnterprise)
 admin.site.register(UserAssociation)
 admin.site.register(Permission)
+admin.site.register(Menu)

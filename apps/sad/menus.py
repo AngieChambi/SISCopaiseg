@@ -87,14 +87,14 @@ class Menus:
         #permission_list = []
         # obtengo los hijos y luego saco sus padres, esto es para no mostrar un
         # menu sin items
-        menu_item_list_t = Menu.objects.filter(Q(permission__in=permission_list) | Q(
+        menu_item_list_t = Menu.objects.filter(Q(permission__in=permission_list, is_active=True) | Q(
             id__isnull=True if permission_list else False), module=menu_module, is_active=True).order_by("pos")
         Menus.menu_list = Menu.objects.filter(
             menu__in=menu_item_list_t, module=menu_module, is_active=True).order_by("pos").distinct()
         #print Menus.menu_list
         if Menus.menu_list:
             for menu in Menus.menu_list:
-                Menus.menu_item_list[menu.title] = Menu.objects.filter(Q(permission__in=permission_list) | Q(
+                Menus.menu_item_list[menu.title] = Menu.objects.filter(Q(permission__in=permission_list, is_active=True) | Q(
                     id__isnull=True if permission_list else False), parent_id=menu.id, module=menu_module, is_active=True).order_by("pos")  # .lower().replace(" ","_")
         #print Menus.menu_item_list
         return ""
@@ -306,7 +306,7 @@ class MenusClivet:
         #permission_list = []
         # obtengo los hijos y luego saco sus padres, esto es para no mostrar un
         # menu sin items
-        menu_item_list_t = Menu.objects.filter(Q(permission__in=permission_list) | Q(
+        menu_item_list_t = Menu.objects.filter(Q(permission__in=permission_list, is_active=True) | Q(
             id__isnull=True if permission_list else False), module=menu_module, is_active=True).order_by("pos")
         MenusClivet.menu_list = Menu.objects.filter(
             menu__in=menu_item_list_t, module=menu_module, is_active=True).order_by("pos").distinct()
