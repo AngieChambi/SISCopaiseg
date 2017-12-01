@@ -1,0 +1,1102 @@
+[2017-12-01 08:56:21] DEBUG [django.db.backends:89] (0.016) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+[2017-12-01 08:56:21] DEBUG [django.db.backends:89] (0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+[2017-12-01 08:57:07] DEBUG [django.template:927] Exception while resolving variable 'tag' in template 'bootstrap3/field.html'.
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 883, in _resolve_lookup
+    current = current[bit]
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\context.py", line 77, in __getitem__
+    raise KeyError(key)
+KeyError: 'tag'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 889, in _resolve_lookup
+    if isinstance(current, BaseContext) and getattr(type(current), bit):
+AttributeError: type object 'Context' has no attribute 'tag'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 898, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'tag'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [tag] in '[{\'True\': True, \'False\': False, \'None\': None}, {\'True\': True, \'False\': False, \'None\': None, \'csrf_token\': <SimpleLazyObject: <function csrf.<locals>._get_val at 0x055C3348>>, \'request\': <WSGIRequest: GET \'/accounts/login/?next=/\'>, \'user\': <SimpleLazyObject: <django.contrib.auth.models.AnonymousUser object at 0x045B3B30>>, \'perms\': <django.contrib.auth.context_processors.PermWrapper object at 0x055B9B30>, \'messages\': <django.contrib.messages.storage.fallback.FallbackStorage object at 0x045B3CD0>, \'DEFAULT_MESSAGE_LEVELS\': {\'DEBUG\': 10, \'INFO\': 20, \'SUCCESS\': 25, \'WARNING\': 30, \'ERROR\': 40}, \'LANGUAGES\': ((\'ja\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB7050>), (\'zh-tw\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB7090>), (\'fr\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB70D0>), (\'de\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDEF0>), (\'en\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDED0>), (\'es\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF10>), (\'es-ar\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF30>), (\'es-pe\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF50>), (\'pt\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF70>), (\'pt-br\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDFB0>)), \'LANGUAGE_CODE\': \'es\', \'LANGUAGE_BIDI\': False, \'MEDIA_URL\': \'/media/\', \'STATIC_URL\': \'/static/\', \'TIME_ZONE\': \'Hora est. Pacífico, Sudamérica\', \'form\': <LoginForm bound=False, valid=Unknown, fields=(username;password;remember_me)>, \'view\': <apps.accounts.views.LoginView object at 0x045B3C30>, \'block\': <Block Node: rootcontainer. Contents: [<TextNode: \'\\n\\n<div id="shell-load">\\n \'>, <django.templatetags.i18n.TranslateNode object at 0x055B9230>, <TextNode: \'</h3>\\n      </div>\\n      \'>, <django.template.library.SimpleNode object at 0x055B92D0>, <TextNode: \'\\n\\n      \'>, <crispy_forms.templatetags.crispy_forms_tags.CrispyFormNode object at 0x055B93F0>, <TextNode: \'\\n      \'>, <django.template.defaulttags.URLNode object at 0x055B9390>, <TextNode: \'\\n      \'>, <IfNode>, <TextNode: \'\\n      \\n    </div>\\n  </di\'>]>, \'template_pack\': \'bootstrap3\', \'form_action\': \'\', \'form_method\': \'post\', \'form_tag\': True, \'form_class\': \'js-validate form-vertical\', \'form_id\': \'\', \'form_style\': \'\', \'form_error_title\': None, \'formset_error_title\': None, \'form_show_errors\': True, \'help_text_inline\': False, \'html5_required\': False, \'form_show_labels\': True, \'disable_csrf\': False, \'inputs\': [], \'is_formset\': False, \'form_attrs\': {\'class\': \'js-validate form-vertical\'}, \'flat_attrs\': \'\', \'error_text_inline\': True, \'label_class\': \'\', \'label_size\': 0, \'field_class\': \'\', \'include_media\': True, \'attrs\': {\'class\': \'js-validate form-vertical\'}, \'field\': <django.forms.boundfield.BoundField object at 0x055D59B0>, \'labelclass\': None}]'
+[2017-12-01 08:57:07] DEBUG [django.template:927] Exception while resolving variable 'wrapper_class' in template 'bootstrap3/field.html'.
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 883, in _resolve_lookup
+    current = current[bit]
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\context.py", line 77, in __getitem__
+    raise KeyError(key)
+KeyError: 'wrapper_class'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 889, in _resolve_lookup
+    if isinstance(current, BaseContext) and getattr(type(current), bit):
+AttributeError: type object 'Context' has no attribute 'wrapper_class'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 898, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'wrapper_class'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [wrapper_class] in '[{\'True\': True, \'False\': False, \'None\': None}, {\'True\': True, \'False\': False, \'None\': None, \'csrf_token\': <SimpleLazyObject: <function csrf.<locals>._get_val at 0x055C3348>>, \'request\': <WSGIRequest: GET \'/accounts/login/?next=/\'>, \'user\': <SimpleLazyObject: <django.contrib.auth.models.AnonymousUser object at 0x045B3B30>>, \'perms\': <django.contrib.auth.context_processors.PermWrapper object at 0x055B9B30>, \'messages\': <django.contrib.messages.storage.fallback.FallbackStorage object at 0x045B3CD0>, \'DEFAULT_MESSAGE_LEVELS\': {\'DEBUG\': 10, \'INFO\': 20, \'SUCCESS\': 25, \'WARNING\': 30, \'ERROR\': 40}, \'LANGUAGES\': ((\'ja\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB7050>), (\'zh-tw\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB7090>), (\'fr\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB70D0>), (\'de\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDEF0>), (\'en\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDED0>), (\'es\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF10>), (\'es-ar\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF30>), (\'es-pe\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF50>), (\'pt\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF70>), (\'pt-br\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDFB0>)), \'LANGUAGE_CODE\': \'es\', \'LANGUAGE_BIDI\': False, \'MEDIA_URL\': \'/media/\', \'STATIC_URL\': \'/static/\', \'TIME_ZONE\': \'Hora est. Pacífico, Sudamérica\', \'form\': <LoginForm bound=False, valid=Unknown, fields=(username;password;remember_me)>, \'view\': <apps.accounts.views.LoginView object at 0x045B3C30>, \'block\': <Block Node: rootcontainer. Contents: [<TextNode: \'\\n\\n<div id="shell-load">\\n \'>, <django.templatetags.i18n.TranslateNode object at 0x055B9230>, <TextNode: \'</h3>\\n      </div>\\n      \'>, <django.template.library.SimpleNode object at 0x055B92D0>, <TextNode: \'\\n\\n      \'>, <crispy_forms.templatetags.crispy_forms_tags.CrispyFormNode object at 0x055B93F0>, <TextNode: \'\\n      \'>, <django.template.defaulttags.URLNode object at 0x055B9390>, <TextNode: \'\\n      \'>, <IfNode>, <TextNode: \'\\n      \\n    </div>\\n  </di\'>]>, \'template_pack\': \'bootstrap3\', \'form_action\': \'\', \'form_method\': \'post\', \'form_tag\': True, \'form_class\': \'js-validate form-vertical\', \'form_id\': \'\', \'form_style\': \'\', \'form_error_title\': None, \'formset_error_title\': None, \'form_show_errors\': True, \'help_text_inline\': False, \'html5_required\': False, \'form_show_labels\': True, \'disable_csrf\': False, \'inputs\': [], \'is_formset\': False, \'form_attrs\': {\'class\': \'js-validate form-vertical\'}, \'flat_attrs\': \'\', \'error_text_inline\': True, \'label_class\': \'\', \'label_size\': 0, \'field_class\': \'\', \'include_media\': True, \'attrs\': {\'class\': \'js-validate form-vertical\'}, \'field\': <django.forms.boundfield.BoundField object at 0x055D59B0>, \'labelclass\': None}]'
+[2017-12-01 08:57:07] DEBUG [django.template:927] Exception while resolving variable 'tag' in template 'bootstrap3/field.html'.
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 883, in _resolve_lookup
+    current = current[bit]
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\context.py", line 77, in __getitem__
+    raise KeyError(key)
+KeyError: 'tag'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 889, in _resolve_lookup
+    if isinstance(current, BaseContext) and getattr(type(current), bit):
+AttributeError: type object 'Context' has no attribute 'tag'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 898, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'tag'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [tag] in '[{\'True\': True, \'False\': False, \'None\': None}, {\'True\': True, \'False\': False, \'None\': None, \'csrf_token\': <SimpleLazyObject: <function csrf.<locals>._get_val at 0x055C3348>>, \'request\': <WSGIRequest: GET \'/accounts/login/?next=/\'>, \'user\': <SimpleLazyObject: <django.contrib.auth.models.AnonymousUser object at 0x045B3B30>>, \'perms\': <django.contrib.auth.context_processors.PermWrapper object at 0x055B9B30>, \'messages\': <django.contrib.messages.storage.fallback.FallbackStorage object at 0x045B3CD0>, \'DEFAULT_MESSAGE_LEVELS\': {\'DEBUG\': 10, \'INFO\': 20, \'SUCCESS\': 25, \'WARNING\': 30, \'ERROR\': 40}, \'LANGUAGES\': ((\'ja\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB7050>), (\'zh-tw\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB7090>), (\'fr\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB70D0>), (\'de\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDEF0>), (\'en\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDED0>), (\'es\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF10>), (\'es-ar\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF30>), (\'es-pe\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF50>), (\'pt\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF70>), (\'pt-br\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDFB0>)), \'LANGUAGE_CODE\': \'es\', \'LANGUAGE_BIDI\': False, \'MEDIA_URL\': \'/media/\', \'STATIC_URL\': \'/static/\', \'TIME_ZONE\': \'Hora est. Pacífico, Sudamérica\', \'form\': <LoginForm bound=False, valid=False, fields=(username;password;remember_me)>, \'view\': <apps.accounts.views.LoginView object at 0x045B3C30>, \'block\': <Block Node: rootcontainer. Contents: [<TextNode: \'\\n\\n<div id="shell-load">\\n \'>, <django.templatetags.i18n.TranslateNode object at 0x055B9230>, <TextNode: \'</h3>\\n      </div>\\n      \'>, <django.template.library.SimpleNode object at 0x055B92D0>, <TextNode: \'\\n\\n      \'>, <crispy_forms.templatetags.crispy_forms_tags.CrispyFormNode object at 0x055B93F0>, <TextNode: \'\\n      \'>, <django.template.defaulttags.URLNode object at 0x055B9390>, <TextNode: \'\\n      \'>, <IfNode>, <TextNode: \'\\n      \\n    </div>\\n  </di\'>]>, \'template_pack\': \'bootstrap3\', \'form_action\': \'\', \'form_method\': \'post\', \'form_tag\': True, \'form_class\': \'js-validate form-vertical\', \'form_id\': \'\', \'form_style\': \'\', \'form_error_title\': None, \'formset_error_title\': None, \'form_show_errors\': True, \'help_text_inline\': False, \'html5_required\': False, \'form_show_labels\': True, \'disable_csrf\': False, \'inputs\': [], \'is_formset\': False, \'form_attrs\': {\'class\': \'js-validate form-vertical\'}, \'flat_attrs\': \'\', \'error_text_inline\': True, \'label_class\': \'\', \'label_size\': 0, \'field_class\': \'\', \'include_media\': True, \'attrs\': {\'class\': \'js-validate form-vertical\'}, \'field\': <django.forms.boundfield.BoundField object at 0x055D59B0>, \'labelclass\': None}]'
+[2017-12-01 08:57:07] DEBUG [django.template:927] Exception while resolving variable 'tag' in template 'bootstrap3/field.html'.
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 883, in _resolve_lookup
+    current = current[bit]
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\context.py", line 77, in __getitem__
+    raise KeyError(key)
+KeyError: 'tag'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 889, in _resolve_lookup
+    if isinstance(current, BaseContext) and getattr(type(current), bit):
+AttributeError: type object 'Context' has no attribute 'tag'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 898, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'tag'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [tag] in '[{\'True\': True, \'False\': False, \'None\': None}, {\'True\': True, \'False\': False, \'None\': None, \'csrf_token\': <SimpleLazyObject: <function csrf.<locals>._get_val at 0x055C3348>>, \'request\': <WSGIRequest: GET \'/accounts/login/?next=/\'>, \'user\': <SimpleLazyObject: <django.contrib.auth.models.AnonymousUser object at 0x045B3B30>>, \'perms\': <django.contrib.auth.context_processors.PermWrapper object at 0x055B9B30>, \'messages\': <django.contrib.messages.storage.fallback.FallbackStorage object at 0x045B3CD0>, \'DEFAULT_MESSAGE_LEVELS\': {\'DEBUG\': 10, \'INFO\': 20, \'SUCCESS\': 25, \'WARNING\': 30, \'ERROR\': 40}, \'LANGUAGES\': ((\'ja\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB7050>), (\'zh-tw\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB7090>), (\'fr\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB70D0>), (\'de\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDEF0>), (\'en\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDED0>), (\'es\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF10>), (\'es-ar\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF30>), (\'es-pe\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF50>), (\'pt\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF70>), (\'pt-br\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDFB0>)), \'LANGUAGE_CODE\': \'es\', \'LANGUAGE_BIDI\': False, \'MEDIA_URL\': \'/media/\', \'STATIC_URL\': \'/static/\', \'TIME_ZONE\': \'Hora est. Pacífico, Sudamérica\', \'form\': <LoginForm bound=False, valid=False, fields=(username;password;remember_me)>, \'view\': <apps.accounts.views.LoginView object at 0x045B3C30>, \'block\': <Block Node: rootcontainer. Contents: [<TextNode: \'\\n\\n<div id="shell-load">\\n \'>, <django.templatetags.i18n.TranslateNode object at 0x055B9230>, <TextNode: \'</h3>\\n      </div>\\n      \'>, <django.template.library.SimpleNode object at 0x055B92D0>, <TextNode: \'\\n\\n      \'>, <crispy_forms.templatetags.crispy_forms_tags.CrispyFormNode object at 0x055B93F0>, <TextNode: \'\\n      \'>, <django.template.defaulttags.URLNode object at 0x055B9390>, <TextNode: \'\\n      \'>, <IfNode>, <TextNode: \'\\n      \\n    </div>\\n  </di\'>]>, \'template_pack\': \'bootstrap3\', \'form_action\': \'\', \'form_method\': \'post\', \'form_tag\': True, \'form_class\': \'js-validate form-vertical\', \'form_id\': \'\', \'form_style\': \'\', \'form_error_title\': None, \'formset_error_title\': None, \'form_show_errors\': True, \'help_text_inline\': False, \'html5_required\': False, \'form_show_labels\': True, \'disable_csrf\': False, \'inputs\': [], \'is_formset\': False, \'form_attrs\': {\'class\': \'js-validate form-vertical\'}, \'flat_attrs\': \'\', \'error_text_inline\': True, \'label_class\': \'\', \'label_size\': 0, \'field_class\': \'\', \'include_media\': True, \'attrs\': {\'class\': \'js-validate form-vertical\'}, \'field\': <django.forms.boundfield.BoundField object at 0x055D58D0>, \'labelclass\': None}]'
+[2017-12-01 08:57:07] DEBUG [django.template:927] Exception while resolving variable 'wrapper_class' in template 'bootstrap3/field.html'.
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 883, in _resolve_lookup
+    current = current[bit]
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\context.py", line 77, in __getitem__
+    raise KeyError(key)
+KeyError: 'wrapper_class'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 889, in _resolve_lookup
+    if isinstance(current, BaseContext) and getattr(type(current), bit):
+AttributeError: type object 'Context' has no attribute 'wrapper_class'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 898, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'wrapper_class'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [wrapper_class] in '[{\'True\': True, \'False\': False, \'None\': None}, {\'True\': True, \'False\': False, \'None\': None, \'csrf_token\': <SimpleLazyObject: <function csrf.<locals>._get_val at 0x055C3348>>, \'request\': <WSGIRequest: GET \'/accounts/login/?next=/\'>, \'user\': <SimpleLazyObject: <django.contrib.auth.models.AnonymousUser object at 0x045B3B30>>, \'perms\': <django.contrib.auth.context_processors.PermWrapper object at 0x055B9B30>, \'messages\': <django.contrib.messages.storage.fallback.FallbackStorage object at 0x045B3CD0>, \'DEFAULT_MESSAGE_LEVELS\': {\'DEBUG\': 10, \'INFO\': 20, \'SUCCESS\': 25, \'WARNING\': 30, \'ERROR\': 40}, \'LANGUAGES\': ((\'ja\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB7050>), (\'zh-tw\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB7090>), (\'fr\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB70D0>), (\'de\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDEF0>), (\'en\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDED0>), (\'es\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF10>), (\'es-ar\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF30>), (\'es-pe\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF50>), (\'pt\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF70>), (\'pt-br\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDFB0>)), \'LANGUAGE_CODE\': \'es\', \'LANGUAGE_BIDI\': False, \'MEDIA_URL\': \'/media/\', \'STATIC_URL\': \'/static/\', \'TIME_ZONE\': \'Hora est. Pacífico, Sudamérica\', \'form\': <LoginForm bound=False, valid=False, fields=(username;password;remember_me)>, \'view\': <apps.accounts.views.LoginView object at 0x045B3C30>, \'block\': <Block Node: rootcontainer. Contents: [<TextNode: \'\\n\\n<div id="shell-load">\\n \'>, <django.templatetags.i18n.TranslateNode object at 0x055B9230>, <TextNode: \'</h3>\\n      </div>\\n      \'>, <django.template.library.SimpleNode object at 0x055B92D0>, <TextNode: \'\\n\\n      \'>, <crispy_forms.templatetags.crispy_forms_tags.CrispyFormNode object at 0x055B93F0>, <TextNode: \'\\n      \'>, <django.template.defaulttags.URLNode object at 0x055B9390>, <TextNode: \'\\n      \'>, <IfNode>, <TextNode: \'\\n      \\n    </div>\\n  </di\'>]>, \'template_pack\': \'bootstrap3\', \'form_action\': \'\', \'form_method\': \'post\', \'form_tag\': True, \'form_class\': \'js-validate form-vertical\', \'form_id\': \'\', \'form_style\': \'\', \'form_error_title\': None, \'formset_error_title\': None, \'form_show_errors\': True, \'help_text_inline\': False, \'html5_required\': False, \'form_show_labels\': True, \'disable_csrf\': False, \'inputs\': [], \'is_formset\': False, \'form_attrs\': {\'class\': \'js-validate form-vertical\'}, \'flat_attrs\': \'\', \'error_text_inline\': True, \'label_class\': \'\', \'label_size\': 0, \'field_class\': \'\', \'include_media\': True, \'attrs\': {\'class\': \'js-validate form-vertical\'}, \'field\': <django.forms.boundfield.BoundField object at 0x055D58D0>, \'labelclass\': None}]'
+[2017-12-01 08:57:07] DEBUG [django.template:927] Exception while resolving variable 'tag' in template 'bootstrap3/field.html'.
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 883, in _resolve_lookup
+    current = current[bit]
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\context.py", line 77, in __getitem__
+    raise KeyError(key)
+KeyError: 'tag'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 889, in _resolve_lookup
+    if isinstance(current, BaseContext) and getattr(type(current), bit):
+AttributeError: type object 'Context' has no attribute 'tag'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 898, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'tag'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [tag] in '[{\'True\': True, \'False\': False, \'None\': None}, {\'True\': True, \'False\': False, \'None\': None, \'csrf_token\': <SimpleLazyObject: <function csrf.<locals>._get_val at 0x055C3348>>, \'request\': <WSGIRequest: GET \'/accounts/login/?next=/\'>, \'user\': <SimpleLazyObject: <django.contrib.auth.models.AnonymousUser object at 0x045B3B30>>, \'perms\': <django.contrib.auth.context_processors.PermWrapper object at 0x055B9B30>, \'messages\': <django.contrib.messages.storage.fallback.FallbackStorage object at 0x045B3CD0>, \'DEFAULT_MESSAGE_LEVELS\': {\'DEBUG\': 10, \'INFO\': 20, \'SUCCESS\': 25, \'WARNING\': 30, \'ERROR\': 40}, \'LANGUAGES\': ((\'ja\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB7050>), (\'zh-tw\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB7090>), (\'fr\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB70D0>), (\'de\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDEF0>), (\'en\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDED0>), (\'es\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF10>), (\'es-ar\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF30>), (\'es-pe\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF50>), (\'pt\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF70>), (\'pt-br\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDFB0>)), \'LANGUAGE_CODE\': \'es\', \'LANGUAGE_BIDI\': False, \'MEDIA_URL\': \'/media/\', \'STATIC_URL\': \'/static/\', \'TIME_ZONE\': \'Hora est. Pacífico, Sudamérica\', \'form\': <LoginForm bound=False, valid=False, fields=(username;password;remember_me)>, \'view\': <apps.accounts.views.LoginView object at 0x045B3C30>, \'block\': <Block Node: rootcontainer. Contents: [<TextNode: \'\\n\\n<div id="shell-load">\\n \'>, <django.templatetags.i18n.TranslateNode object at 0x055B9230>, <TextNode: \'</h3>\\n      </div>\\n      \'>, <django.template.library.SimpleNode object at 0x055B92D0>, <TextNode: \'\\n\\n      \'>, <crispy_forms.templatetags.crispy_forms_tags.CrispyFormNode object at 0x055B93F0>, <TextNode: \'\\n      \'>, <django.template.defaulttags.URLNode object at 0x055B9390>, <TextNode: \'\\n      \'>, <IfNode>, <TextNode: \'\\n      \\n    </div>\\n  </di\'>]>, \'template_pack\': \'bootstrap3\', \'form_action\': \'\', \'form_method\': \'post\', \'form_tag\': True, \'form_class\': \'js-validate form-vertical\', \'form_id\': \'\', \'form_style\': \'\', \'form_error_title\': None, \'formset_error_title\': None, \'form_show_errors\': True, \'help_text_inline\': False, \'html5_required\': False, \'form_show_labels\': True, \'disable_csrf\': False, \'inputs\': [], \'is_formset\': False, \'form_attrs\': {\'class\': \'js-validate form-vertical\'}, \'flat_attrs\': \'\', \'error_text_inline\': True, \'label_class\': \'\', \'label_size\': 0, \'field_class\': \'\', \'include_media\': True, \'attrs\': {\'class\': \'js-validate form-vertical\'}, \'field\': <django.forms.boundfield.BoundField object at 0x055D58D0>, \'labelclass\': None}]'
+[2017-12-01 08:57:07] DEBUG [django.template:927] Exception while resolving variable 'tag' in template 'bootstrap3/field.html'.
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 883, in _resolve_lookup
+    current = current[bit]
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\context.py", line 77, in __getitem__
+    raise KeyError(key)
+KeyError: 'tag'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 889, in _resolve_lookup
+    if isinstance(current, BaseContext) and getattr(type(current), bit):
+AttributeError: type object 'Context' has no attribute 'tag'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 898, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'tag'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [tag] in '[{\'True\': True, \'False\': False, \'None\': None}, {\'True\': True, \'False\': False, \'None\': None, \'csrf_token\': <SimpleLazyObject: <function csrf.<locals>._get_val at 0x055C3348>>, \'request\': <WSGIRequest: GET \'/accounts/login/?next=/\'>, \'user\': <SimpleLazyObject: <django.contrib.auth.models.AnonymousUser object at 0x045B3B30>>, \'perms\': <django.contrib.auth.context_processors.PermWrapper object at 0x055B9B30>, \'messages\': <django.contrib.messages.storage.fallback.FallbackStorage object at 0x045B3CD0>, \'DEFAULT_MESSAGE_LEVELS\': {\'DEBUG\': 10, \'INFO\': 20, \'SUCCESS\': 25, \'WARNING\': 30, \'ERROR\': 40}, \'LANGUAGES\': ((\'ja\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB7050>), (\'zh-tw\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB7090>), (\'fr\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB70D0>), (\'de\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDEF0>), (\'en\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDED0>), (\'es\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF10>), (\'es-ar\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF30>), (\'es-pe\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF50>), (\'pt\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF70>), (\'pt-br\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDFB0>)), \'LANGUAGE_CODE\': \'es\', \'LANGUAGE_BIDI\': False, \'MEDIA_URL\': \'/media/\', \'STATIC_URL\': \'/static/\', \'TIME_ZONE\': \'Hora est. Pacífico, Sudamérica\', \'form\': <LoginForm bound=False, valid=False, fields=(username;password;remember_me)>, \'view\': <apps.accounts.views.LoginView object at 0x045B3C30>, \'block\': <Block Node: rootcontainer. Contents: [<TextNode: \'\\n\\n<div id="shell-load">\\n \'>, <django.templatetags.i18n.TranslateNode object at 0x055B9230>, <TextNode: \'</h3>\\n      </div>\\n      \'>, <django.template.library.SimpleNode object at 0x055B92D0>, <TextNode: \'\\n\\n      \'>, <crispy_forms.templatetags.crispy_forms_tags.CrispyFormNode object at 0x055B93F0>, <TextNode: \'\\n      \'>, <django.template.defaulttags.URLNode object at 0x055B9390>, <TextNode: \'\\n      \'>, <IfNode>, <TextNode: \'\\n      \\n    </div>\\n  </di\'>]>, \'template_pack\': \'bootstrap3\', \'form_action\': \'\', \'form_method\': \'post\', \'form_tag\': True, \'form_class\': \'js-validate form-vertical\', \'form_id\': \'\', \'form_style\': \'\', \'form_error_title\': None, \'formset_error_title\': None, \'form_show_errors\': True, \'help_text_inline\': False, \'html5_required\': False, \'form_show_labels\': True, \'disable_csrf\': False, \'inputs\': [], \'is_formset\': False, \'form_attrs\': {\'class\': \'js-validate form-vertical\'}, \'flat_attrs\': \'\', \'error_text_inline\': True, \'label_class\': \'\', \'label_size\': 0, \'field_class\': \'\', \'include_media\': True, \'attrs\': {\'class\': \'js-validate form-vertical\'}, \'field\': <django.forms.boundfield.BoundField object at 0x055D5A30>, \'labelclass\': None}]'
+[2017-12-01 08:57:07] DEBUG [django.template:927] Exception while resolving variable 'wrapper_class' in template 'bootstrap3/field.html'.
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 883, in _resolve_lookup
+    current = current[bit]
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\context.py", line 77, in __getitem__
+    raise KeyError(key)
+KeyError: 'wrapper_class'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 889, in _resolve_lookup
+    if isinstance(current, BaseContext) and getattr(type(current), bit):
+AttributeError: type object 'Context' has no attribute 'wrapper_class'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 898, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'wrapper_class'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [wrapper_class] in '[{\'True\': True, \'False\': False, \'None\': None}, {\'True\': True, \'False\': False, \'None\': None, \'csrf_token\': <SimpleLazyObject: <function csrf.<locals>._get_val at 0x055C3348>>, \'request\': <WSGIRequest: GET \'/accounts/login/?next=/\'>, \'user\': <SimpleLazyObject: <django.contrib.auth.models.AnonymousUser object at 0x045B3B30>>, \'perms\': <django.contrib.auth.context_processors.PermWrapper object at 0x055B9B30>, \'messages\': <django.contrib.messages.storage.fallback.FallbackStorage object at 0x045B3CD0>, \'DEFAULT_MESSAGE_LEVELS\': {\'DEBUG\': 10, \'INFO\': 20, \'SUCCESS\': 25, \'WARNING\': 30, \'ERROR\': 40}, \'LANGUAGES\': ((\'ja\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB7050>), (\'zh-tw\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB7090>), (\'fr\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB70D0>), (\'de\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDEF0>), (\'en\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDED0>), (\'es\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF10>), (\'es-ar\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF30>), (\'es-pe\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF50>), (\'pt\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF70>), (\'pt-br\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDFB0>)), \'LANGUAGE_CODE\': \'es\', \'LANGUAGE_BIDI\': False, \'MEDIA_URL\': \'/media/\', \'STATIC_URL\': \'/static/\', \'TIME_ZONE\': \'Hora est. Pacífico, Sudamérica\', \'form\': <LoginForm bound=False, valid=False, fields=(username;password;remember_me)>, \'view\': <apps.accounts.views.LoginView object at 0x045B3C30>, \'block\': <Block Node: rootcontainer. Contents: [<TextNode: \'\\n\\n<div id="shell-load">\\n \'>, <django.templatetags.i18n.TranslateNode object at 0x055B9230>, <TextNode: \'</h3>\\n      </div>\\n      \'>, <django.template.library.SimpleNode object at 0x055B92D0>, <TextNode: \'\\n\\n      \'>, <crispy_forms.templatetags.crispy_forms_tags.CrispyFormNode object at 0x055B93F0>, <TextNode: \'\\n      \'>, <django.template.defaulttags.URLNode object at 0x055B9390>, <TextNode: \'\\n      \'>, <IfNode>, <TextNode: \'\\n      \\n    </div>\\n  </di\'>]>, \'template_pack\': \'bootstrap3\', \'form_action\': \'\', \'form_method\': \'post\', \'form_tag\': True, \'form_class\': \'js-validate form-vertical\', \'form_id\': \'\', \'form_style\': \'\', \'form_error_title\': None, \'formset_error_title\': None, \'form_show_errors\': True, \'help_text_inline\': False, \'html5_required\': False, \'form_show_labels\': True, \'disable_csrf\': False, \'inputs\': [], \'is_formset\': False, \'form_attrs\': {\'class\': \'js-validate form-vertical\'}, \'flat_attrs\': \'\', \'error_text_inline\': True, \'label_class\': \'\', \'label_size\': 0, \'field_class\': \'\', \'include_media\': True, \'attrs\': {\'class\': \'js-validate form-vertical\'}, \'field\': <django.forms.boundfield.BoundField object at 0x055D5A30>, \'labelclass\': None}]'
+[2017-12-01 08:57:08] DEBUG [django.template:927] Exception while resolving variable 'tag' in template 'bootstrap3/field.html'.
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 883, in _resolve_lookup
+    current = current[bit]
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\context.py", line 77, in __getitem__
+    raise KeyError(key)
+KeyError: 'tag'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 889, in _resolve_lookup
+    if isinstance(current, BaseContext) and getattr(type(current), bit):
+AttributeError: type object 'Context' has no attribute 'tag'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 898, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'tag'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [tag] in '[{\'True\': True, \'False\': False, \'None\': None}, {\'True\': True, \'False\': False, \'None\': None, \'csrf_token\': <SimpleLazyObject: <function csrf.<locals>._get_val at 0x055C3348>>, \'request\': <WSGIRequest: GET \'/accounts/login/?next=/\'>, \'user\': <SimpleLazyObject: <django.contrib.auth.models.AnonymousUser object at 0x045B3B30>>, \'perms\': <django.contrib.auth.context_processors.PermWrapper object at 0x055B9B30>, \'messages\': <django.contrib.messages.storage.fallback.FallbackStorage object at 0x045B3CD0>, \'DEFAULT_MESSAGE_LEVELS\': {\'DEBUG\': 10, \'INFO\': 20, \'SUCCESS\': 25, \'WARNING\': 30, \'ERROR\': 40}, \'LANGUAGES\': ((\'ja\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB7050>), (\'zh-tw\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB7090>), (\'fr\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB70D0>), (\'de\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDEF0>), (\'en\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDED0>), (\'es\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF10>), (\'es-ar\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF30>), (\'es-pe\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF50>), (\'pt\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF70>), (\'pt-br\', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDFB0>)), \'LANGUAGE_CODE\': \'es\', \'LANGUAGE_BIDI\': False, \'MEDIA_URL\': \'/media/\', \'STATIC_URL\': \'/static/\', \'TIME_ZONE\': \'Hora est. Pacífico, Sudamérica\', \'form\': <LoginForm bound=False, valid=False, fields=(username;password;remember_me)>, \'view\': <apps.accounts.views.LoginView object at 0x045B3C30>, \'block\': <Block Node: rootcontainer. Contents: [<TextNode: \'\\n\\n<div id="shell-load">\\n \'>, <django.templatetags.i18n.TranslateNode object at 0x055B9230>, <TextNode: \'</h3>\\n      </div>\\n      \'>, <django.template.library.SimpleNode object at 0x055B92D0>, <TextNode: \'\\n\\n      \'>, <crispy_forms.templatetags.crispy_forms_tags.CrispyFormNode object at 0x055B93F0>, <TextNode: \'\\n      \'>, <django.template.defaulttags.URLNode object at 0x055B9390>, <TextNode: \'\\n      \'>, <IfNode>, <TextNode: \'\\n      \\n    </div>\\n  </di\'>]>, \'template_pack\': \'bootstrap3\', \'form_action\': \'\', \'form_method\': \'post\', \'form_tag\': True, \'form_class\': \'js-validate form-vertical\', \'form_id\': \'\', \'form_style\': \'\', \'form_error_title\': None, \'formset_error_title\': None, \'form_show_errors\': True, \'help_text_inline\': False, \'html5_required\': False, \'form_show_labels\': True, \'disable_csrf\': False, \'inputs\': [], \'is_formset\': False, \'form_attrs\': {\'class\': \'js-validate form-vertical\'}, \'flat_attrs\': \'\', \'error_text_inline\': True, \'label_class\': \'\', \'label_size\': 0, \'field_class\': \'\', \'include_media\': True, \'attrs\': {\'class\': \'js-validate form-vertical\'}, \'field\': <django.forms.boundfield.BoundField object at 0x055D5A30>, \'labelclass\': None}]'
+[2017-12-01 08:57:08] DEBUG [django.db.backends:89] (0.000) SELECT (1) AS "a" FROM "django_session" WHERE "django_session"."session_key" = '24rh6wrn8xzxyb37ovqymhufpwuivpiw' LIMIT 1; args=('24rh6wrn8xzxyb37ovqymhufpwuivpiw',)
+[2017-12-01 08:57:08] DEBUG [django.db.backends:89] (0.000) BEGIN; args=None
+[2017-12-01 08:57:08] DEBUG [django.db.backends:89] (0.060) INSERT INTO "django_session" ("session_key", "session_data", "expire_date") SELECT '24rh6wrn8xzxyb37ovqymhufpwuivpiw', 'NDAyMDA2NDk3MTY2MWQ0ODIwODcwNjNmZjNkZjNjNTNkYzNiMGM2ODqABJUaAAAAAAAAAH2UjAp0ZXN0Y29va2lllIwGd29ya2VklHMu', '2017-12-15 13:57:08.102568'; args=('24rh6wrn8xzxyb37ovqymhufpwuivpiw', 'NDAyMDA2NDk3MTY2MWQ0ODIwODcwNjNmZjNkZjNjNTNkYzNiMGM2ODqABJUaAAAAAAAAAH2UjAp0ZXN0Y29va2lllIwGd29ya2VklHMu', '2017-12-15 13:57:08.102568')
+[2017-12-01 08:57:08] DEBUG [django.db.backends:89] (0.008) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = '24rh6wrn8xzxyb37ovqymhufpwuivpiw' AND "django_session"."expire_date" > '2017-12-01 13:57:08.558556'); args=('24rh6wrn8xzxyb37ovqymhufpwuivpiw', '2017-12-01 13:57:08.558556')
+[2017-12-01 08:57:09] DEBUG [django.db.backends:89] (0.004) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = '24rh6wrn8xzxyb37ovqymhufpwuivpiw' AND "django_session"."expire_date" > '2017-12-01 13:57:09.610585'); args=('24rh6wrn8xzxyb37ovqymhufpwuivpiw', '2017-12-01 13:57:09.610585')
+[2017-12-01 08:57:09] WARNING [django.request:182] Not Found: /favicon.ico
+[2017-12-01 08:57:09] DEBUG [django.template:927] Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\core\handlers\base.py", line 134, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\core\urlresolvers.py", line 404, in resolve
+    raise Resolver404({'tried': tried, 'path': new_path})
+django.core.urlresolvers.Resolver404: {'tried': [[<RegexURLResolver <module 'debug_toolbar.toolbar' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\debug_toolbar\\toolbar.py'> (djdt:djdt) ^__debug__/>], [<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>], [<RegexURLResolver <module 'django.contrib.admindocs.urls' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\django\\contrib\\admindocs\\urls.py'> (None:None) ^admin/doc/>], [<RegexURLResolver <module 'django.conf.urls.i18n' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\django\\conf\\urls\\i18n.py'> (None:None) ^i18n/>], [<RegexURLPattern None ^jsi18n/>], [<RegexURLResolver <module 'apps.mod_backend.urls' from 'F:\\SISCopaiseg\\apps\\mod_backend\\urls.py'> (None:mod_backend) ^mod_backend/>], [<RegexURLResolver <module 'apps.space.urls' from 'F:\\SISCopaiseg\\apps\\space\\urls.py'> (None:space) ^space/>], [<RegexURLResolver <module 'apps.sad.urls' from 'F:\\SISCopaiseg\\apps\\sad\\urls.py'> (None:sad) ^sad/>], [<RegexURLResolver <module 'apps.accounts.urls' from 'F:\\SISCopaiseg\\apps\\accounts\\urls.py'> (None:None) ^accounts/>], [<RegexURLPattern jfu_upload upload/>], [<RegexURLPattern jfu_delete ^delete/(?P<pk>\d+)$>], [<RegexURLPattern dashboard ^$>], [<RegexURLResolver <module 'apps.clivet.urls' from 'F:\\SISCopaiseg\\apps\\clivet\\urls.py'> (None:clivet) ^>, <RegexURLPattern trabajador_upd ^perfil/editar/$>], [<RegexURLResolver <module 'apps.clinica.urls' from 'F:\\SISCopaiseg\\apps\\clinica\\urls.py'> (None:clinica) ^clinica/>], [<RegexURLResolver <module 'apps.ventas.urls' from 'F:\\SISCopaiseg\\apps\\ventas\\urls.py'> (None:ventas) ^ventas/>], [<RegexURLResolver <module 'apps.configuracion.urls' from 'F:\\SISCopaiseg\\apps\\configuracion\\urls.py'> (None:configuracion) ^configuracion/>], [<RegexURLResolver <module 'apps.compras.urls' from 'F:\\SISCopaiseg\\apps\\compras\\urls.py'> (None:compras) ^compras/>], [<RegexURLResolver <module 'apps.citas.urls' from 'F:\\SISCopaiseg\\apps\\citas\\urls.py'> (None:citas) ^citas/>], [<RegexURLResolver <module 'apps.acopios.urls' from 'F:\\SISCopaiseg\\apps\\acopios\\urls.py'> (None:acopios) ^acopios/>], [<RegexURLResolver <module 'smart_selects.urls' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\smart_selects\\urls.py'> (None:None) ^chaining/>], [<RegexURLPattern None ^media\/(?P<path>.*)$>]], 'path': 'favicon.ico'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 883, in _resolve_lookup
+    current = current[bit]
+TypeError: 'RegexURLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 891, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'RegexURLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 898, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in "<RegexURLResolver <module 'debug_toolbar.toolbar' from 'F:\\\\SISCopaiseg\\\\copa\\\\lib\\\\site-packages\\\\debug_toolbar\\\\toolbar.py'> (djdt:djdt) ^__debug__/>"
+[2017-12-01 08:57:09] DEBUG [django.template:927] Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\core\handlers\base.py", line 134, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\core\urlresolvers.py", line 404, in resolve
+    raise Resolver404({'tried': tried, 'path': new_path})
+django.core.urlresolvers.Resolver404: {'tried': [[<RegexURLResolver <module 'debug_toolbar.toolbar' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\debug_toolbar\\toolbar.py'> (djdt:djdt) ^__debug__/>], [<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>], [<RegexURLResolver <module 'django.contrib.admindocs.urls' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\django\\contrib\\admindocs\\urls.py'> (None:None) ^admin/doc/>], [<RegexURLResolver <module 'django.conf.urls.i18n' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\django\\conf\\urls\\i18n.py'> (None:None) ^i18n/>], [<RegexURLPattern None ^jsi18n/>], [<RegexURLResolver <module 'apps.mod_backend.urls' from 'F:\\SISCopaiseg\\apps\\mod_backend\\urls.py'> (None:mod_backend) ^mod_backend/>], [<RegexURLResolver <module 'apps.space.urls' from 'F:\\SISCopaiseg\\apps\\space\\urls.py'> (None:space) ^space/>], [<RegexURLResolver <module 'apps.sad.urls' from 'F:\\SISCopaiseg\\apps\\sad\\urls.py'> (None:sad) ^sad/>], [<RegexURLResolver <module 'apps.accounts.urls' from 'F:\\SISCopaiseg\\apps\\accounts\\urls.py'> (None:None) ^accounts/>], [<RegexURLPattern jfu_upload upload/>], [<RegexURLPattern jfu_delete ^delete/(?P<pk>\d+)$>], [<RegexURLPattern dashboard ^$>], [<RegexURLResolver <module 'apps.clivet.urls' from 'F:\\SISCopaiseg\\apps\\clivet\\urls.py'> (None:clivet) ^>, <RegexURLPattern trabajador_upd ^perfil/editar/$>], [<RegexURLResolver <module 'apps.clinica.urls' from 'F:\\SISCopaiseg\\apps\\clinica\\urls.py'> (None:clinica) ^clinica/>], [<RegexURLResolver <module 'apps.ventas.urls' from 'F:\\SISCopaiseg\\apps\\ventas\\urls.py'> (None:ventas) ^ventas/>], [<RegexURLResolver <module 'apps.configuracion.urls' from 'F:\\SISCopaiseg\\apps\\configuracion\\urls.py'> (None:configuracion) ^configuracion/>], [<RegexURLResolver <module 'apps.compras.urls' from 'F:\\SISCopaiseg\\apps\\compras\\urls.py'> (None:compras) ^compras/>], [<RegexURLResolver <module 'apps.citas.urls' from 'F:\\SISCopaiseg\\apps\\citas\\urls.py'> (None:citas) ^citas/>], [<RegexURLResolver <module 'apps.acopios.urls' from 'F:\\SISCopaiseg\\apps\\acopios\\urls.py'> (None:acopios) ^acopios/>], [<RegexURLResolver <module 'smart_selects.urls' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\smart_selects\\urls.py'> (None:None) ^chaining/>], [<RegexURLPattern None ^media\/(?P<path>.*)$>]], 'path': 'favicon.ico'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 883, in _resolve_lookup
+    current = current[bit]
+TypeError: 'RegexURLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 891, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'RegexURLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 898, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in '<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>'
+[2017-12-01 08:57:09] DEBUG [django.template:927] Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\core\handlers\base.py", line 134, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\core\urlresolvers.py", line 404, in resolve
+    raise Resolver404({'tried': tried, 'path': new_path})
+django.core.urlresolvers.Resolver404: {'tried': [[<RegexURLResolver <module 'debug_toolbar.toolbar' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\debug_toolbar\\toolbar.py'> (djdt:djdt) ^__debug__/>], [<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>], [<RegexURLResolver <module 'django.contrib.admindocs.urls' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\django\\contrib\\admindocs\\urls.py'> (None:None) ^admin/doc/>], [<RegexURLResolver <module 'django.conf.urls.i18n' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\django\\conf\\urls\\i18n.py'> (None:None) ^i18n/>], [<RegexURLPattern None ^jsi18n/>], [<RegexURLResolver <module 'apps.mod_backend.urls' from 'F:\\SISCopaiseg\\apps\\mod_backend\\urls.py'> (None:mod_backend) ^mod_backend/>], [<RegexURLResolver <module 'apps.space.urls' from 'F:\\SISCopaiseg\\apps\\space\\urls.py'> (None:space) ^space/>], [<RegexURLResolver <module 'apps.sad.urls' from 'F:\\SISCopaiseg\\apps\\sad\\urls.py'> (None:sad) ^sad/>], [<RegexURLResolver <module 'apps.accounts.urls' from 'F:\\SISCopaiseg\\apps\\accounts\\urls.py'> (None:None) ^accounts/>], [<RegexURLPattern jfu_upload upload/>], [<RegexURLPattern jfu_delete ^delete/(?P<pk>\d+)$>], [<RegexURLPattern dashboard ^$>], [<RegexURLResolver <module 'apps.clivet.urls' from 'F:\\SISCopaiseg\\apps\\clivet\\urls.py'> (None:clivet) ^>, <RegexURLPattern trabajador_upd ^perfil/editar/$>], [<RegexURLResolver <module 'apps.clinica.urls' from 'F:\\SISCopaiseg\\apps\\clinica\\urls.py'> (None:clinica) ^clinica/>], [<RegexURLResolver <module 'apps.ventas.urls' from 'F:\\SISCopaiseg\\apps\\ventas\\urls.py'> (None:ventas) ^ventas/>], [<RegexURLResolver <module 'apps.configuracion.urls' from 'F:\\SISCopaiseg\\apps\\configuracion\\urls.py'> (None:configuracion) ^configuracion/>], [<RegexURLResolver <module 'apps.compras.urls' from 'F:\\SISCopaiseg\\apps\\compras\\urls.py'> (None:compras) ^compras/>], [<RegexURLResolver <module 'apps.citas.urls' from 'F:\\SISCopaiseg\\apps\\citas\\urls.py'> (None:citas) ^citas/>], [<RegexURLResolver <module 'apps.acopios.urls' from 'F:\\SISCopaiseg\\apps\\acopios\\urls.py'> (None:acopios) ^acopios/>], [<RegexURLResolver <module 'smart_selects.urls' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\smart_selects\\urls.py'> (None:None) ^chaining/>], [<RegexURLPattern None ^media\/(?P<path>.*)$>]], 'path': 'favicon.ico'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 883, in _resolve_lookup
+    current = current[bit]
+TypeError: 'RegexURLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 891, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'RegexURLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 898, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in "<RegexURLResolver <module 'django.contrib.admindocs.urls' from 'F:\\\\SISCopaiseg\\\\copa\\\\lib\\\\site-packages\\\\django\\\\contrib\\\\admindocs\\\\urls.py'> (None:None) ^admin/doc/>"
+[2017-12-01 08:57:09] DEBUG [django.template:927] Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\core\handlers\base.py", line 134, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\core\urlresolvers.py", line 404, in resolve
+    raise Resolver404({'tried': tried, 'path': new_path})
+django.core.urlresolvers.Resolver404: {'tried': [[<RegexURLResolver <module 'debug_toolbar.toolbar' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\debug_toolbar\\toolbar.py'> (djdt:djdt) ^__debug__/>], [<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>], [<RegexURLResolver <module 'django.contrib.admindocs.urls' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\django\\contrib\\admindocs\\urls.py'> (None:None) ^admin/doc/>], [<RegexURLResolver <module 'django.conf.urls.i18n' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\django\\conf\\urls\\i18n.py'> (None:None) ^i18n/>], [<RegexURLPattern None ^jsi18n/>], [<RegexURLResolver <module 'apps.mod_backend.urls' from 'F:\\SISCopaiseg\\apps\\mod_backend\\urls.py'> (None:mod_backend) ^mod_backend/>], [<RegexURLResolver <module 'apps.space.urls' from 'F:\\SISCopaiseg\\apps\\space\\urls.py'> (None:space) ^space/>], [<RegexURLResolver <module 'apps.sad.urls' from 'F:\\SISCopaiseg\\apps\\sad\\urls.py'> (None:sad) ^sad/>], [<RegexURLResolver <module 'apps.accounts.urls' from 'F:\\SISCopaiseg\\apps\\accounts\\urls.py'> (None:None) ^accounts/>], [<RegexURLPattern jfu_upload upload/>], [<RegexURLPattern jfu_delete ^delete/(?P<pk>\d+)$>], [<RegexURLPattern dashboard ^$>], [<RegexURLResolver <module 'apps.clivet.urls' from 'F:\\SISCopaiseg\\apps\\clivet\\urls.py'> (None:clivet) ^>, <RegexURLPattern trabajador_upd ^perfil/editar/$>], [<RegexURLResolver <module 'apps.clinica.urls' from 'F:\\SISCopaiseg\\apps\\clinica\\urls.py'> (None:clinica) ^clinica/>], [<RegexURLResolver <module 'apps.ventas.urls' from 'F:\\SISCopaiseg\\apps\\ventas\\urls.py'> (None:ventas) ^ventas/>], [<RegexURLResolver <module 'apps.configuracion.urls' from 'F:\\SISCopaiseg\\apps\\configuracion\\urls.py'> (None:configuracion) ^configuracion/>], [<RegexURLResolver <module 'apps.compras.urls' from 'F:\\SISCopaiseg\\apps\\compras\\urls.py'> (None:compras) ^compras/>], [<RegexURLResolver <module 'apps.citas.urls' from 'F:\\SISCopaiseg\\apps\\citas\\urls.py'> (None:citas) ^citas/>], [<RegexURLResolver <module 'apps.acopios.urls' from 'F:\\SISCopaiseg\\apps\\acopios\\urls.py'> (None:acopios) ^acopios/>], [<RegexURLResolver <module 'smart_selects.urls' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\smart_selects\\urls.py'> (None:None) ^chaining/>], [<RegexURLPattern None ^media\/(?P<path>.*)$>]], 'path': 'favicon.ico'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 883, in _resolve_lookup
+    current = current[bit]
+TypeError: 'RegexURLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 891, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'RegexURLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 898, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in "<RegexURLResolver <module 'django.conf.urls.i18n' from 'F:\\\\SISCopaiseg\\\\copa\\\\lib\\\\site-packages\\\\django\\\\conf\\\\urls\\\\i18n.py'> (None:None) ^i18n/>"
+[2017-12-01 08:57:09] DEBUG [django.template:927] Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\core\handlers\base.py", line 134, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\core\urlresolvers.py", line 404, in resolve
+    raise Resolver404({'tried': tried, 'path': new_path})
+django.core.urlresolvers.Resolver404: {'tried': [[<RegexURLResolver <module 'debug_toolbar.toolbar' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\debug_toolbar\\toolbar.py'> (djdt:djdt) ^__debug__/>], [<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>], [<RegexURLResolver <module 'django.contrib.admindocs.urls' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\django\\contrib\\admindocs\\urls.py'> (None:None) ^admin/doc/>], [<RegexURLResolver <module 'django.conf.urls.i18n' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\django\\conf\\urls\\i18n.py'> (None:None) ^i18n/>], [<RegexURLPattern None ^jsi18n/>], [<RegexURLResolver <module 'apps.mod_backend.urls' from 'F:\\SISCopaiseg\\apps\\mod_backend\\urls.py'> (None:mod_backend) ^mod_backend/>], [<RegexURLResolver <module 'apps.space.urls' from 'F:\\SISCopaiseg\\apps\\space\\urls.py'> (None:space) ^space/>], [<RegexURLResolver <module 'apps.sad.urls' from 'F:\\SISCopaiseg\\apps\\sad\\urls.py'> (None:sad) ^sad/>], [<RegexURLResolver <module 'apps.accounts.urls' from 'F:\\SISCopaiseg\\apps\\accounts\\urls.py'> (None:None) ^accounts/>], [<RegexURLPattern jfu_upload upload/>], [<RegexURLPattern jfu_delete ^delete/(?P<pk>\d+)$>], [<RegexURLPattern dashboard ^$>], [<RegexURLResolver <module 'apps.clivet.urls' from 'F:\\SISCopaiseg\\apps\\clivet\\urls.py'> (None:clivet) ^>, <RegexURLPattern trabajador_upd ^perfil/editar/$>], [<RegexURLResolver <module 'apps.clinica.urls' from 'F:\\SISCopaiseg\\apps\\clinica\\urls.py'> (None:clinica) ^clinica/>], [<RegexURLResolver <module 'apps.ventas.urls' from 'F:\\SISCopaiseg\\apps\\ventas\\urls.py'> (None:ventas) ^ventas/>], [<RegexURLResolver <module 'apps.configuracion.urls' from 'F:\\SISCopaiseg\\apps\\configuracion\\urls.py'> (None:configuracion) ^configuracion/>], [<RegexURLResolver <module 'apps.compras.urls' from 'F:\\SISCopaiseg\\apps\\compras\\urls.py'> (None:compras) ^compras/>], [<RegexURLResolver <module 'apps.citas.urls' from 'F:\\SISCopaiseg\\apps\\citas\\urls.py'> (None:citas) ^citas/>], [<RegexURLResolver <module 'apps.acopios.urls' from 'F:\\SISCopaiseg\\apps\\acopios\\urls.py'> (None:acopios) ^acopios/>], [<RegexURLResolver <module 'smart_selects.urls' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\smart_selects\\urls.py'> (None:None) ^chaining/>], [<RegexURLPattern None ^media\/(?P<path>.*)$>]], 'path': 'favicon.ico'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 883, in _resolve_lookup
+    current = current[bit]
+TypeError: 'RegexURLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 891, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'RegexURLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 898, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in "<RegexURLResolver <module 'apps.mod_backend.urls' from 'F:\\\\SISCopaiseg\\\\apps\\\\mod_backend\\\\urls.py'> (None:mod_backend) ^mod_backend/>"
+[2017-12-01 08:57:09] DEBUG [django.template:927] Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\core\handlers\base.py", line 134, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\core\urlresolvers.py", line 404, in resolve
+    raise Resolver404({'tried': tried, 'path': new_path})
+django.core.urlresolvers.Resolver404: {'tried': [[<RegexURLResolver <module 'debug_toolbar.toolbar' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\debug_toolbar\\toolbar.py'> (djdt:djdt) ^__debug__/>], [<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>], [<RegexURLResolver <module 'django.contrib.admindocs.urls' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\django\\contrib\\admindocs\\urls.py'> (None:None) ^admin/doc/>], [<RegexURLResolver <module 'django.conf.urls.i18n' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\django\\conf\\urls\\i18n.py'> (None:None) ^i18n/>], [<RegexURLPattern None ^jsi18n/>], [<RegexURLResolver <module 'apps.mod_backend.urls' from 'F:\\SISCopaiseg\\apps\\mod_backend\\urls.py'> (None:mod_backend) ^mod_backend/>], [<RegexURLResolver <module 'apps.space.urls' from 'F:\\SISCopaiseg\\apps\\space\\urls.py'> (None:space) ^space/>], [<RegexURLResolver <module 'apps.sad.urls' from 'F:\\SISCopaiseg\\apps\\sad\\urls.py'> (None:sad) ^sad/>], [<RegexURLResolver <module 'apps.accounts.urls' from 'F:\\SISCopaiseg\\apps\\accounts\\urls.py'> (None:None) ^accounts/>], [<RegexURLPattern jfu_upload upload/>], [<RegexURLPattern jfu_delete ^delete/(?P<pk>\d+)$>], [<RegexURLPattern dashboard ^$>], [<RegexURLResolver <module 'apps.clivet.urls' from 'F:\\SISCopaiseg\\apps\\clivet\\urls.py'> (None:clivet) ^>, <RegexURLPattern trabajador_upd ^perfil/editar/$>], [<RegexURLResolver <module 'apps.clinica.urls' from 'F:\\SISCopaiseg\\apps\\clinica\\urls.py'> (None:clinica) ^clinica/>], [<RegexURLResolver <module 'apps.ventas.urls' from 'F:\\SISCopaiseg\\apps\\ventas\\urls.py'> (None:ventas) ^ventas/>], [<RegexURLResolver <module 'apps.configuracion.urls' from 'F:\\SISCopaiseg\\apps\\configuracion\\urls.py'> (None:configuracion) ^configuracion/>], [<RegexURLResolver <module 'apps.compras.urls' from 'F:\\SISCopaiseg\\apps\\compras\\urls.py'> (None:compras) ^compras/>], [<RegexURLResolver <module 'apps.citas.urls' from 'F:\\SISCopaiseg\\apps\\citas\\urls.py'> (None:citas) ^citas/>], [<RegexURLResolver <module 'apps.acopios.urls' from 'F:\\SISCopaiseg\\apps\\acopios\\urls.py'> (None:acopios) ^acopios/>], [<RegexURLResolver <module 'smart_selects.urls' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\smart_selects\\urls.py'> (None:None) ^chaining/>], [<RegexURLPattern None ^media\/(?P<path>.*)$>]], 'path': 'favicon.ico'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 883, in _resolve_lookup
+    current = current[bit]
+TypeError: 'RegexURLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 891, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'RegexURLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 898, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in "<RegexURLResolver <module 'apps.space.urls' from 'F:\\\\SISCopaiseg\\\\apps\\\\space\\\\urls.py'> (None:space) ^space/>"
+[2017-12-01 08:57:09] DEBUG [django.template:927] Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\core\handlers\base.py", line 134, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\core\urlresolvers.py", line 404, in resolve
+    raise Resolver404({'tried': tried, 'path': new_path})
+django.core.urlresolvers.Resolver404: {'tried': [[<RegexURLResolver <module 'debug_toolbar.toolbar' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\debug_toolbar\\toolbar.py'> (djdt:djdt) ^__debug__/>], [<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>], [<RegexURLResolver <module 'django.contrib.admindocs.urls' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\django\\contrib\\admindocs\\urls.py'> (None:None) ^admin/doc/>], [<RegexURLResolver <module 'django.conf.urls.i18n' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\django\\conf\\urls\\i18n.py'> (None:None) ^i18n/>], [<RegexURLPattern None ^jsi18n/>], [<RegexURLResolver <module 'apps.mod_backend.urls' from 'F:\\SISCopaiseg\\apps\\mod_backend\\urls.py'> (None:mod_backend) ^mod_backend/>], [<RegexURLResolver <module 'apps.space.urls' from 'F:\\SISCopaiseg\\apps\\space\\urls.py'> (None:space) ^space/>], [<RegexURLResolver <module 'apps.sad.urls' from 'F:\\SISCopaiseg\\apps\\sad\\urls.py'> (None:sad) ^sad/>], [<RegexURLResolver <module 'apps.accounts.urls' from 'F:\\SISCopaiseg\\apps\\accounts\\urls.py'> (None:None) ^accounts/>], [<RegexURLPattern jfu_upload upload/>], [<RegexURLPattern jfu_delete ^delete/(?P<pk>\d+)$>], [<RegexURLPattern dashboard ^$>], [<RegexURLResolver <module 'apps.clivet.urls' from 'F:\\SISCopaiseg\\apps\\clivet\\urls.py'> (None:clivet) ^>, <RegexURLPattern trabajador_upd ^perfil/editar/$>], [<RegexURLResolver <module 'apps.clinica.urls' from 'F:\\SISCopaiseg\\apps\\clinica\\urls.py'> (None:clinica) ^clinica/>], [<RegexURLResolver <module 'apps.ventas.urls' from 'F:\\SISCopaiseg\\apps\\ventas\\urls.py'> (None:ventas) ^ventas/>], [<RegexURLResolver <module 'apps.configuracion.urls' from 'F:\\SISCopaiseg\\apps\\configuracion\\urls.py'> (None:configuracion) ^configuracion/>], [<RegexURLResolver <module 'apps.compras.urls' from 'F:\\SISCopaiseg\\apps\\compras\\urls.py'> (None:compras) ^compras/>], [<RegexURLResolver <module 'apps.citas.urls' from 'F:\\SISCopaiseg\\apps\\citas\\urls.py'> (None:citas) ^citas/>], [<RegexURLResolver <module 'apps.acopios.urls' from 'F:\\SISCopaiseg\\apps\\acopios\\urls.py'> (None:acopios) ^acopios/>], [<RegexURLResolver <module 'smart_selects.urls' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\smart_selects\\urls.py'> (None:None) ^chaining/>], [<RegexURLPattern None ^media\/(?P<path>.*)$>]], 'path': 'favicon.ico'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 883, in _resolve_lookup
+    current = current[bit]
+TypeError: 'RegexURLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 891, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'RegexURLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 898, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in "<RegexURLResolver <module 'apps.sad.urls' from 'F:\\\\SISCopaiseg\\\\apps\\\\sad\\\\urls.py'> (None:sad) ^sad/>"
+[2017-12-01 08:57:09] DEBUG [django.template:927] Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\core\handlers\base.py", line 134, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\core\urlresolvers.py", line 404, in resolve
+    raise Resolver404({'tried': tried, 'path': new_path})
+django.core.urlresolvers.Resolver404: {'tried': [[<RegexURLResolver <module 'debug_toolbar.toolbar' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\debug_toolbar\\toolbar.py'> (djdt:djdt) ^__debug__/>], [<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>], [<RegexURLResolver <module 'django.contrib.admindocs.urls' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\django\\contrib\\admindocs\\urls.py'> (None:None) ^admin/doc/>], [<RegexURLResolver <module 'django.conf.urls.i18n' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\django\\conf\\urls\\i18n.py'> (None:None) ^i18n/>], [<RegexURLPattern None ^jsi18n/>], [<RegexURLResolver <module 'apps.mod_backend.urls' from 'F:\\SISCopaiseg\\apps\\mod_backend\\urls.py'> (None:mod_backend) ^mod_backend/>], [<RegexURLResolver <module 'apps.space.urls' from 'F:\\SISCopaiseg\\apps\\space\\urls.py'> (None:space) ^space/>], [<RegexURLResolver <module 'apps.sad.urls' from 'F:\\SISCopaiseg\\apps\\sad\\urls.py'> (None:sad) ^sad/>], [<RegexURLResolver <module 'apps.accounts.urls' from 'F:\\SISCopaiseg\\apps\\accounts\\urls.py'> (None:None) ^accounts/>], [<RegexURLPattern jfu_upload upload/>], [<RegexURLPattern jfu_delete ^delete/(?P<pk>\d+)$>], [<RegexURLPattern dashboard ^$>], [<RegexURLResolver <module 'apps.clivet.urls' from 'F:\\SISCopaiseg\\apps\\clivet\\urls.py'> (None:clivet) ^>, <RegexURLPattern trabajador_upd ^perfil/editar/$>], [<RegexURLResolver <module 'apps.clinica.urls' from 'F:\\SISCopaiseg\\apps\\clinica\\urls.py'> (None:clinica) ^clinica/>], [<RegexURLResolver <module 'apps.ventas.urls' from 'F:\\SISCopaiseg\\apps\\ventas\\urls.py'> (None:ventas) ^ventas/>], [<RegexURLResolver <module 'apps.configuracion.urls' from 'F:\\SISCopaiseg\\apps\\configuracion\\urls.py'> (None:configuracion) ^configuracion/>], [<RegexURLResolver <module 'apps.compras.urls' from 'F:\\SISCopaiseg\\apps\\compras\\urls.py'> (None:compras) ^compras/>], [<RegexURLResolver <module 'apps.citas.urls' from 'F:\\SISCopaiseg\\apps\\citas\\urls.py'> (None:citas) ^citas/>], [<RegexURLResolver <module 'apps.acopios.urls' from 'F:\\SISCopaiseg\\apps\\acopios\\urls.py'> (None:acopios) ^acopios/>], [<RegexURLResolver <module 'smart_selects.urls' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\smart_selects\\urls.py'> (None:None) ^chaining/>], [<RegexURLPattern None ^media\/(?P<path>.*)$>]], 'path': 'favicon.ico'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 883, in _resolve_lookup
+    current = current[bit]
+TypeError: 'RegexURLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 891, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'RegexURLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 898, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in "<RegexURLResolver <module 'apps.accounts.urls' from 'F:\\\\SISCopaiseg\\\\apps\\\\accounts\\\\urls.py'> (None:None) ^accounts/>"
+[2017-12-01 08:57:09] DEBUG [django.template:927] Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\core\handlers\base.py", line 134, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\core\urlresolvers.py", line 404, in resolve
+    raise Resolver404({'tried': tried, 'path': new_path})
+django.core.urlresolvers.Resolver404: {'tried': [[<RegexURLResolver <module 'debug_toolbar.toolbar' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\debug_toolbar\\toolbar.py'> (djdt:djdt) ^__debug__/>], [<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>], [<RegexURLResolver <module 'django.contrib.admindocs.urls' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\django\\contrib\\admindocs\\urls.py'> (None:None) ^admin/doc/>], [<RegexURLResolver <module 'django.conf.urls.i18n' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\django\\conf\\urls\\i18n.py'> (None:None) ^i18n/>], [<RegexURLPattern None ^jsi18n/>], [<RegexURLResolver <module 'apps.mod_backend.urls' from 'F:\\SISCopaiseg\\apps\\mod_backend\\urls.py'> (None:mod_backend) ^mod_backend/>], [<RegexURLResolver <module 'apps.space.urls' from 'F:\\SISCopaiseg\\apps\\space\\urls.py'> (None:space) ^space/>], [<RegexURLResolver <module 'apps.sad.urls' from 'F:\\SISCopaiseg\\apps\\sad\\urls.py'> (None:sad) ^sad/>], [<RegexURLResolver <module 'apps.accounts.urls' from 'F:\\SISCopaiseg\\apps\\accounts\\urls.py'> (None:None) ^accounts/>], [<RegexURLPattern jfu_upload upload/>], [<RegexURLPattern jfu_delete ^delete/(?P<pk>\d+)$>], [<RegexURLPattern dashboard ^$>], [<RegexURLResolver <module 'apps.clivet.urls' from 'F:\\SISCopaiseg\\apps\\clivet\\urls.py'> (None:clivet) ^>, <RegexURLPattern trabajador_upd ^perfil/editar/$>], [<RegexURLResolver <module 'apps.clinica.urls' from 'F:\\SISCopaiseg\\apps\\clinica\\urls.py'> (None:clinica) ^clinica/>], [<RegexURLResolver <module 'apps.ventas.urls' from 'F:\\SISCopaiseg\\apps\\ventas\\urls.py'> (None:ventas) ^ventas/>], [<RegexURLResolver <module 'apps.configuracion.urls' from 'F:\\SISCopaiseg\\apps\\configuracion\\urls.py'> (None:configuracion) ^configuracion/>], [<RegexURLResolver <module 'apps.compras.urls' from 'F:\\SISCopaiseg\\apps\\compras\\urls.py'> (None:compras) ^compras/>], [<RegexURLResolver <module 'apps.citas.urls' from 'F:\\SISCopaiseg\\apps\\citas\\urls.py'> (None:citas) ^citas/>], [<RegexURLResolver <module 'apps.acopios.urls' from 'F:\\SISCopaiseg\\apps\\acopios\\urls.py'> (None:acopios) ^acopios/>], [<RegexURLResolver <module 'smart_selects.urls' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\smart_selects\\urls.py'> (None:None) ^chaining/>], [<RegexURLPattern None ^media\/(?P<path>.*)$>]], 'path': 'favicon.ico'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 883, in _resolve_lookup
+    current = current[bit]
+TypeError: 'RegexURLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 891, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'RegexURLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 898, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in "<RegexURLResolver <module 'apps.clinica.urls' from 'F:\\\\SISCopaiseg\\\\apps\\\\clinica\\\\urls.py'> (None:clinica) ^clinica/>"
+[2017-12-01 08:57:09] DEBUG [django.template:927] Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\core\handlers\base.py", line 134, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\core\urlresolvers.py", line 404, in resolve
+    raise Resolver404({'tried': tried, 'path': new_path})
+django.core.urlresolvers.Resolver404: {'tried': [[<RegexURLResolver <module 'debug_toolbar.toolbar' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\debug_toolbar\\toolbar.py'> (djdt:djdt) ^__debug__/>], [<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>], [<RegexURLResolver <module 'django.contrib.admindocs.urls' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\django\\contrib\\admindocs\\urls.py'> (None:None) ^admin/doc/>], [<RegexURLResolver <module 'django.conf.urls.i18n' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\django\\conf\\urls\\i18n.py'> (None:None) ^i18n/>], [<RegexURLPattern None ^jsi18n/>], [<RegexURLResolver <module 'apps.mod_backend.urls' from 'F:\\SISCopaiseg\\apps\\mod_backend\\urls.py'> (None:mod_backend) ^mod_backend/>], [<RegexURLResolver <module 'apps.space.urls' from 'F:\\SISCopaiseg\\apps\\space\\urls.py'> (None:space) ^space/>], [<RegexURLResolver <module 'apps.sad.urls' from 'F:\\SISCopaiseg\\apps\\sad\\urls.py'> (None:sad) ^sad/>], [<RegexURLResolver <module 'apps.accounts.urls' from 'F:\\SISCopaiseg\\apps\\accounts\\urls.py'> (None:None) ^accounts/>], [<RegexURLPattern jfu_upload upload/>], [<RegexURLPattern jfu_delete ^delete/(?P<pk>\d+)$>], [<RegexURLPattern dashboard ^$>], [<RegexURLResolver <module 'apps.clivet.urls' from 'F:\\SISCopaiseg\\apps\\clivet\\urls.py'> (None:clivet) ^>, <RegexURLPattern trabajador_upd ^perfil/editar/$>], [<RegexURLResolver <module 'apps.clinica.urls' from 'F:\\SISCopaiseg\\apps\\clinica\\urls.py'> (None:clinica) ^clinica/>], [<RegexURLResolver <module 'apps.ventas.urls' from 'F:\\SISCopaiseg\\apps\\ventas\\urls.py'> (None:ventas) ^ventas/>], [<RegexURLResolver <module 'apps.configuracion.urls' from 'F:\\SISCopaiseg\\apps\\configuracion\\urls.py'> (None:configuracion) ^configuracion/>], [<RegexURLResolver <module 'apps.compras.urls' from 'F:\\SISCopaiseg\\apps\\compras\\urls.py'> (None:compras) ^compras/>], [<RegexURLResolver <module 'apps.citas.urls' from 'F:\\SISCopaiseg\\apps\\citas\\urls.py'> (None:citas) ^citas/>], [<RegexURLResolver <module 'apps.acopios.urls' from 'F:\\SISCopaiseg\\apps\\acopios\\urls.py'> (None:acopios) ^acopios/>], [<RegexURLResolver <module 'smart_selects.urls' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\smart_selects\\urls.py'> (None:None) ^chaining/>], [<RegexURLPattern None ^media\/(?P<path>.*)$>]], 'path': 'favicon.ico'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 883, in _resolve_lookup
+    current = current[bit]
+TypeError: 'RegexURLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 891, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'RegexURLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 898, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in "<RegexURLResolver <module 'apps.ventas.urls' from 'F:\\\\SISCopaiseg\\\\apps\\\\ventas\\\\urls.py'> (None:ventas) ^ventas/>"
+[2017-12-01 08:57:09] DEBUG [django.template:927] Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\core\handlers\base.py", line 134, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\core\urlresolvers.py", line 404, in resolve
+    raise Resolver404({'tried': tried, 'path': new_path})
+django.core.urlresolvers.Resolver404: {'tried': [[<RegexURLResolver <module 'debug_toolbar.toolbar' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\debug_toolbar\\toolbar.py'> (djdt:djdt) ^__debug__/>], [<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>], [<RegexURLResolver <module 'django.contrib.admindocs.urls' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\django\\contrib\\admindocs\\urls.py'> (None:None) ^admin/doc/>], [<RegexURLResolver <module 'django.conf.urls.i18n' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\django\\conf\\urls\\i18n.py'> (None:None) ^i18n/>], [<RegexURLPattern None ^jsi18n/>], [<RegexURLResolver <module 'apps.mod_backend.urls' from 'F:\\SISCopaiseg\\apps\\mod_backend\\urls.py'> (None:mod_backend) ^mod_backend/>], [<RegexURLResolver <module 'apps.space.urls' from 'F:\\SISCopaiseg\\apps\\space\\urls.py'> (None:space) ^space/>], [<RegexURLResolver <module 'apps.sad.urls' from 'F:\\SISCopaiseg\\apps\\sad\\urls.py'> (None:sad) ^sad/>], [<RegexURLResolver <module 'apps.accounts.urls' from 'F:\\SISCopaiseg\\apps\\accounts\\urls.py'> (None:None) ^accounts/>], [<RegexURLPattern jfu_upload upload/>], [<RegexURLPattern jfu_delete ^delete/(?P<pk>\d+)$>], [<RegexURLPattern dashboard ^$>], [<RegexURLResolver <module 'apps.clivet.urls' from 'F:\\SISCopaiseg\\apps\\clivet\\urls.py'> (None:clivet) ^>, <RegexURLPattern trabajador_upd ^perfil/editar/$>], [<RegexURLResolver <module 'apps.clinica.urls' from 'F:\\SISCopaiseg\\apps\\clinica\\urls.py'> (None:clinica) ^clinica/>], [<RegexURLResolver <module 'apps.ventas.urls' from 'F:\\SISCopaiseg\\apps\\ventas\\urls.py'> (None:ventas) ^ventas/>], [<RegexURLResolver <module 'apps.configuracion.urls' from 'F:\\SISCopaiseg\\apps\\configuracion\\urls.py'> (None:configuracion) ^configuracion/>], [<RegexURLResolver <module 'apps.compras.urls' from 'F:\\SISCopaiseg\\apps\\compras\\urls.py'> (None:compras) ^compras/>], [<RegexURLResolver <module 'apps.citas.urls' from 'F:\\SISCopaiseg\\apps\\citas\\urls.py'> (None:citas) ^citas/>], [<RegexURLResolver <module 'apps.acopios.urls' from 'F:\\SISCopaiseg\\apps\\acopios\\urls.py'> (None:acopios) ^acopios/>], [<RegexURLResolver <module 'smart_selects.urls' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\smart_selects\\urls.py'> (None:None) ^chaining/>], [<RegexURLPattern None ^media\/(?P<path>.*)$>]], 'path': 'favicon.ico'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 883, in _resolve_lookup
+    current = current[bit]
+TypeError: 'RegexURLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 891, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'RegexURLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 898, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in "<RegexURLResolver <module 'apps.configuracion.urls' from 'F:\\\\SISCopaiseg\\\\apps\\\\configuracion\\\\urls.py'> (None:configuracion) ^configuracion/>"
+[2017-12-01 08:57:09] DEBUG [django.template:927] Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\core\handlers\base.py", line 134, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\core\urlresolvers.py", line 404, in resolve
+    raise Resolver404({'tried': tried, 'path': new_path})
+django.core.urlresolvers.Resolver404: {'tried': [[<RegexURLResolver <module 'debug_toolbar.toolbar' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\debug_toolbar\\toolbar.py'> (djdt:djdt) ^__debug__/>], [<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>], [<RegexURLResolver <module 'django.contrib.admindocs.urls' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\django\\contrib\\admindocs\\urls.py'> (None:None) ^admin/doc/>], [<RegexURLResolver <module 'django.conf.urls.i18n' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\django\\conf\\urls\\i18n.py'> (None:None) ^i18n/>], [<RegexURLPattern None ^jsi18n/>], [<RegexURLResolver <module 'apps.mod_backend.urls' from 'F:\\SISCopaiseg\\apps\\mod_backend\\urls.py'> (None:mod_backend) ^mod_backend/>], [<RegexURLResolver <module 'apps.space.urls' from 'F:\\SISCopaiseg\\apps\\space\\urls.py'> (None:space) ^space/>], [<RegexURLResolver <module 'apps.sad.urls' from 'F:\\SISCopaiseg\\apps\\sad\\urls.py'> (None:sad) ^sad/>], [<RegexURLResolver <module 'apps.accounts.urls' from 'F:\\SISCopaiseg\\apps\\accounts\\urls.py'> (None:None) ^accounts/>], [<RegexURLPattern jfu_upload upload/>], [<RegexURLPattern jfu_delete ^delete/(?P<pk>\d+)$>], [<RegexURLPattern dashboard ^$>], [<RegexURLResolver <module 'apps.clivet.urls' from 'F:\\SISCopaiseg\\apps\\clivet\\urls.py'> (None:clivet) ^>, <RegexURLPattern trabajador_upd ^perfil/editar/$>], [<RegexURLResolver <module 'apps.clinica.urls' from 'F:\\SISCopaiseg\\apps\\clinica\\urls.py'> (None:clinica) ^clinica/>], [<RegexURLResolver <module 'apps.ventas.urls' from 'F:\\SISCopaiseg\\apps\\ventas\\urls.py'> (None:ventas) ^ventas/>], [<RegexURLResolver <module 'apps.configuracion.urls' from 'F:\\SISCopaiseg\\apps\\configuracion\\urls.py'> (None:configuracion) ^configuracion/>], [<RegexURLResolver <module 'apps.compras.urls' from 'F:\\SISCopaiseg\\apps\\compras\\urls.py'> (None:compras) ^compras/>], [<RegexURLResolver <module 'apps.citas.urls' from 'F:\\SISCopaiseg\\apps\\citas\\urls.py'> (None:citas) ^citas/>], [<RegexURLResolver <module 'apps.acopios.urls' from 'F:\\SISCopaiseg\\apps\\acopios\\urls.py'> (None:acopios) ^acopios/>], [<RegexURLResolver <module 'smart_selects.urls' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\smart_selects\\urls.py'> (None:None) ^chaining/>], [<RegexURLPattern None ^media\/(?P<path>.*)$>]], 'path': 'favicon.ico'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 883, in _resolve_lookup
+    current = current[bit]
+TypeError: 'RegexURLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 891, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'RegexURLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 898, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in "<RegexURLResolver <module 'apps.compras.urls' from 'F:\\\\SISCopaiseg\\\\apps\\\\compras\\\\urls.py'> (None:compras) ^compras/>"
+[2017-12-01 08:57:09] DEBUG [django.template:927] Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\core\handlers\base.py", line 134, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\core\urlresolvers.py", line 404, in resolve
+    raise Resolver404({'tried': tried, 'path': new_path})
+django.core.urlresolvers.Resolver404: {'tried': [[<RegexURLResolver <module 'debug_toolbar.toolbar' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\debug_toolbar\\toolbar.py'> (djdt:djdt) ^__debug__/>], [<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>], [<RegexURLResolver <module 'django.contrib.admindocs.urls' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\django\\contrib\\admindocs\\urls.py'> (None:None) ^admin/doc/>], [<RegexURLResolver <module 'django.conf.urls.i18n' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\django\\conf\\urls\\i18n.py'> (None:None) ^i18n/>], [<RegexURLPattern None ^jsi18n/>], [<RegexURLResolver <module 'apps.mod_backend.urls' from 'F:\\SISCopaiseg\\apps\\mod_backend\\urls.py'> (None:mod_backend) ^mod_backend/>], [<RegexURLResolver <module 'apps.space.urls' from 'F:\\SISCopaiseg\\apps\\space\\urls.py'> (None:space) ^space/>], [<RegexURLResolver <module 'apps.sad.urls' from 'F:\\SISCopaiseg\\apps\\sad\\urls.py'> (None:sad) ^sad/>], [<RegexURLResolver <module 'apps.accounts.urls' from 'F:\\SISCopaiseg\\apps\\accounts\\urls.py'> (None:None) ^accounts/>], [<RegexURLPattern jfu_upload upload/>], [<RegexURLPattern jfu_delete ^delete/(?P<pk>\d+)$>], [<RegexURLPattern dashboard ^$>], [<RegexURLResolver <module 'apps.clivet.urls' from 'F:\\SISCopaiseg\\apps\\clivet\\urls.py'> (None:clivet) ^>, <RegexURLPattern trabajador_upd ^perfil/editar/$>], [<RegexURLResolver <module 'apps.clinica.urls' from 'F:\\SISCopaiseg\\apps\\clinica\\urls.py'> (None:clinica) ^clinica/>], [<RegexURLResolver <module 'apps.ventas.urls' from 'F:\\SISCopaiseg\\apps\\ventas\\urls.py'> (None:ventas) ^ventas/>], [<RegexURLResolver <module 'apps.configuracion.urls' from 'F:\\SISCopaiseg\\apps\\configuracion\\urls.py'> (None:configuracion) ^configuracion/>], [<RegexURLResolver <module 'apps.compras.urls' from 'F:\\SISCopaiseg\\apps\\compras\\urls.py'> (None:compras) ^compras/>], [<RegexURLResolver <module 'apps.citas.urls' from 'F:\\SISCopaiseg\\apps\\citas\\urls.py'> (None:citas) ^citas/>], [<RegexURLResolver <module 'apps.acopios.urls' from 'F:\\SISCopaiseg\\apps\\acopios\\urls.py'> (None:acopios) ^acopios/>], [<RegexURLResolver <module 'smart_selects.urls' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\smart_selects\\urls.py'> (None:None) ^chaining/>], [<RegexURLPattern None ^media\/(?P<path>.*)$>]], 'path': 'favicon.ico'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 883, in _resolve_lookup
+    current = current[bit]
+TypeError: 'RegexURLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 891, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'RegexURLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 898, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in "<RegexURLResolver <module 'apps.citas.urls' from 'F:\\\\SISCopaiseg\\\\apps\\\\citas\\\\urls.py'> (None:citas) ^citas/>"
+[2017-12-01 08:57:09] DEBUG [django.template:927] Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\core\handlers\base.py", line 134, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\core\urlresolvers.py", line 404, in resolve
+    raise Resolver404({'tried': tried, 'path': new_path})
+django.core.urlresolvers.Resolver404: {'tried': [[<RegexURLResolver <module 'debug_toolbar.toolbar' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\debug_toolbar\\toolbar.py'> (djdt:djdt) ^__debug__/>], [<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>], [<RegexURLResolver <module 'django.contrib.admindocs.urls' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\django\\contrib\\admindocs\\urls.py'> (None:None) ^admin/doc/>], [<RegexURLResolver <module 'django.conf.urls.i18n' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\django\\conf\\urls\\i18n.py'> (None:None) ^i18n/>], [<RegexURLPattern None ^jsi18n/>], [<RegexURLResolver <module 'apps.mod_backend.urls' from 'F:\\SISCopaiseg\\apps\\mod_backend\\urls.py'> (None:mod_backend) ^mod_backend/>], [<RegexURLResolver <module 'apps.space.urls' from 'F:\\SISCopaiseg\\apps\\space\\urls.py'> (None:space) ^space/>], [<RegexURLResolver <module 'apps.sad.urls' from 'F:\\SISCopaiseg\\apps\\sad\\urls.py'> (None:sad) ^sad/>], [<RegexURLResolver <module 'apps.accounts.urls' from 'F:\\SISCopaiseg\\apps\\accounts\\urls.py'> (None:None) ^accounts/>], [<RegexURLPattern jfu_upload upload/>], [<RegexURLPattern jfu_delete ^delete/(?P<pk>\d+)$>], [<RegexURLPattern dashboard ^$>], [<RegexURLResolver <module 'apps.clivet.urls' from 'F:\\SISCopaiseg\\apps\\clivet\\urls.py'> (None:clivet) ^>, <RegexURLPattern trabajador_upd ^perfil/editar/$>], [<RegexURLResolver <module 'apps.clinica.urls' from 'F:\\SISCopaiseg\\apps\\clinica\\urls.py'> (None:clinica) ^clinica/>], [<RegexURLResolver <module 'apps.ventas.urls' from 'F:\\SISCopaiseg\\apps\\ventas\\urls.py'> (None:ventas) ^ventas/>], [<RegexURLResolver <module 'apps.configuracion.urls' from 'F:\\SISCopaiseg\\apps\\configuracion\\urls.py'> (None:configuracion) ^configuracion/>], [<RegexURLResolver <module 'apps.compras.urls' from 'F:\\SISCopaiseg\\apps\\compras\\urls.py'> (None:compras) ^compras/>], [<RegexURLResolver <module 'apps.citas.urls' from 'F:\\SISCopaiseg\\apps\\citas\\urls.py'> (None:citas) ^citas/>], [<RegexURLResolver <module 'apps.acopios.urls' from 'F:\\SISCopaiseg\\apps\\acopios\\urls.py'> (None:acopios) ^acopios/>], [<RegexURLResolver <module 'smart_selects.urls' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\smart_selects\\urls.py'> (None:None) ^chaining/>], [<RegexURLPattern None ^media\/(?P<path>.*)$>]], 'path': 'favicon.ico'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 883, in _resolve_lookup
+    current = current[bit]
+TypeError: 'RegexURLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 891, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'RegexURLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 898, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in "<RegexURLResolver <module 'apps.acopios.urls' from 'F:\\\\SISCopaiseg\\\\apps\\\\acopios\\\\urls.py'> (None:acopios) ^acopios/>"
+[2017-12-01 08:57:09] DEBUG [django.template:927] Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\core\handlers\base.py", line 134, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\core\urlresolvers.py", line 404, in resolve
+    raise Resolver404({'tried': tried, 'path': new_path})
+django.core.urlresolvers.Resolver404: {'tried': [[<RegexURLResolver <module 'debug_toolbar.toolbar' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\debug_toolbar\\toolbar.py'> (djdt:djdt) ^__debug__/>], [<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>], [<RegexURLResolver <module 'django.contrib.admindocs.urls' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\django\\contrib\\admindocs\\urls.py'> (None:None) ^admin/doc/>], [<RegexURLResolver <module 'django.conf.urls.i18n' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\django\\conf\\urls\\i18n.py'> (None:None) ^i18n/>], [<RegexURLPattern None ^jsi18n/>], [<RegexURLResolver <module 'apps.mod_backend.urls' from 'F:\\SISCopaiseg\\apps\\mod_backend\\urls.py'> (None:mod_backend) ^mod_backend/>], [<RegexURLResolver <module 'apps.space.urls' from 'F:\\SISCopaiseg\\apps\\space\\urls.py'> (None:space) ^space/>], [<RegexURLResolver <module 'apps.sad.urls' from 'F:\\SISCopaiseg\\apps\\sad\\urls.py'> (None:sad) ^sad/>], [<RegexURLResolver <module 'apps.accounts.urls' from 'F:\\SISCopaiseg\\apps\\accounts\\urls.py'> (None:None) ^accounts/>], [<RegexURLPattern jfu_upload upload/>], [<RegexURLPattern jfu_delete ^delete/(?P<pk>\d+)$>], [<RegexURLPattern dashboard ^$>], [<RegexURLResolver <module 'apps.clivet.urls' from 'F:\\SISCopaiseg\\apps\\clivet\\urls.py'> (None:clivet) ^>, <RegexURLPattern trabajador_upd ^perfil/editar/$>], [<RegexURLResolver <module 'apps.clinica.urls' from 'F:\\SISCopaiseg\\apps\\clinica\\urls.py'> (None:clinica) ^clinica/>], [<RegexURLResolver <module 'apps.ventas.urls' from 'F:\\SISCopaiseg\\apps\\ventas\\urls.py'> (None:ventas) ^ventas/>], [<RegexURLResolver <module 'apps.configuracion.urls' from 'F:\\SISCopaiseg\\apps\\configuracion\\urls.py'> (None:configuracion) ^configuracion/>], [<RegexURLResolver <module 'apps.compras.urls' from 'F:\\SISCopaiseg\\apps\\compras\\urls.py'> (None:compras) ^compras/>], [<RegexURLResolver <module 'apps.citas.urls' from 'F:\\SISCopaiseg\\apps\\citas\\urls.py'> (None:citas) ^citas/>], [<RegexURLResolver <module 'apps.acopios.urls' from 'F:\\SISCopaiseg\\apps\\acopios\\urls.py'> (None:acopios) ^acopios/>], [<RegexURLResolver <module 'smart_selects.urls' from 'F:\\SISCopaiseg\\copa\\lib\\site-packages\\smart_selects\\urls.py'> (None:None) ^chaining/>], [<RegexURLPattern None ^media\/(?P<path>.*)$>]], 'path': 'favicon.ico'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 883, in _resolve_lookup
+    current = current[bit]
+TypeError: 'RegexURLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 891, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'RegexURLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 898, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in "<RegexURLResolver <module 'smart_selects.urls' from 'F:\\\\SISCopaiseg\\\\copa\\\\lib\\\\site-packages\\\\smart_selects\\\\urls.py'> (None:None) ^chaining/>"
+[2017-12-01 08:57:25] DEBUG [django.db.backends:89] (0.004) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = '24rh6wrn8xzxyb37ovqymhufpwuivpiw' AND "django_session"."expire_date" > '2017-12-01 13:57:25.175287'); args=('24rh6wrn8xzxyb37ovqymhufpwuivpiw', '2017-12-01 13:57:25.175287')
+[2017-12-01 08:57:25] DEBUG [django.db.backends:89] (0.064) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined", "auth_user"."last_headquar_id", "auth_user"."last_module_id", "auth_user"."person_id" FROM "auth_user" WHERE "auth_user"."username" = 'admin'; args=('admin',)
+[2017-12-01 08:57:25] DEBUG [django.db.backends:89] (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined", "auth_user"."last_headquar_id", "auth_user"."last_module_id", "auth_user"."person_id" FROM "auth_user" WHERE "auth_user"."username" = 'admin'; args=('admin',)
+[2017-12-01 08:57:25] DEBUG [django.db.backends:89] (0.000) SELECT (1) AS "a" FROM "django_session" WHERE "django_session"."session_key" = '4okaf35cotzdmu0cqx2q3x0evznwt3cq' LIMIT 1; args=('4okaf35cotzdmu0cqx2q3x0evznwt3cq',)
+[2017-12-01 08:57:25] DEBUG [django.db.backends:89] (0.000) BEGIN; args=None
+[2017-12-01 08:57:25] DEBUG [django.db.backends:89] (0.000) INSERT INTO "django_session" ("session_key", "session_data", "expire_date") SELECT '4okaf35cotzdmu0cqx2q3x0evznwt3cq', 'OTk5ZjhkNjI1ZDhkZWY4ZWU1ODg1NWYyNDk2MWU0ZWI0NzAzYmI5NjqABJUYAAAAAAAAAH2UjA9fc2Vzc2lvbl9leHBpcnmUSwBzLg==', '2017-12-15 13:57:25.415302'; args=('4okaf35cotzdmu0cqx2q3x0evznwt3cq', 'OTk5ZjhkNjI1ZDhkZWY4ZWU1ODg1NWYyNDk2MWU0ZWI0NzAzYmI5NjqABJUYAAAAAAAAAH2UjA9fc2Vzc2lvbl9leHBpcnmUSwBzLg==', '2017-12-15 13:57:25.415302')
+[2017-12-01 08:57:25] DEBUG [django.db.backends:89] (0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE "django_session"."session_key" = '24rh6wrn8xzxyb37ovqymhufpwuivpiw'; args=('24rh6wrn8xzxyb37ovqymhufpwuivpiw',)
+[2017-12-01 08:57:25] DEBUG [django.db.backends:89] (0.000) BEGIN; args=None
+[2017-12-01 08:57:25] DEBUG [django.db.backends:89] (0.048) DELETE FROM "django_session" WHERE "django_session"."session_key" IN ('24rh6wrn8xzxyb37ovqymhufpwuivpiw'); args=('24rh6wrn8xzxyb37ovqymhufpwuivpiw',)
+[2017-12-01 08:57:25] DEBUG [django.db.backends:89] (0.000) SELECT "params_person"."id", "params_person"."identity_type", "params_person"."identity_num", "params_person"."first_name", "params_person"."last_name", "params_person"."birth_date", "params_person"."photo" FROM "params_person" WHERE "params_person"."id" = 2; args=(2,)
+[2017-12-01 08:57:25] DEBUG [django.db.backends:89] (0.000) BEGIN; args=None
+[2017-12-01 08:57:25] DEBUG [django.db.backends:89] (0.000) UPDATE "auth_user" SET "last_login" = '2017-12-01 13:57:25.651309' WHERE "auth_user"."id" = 1; args=('2017-12-01 13:57:25.651309', 1)
+[2017-12-01 08:57:25] DEBUG [django.db.backends:89] (0.000) BEGIN; args=None
+[2017-12-01 08:57:25] DEBUG [django.db.backends:89] (0.000) UPDATE "django_session" SET "session_data" = 'NGM0MDRkZjRkMGFjNjk4NmVlYzg5MTllZTc0ZjIzZDBmZmQ4ODVkNjqABJWrAAAAAAAAAH2UKIwPX3Nlc3Npb25fZXhwaXJ5lEsAjA1fYXV0aF91c2VyX2lklIwBMZSMEl9hdXRoX3VzZXJfYmFja2VuZJSMKWRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5klIwPX2F1dGhfdXNlcl9oYXNolIwoNmM4NTU5ODU2ZmExOGZjOGY4ZmUzM2E5YWMyYTI3MDQzODNmNTQyM5R1Lg==', "expire_date" = '2017-12-15 13:57:25.763428' WHERE "django_session"."session_key" = '4okaf35cotzdmu0cqx2q3x0evznwt3cq'; args=('NGM0MDRkZjRkMGFjNjk4NmVlYzg5MTllZTc0ZjIzZDBmZmQ4ODVkNjqABJWrAAAAAAAAAH2UKIwPX3Nlc3Npb25fZXhwaXJ5lEsAjA1fYXV0aF91c2VyX2lklIwBMZSMEl9hdXRoX3VzZXJfYmFja2VuZJSMKWRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5klIwPX2F1dGhfdXNlcl9oYXNolIwoNmM4NTU5ODU2ZmExOGZjOGY4ZmUzM2E5YWMyYTI3MDQzODNmNTQyM5R1Lg==', '2017-12-15 13:57:25.763428', '4okaf35cotzdmu0cqx2q3x0evznwt3cq')
+[2017-12-01 08:57:25] DEBUG [django.db.backends:89] (0.004) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = '4okaf35cotzdmu0cqx2q3x0evznwt3cq' AND "django_session"."expire_date" > '2017-12-01 13:57:25.839435'); args=('4okaf35cotzdmu0cqx2q3x0evznwt3cq', '2017-12-01 13:57:25.839435')
+[2017-12-01 08:57:25] DEBUG [django.db.backends:89] (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined", "auth_user"."last_headquar_id", "auth_user"."last_module_id", "auth_user"."person_id" FROM "auth_user" WHERE "auth_user"."id" = 1; args=(1,)
+[2017-12-01 08:57:25] DEBUG [django.db.backends:89] (0.000) SELECT CAST(SUM("ventas_venta"."total") AS NUMERIC) AS "total" FROM "ventas_venta" WHERE django_date_extract('month', "ventas_venta"."fechav") = 12; args=(12,)
+[2017-12-01 08:57:25] DEBUG [django.db.backends:89] (0.000) SELECT COUNT(*) AS "__count" FROM "ventas_venta"; args=()
+[2017-12-01 08:57:25] DEBUG [django.db.backends:89] (0.000) SELECT COUNT(*) AS "__count" FROM "compras_compra"; args=()
+[2017-12-01 08:57:25] DEBUG [django.db.backends:89] (0.000) SELECT COUNT(*) AS "__count" FROM "compras_proveedor"; args=()
+[2017-12-01 08:57:25] DEBUG [django.db.backends:89] (0.000) SELECT COUNT(*) AS "__count" FROM "clinica_cliente"; args=()
+[2017-12-01 08:57:25] DEBUG [django.db.backends:89] (0.000) SELECT COUNT(*) AS "__count" FROM "clinica_atenciones"; args=()
+[2017-12-01 08:57:25] DEBUG [django.db.backends:89] (0.000) SELECT COUNT(*) AS "__count" FROM "clinica_colamedica"; args=()
+[2017-12-01 08:57:25] DEBUG [django.db.backends:89] (0.000) SELECT COUNT(*) AS "__count" FROM "clinica_mascota"; args=()
+[2017-12-01 08:57:25] DEBUG [django.db.backends:89] (0.000) SELECT COUNT(*) AS "__count" FROM "citas_cita" WHERE "citas_cita"."date" <= '2017-12-01 13:57:25.863435'; args=('2017-12-01 13:57:25.863435',)
+[2017-12-01 08:57:25] DEBUG [django.db.backends:89] (0.004) SELECT CAST(SUM(("ventas_producto"."existencia" * "ventas_producto"."precioV")) AS NUMERIC) AS "total_soles" FROM "ventas_producto"; args=()
+[2017-12-01 08:57:25] DEBUG [django.template:927] Exception while resolving variable 'title' in template 'main/dashboard.html'.
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 883, in _resolve_lookup
+    current = current[bit]
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\context.py", line 77, in __getitem__
+    raise KeyError(key)
+KeyError: 'title'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 889, in _resolve_lookup
+    if isinstance(current, BaseContext) and getattr(type(current), bit):
+AttributeError: type object 'RequestContext' has no attribute 'title'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 898, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'title'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [title] in "[{'True': True, 'False': False, 'None': None}, {'csrf_token': <SimpleLazyObject: <function csrf.<locals>._get_val at 0x046E7108>>, 'request': <WSGIRequest: GET '/'>, 'user': <SimpleLazyObject: <User: admin>>, 'perms': <django.contrib.auth.context_processors.PermWrapper object at 0x04544F30>, 'messages': <django.contrib.messages.storage.fallback.FallbackStorage object at 0x055B9070>, 'DEFAULT_MESSAGE_LEVELS': {'DEBUG': 10, 'INFO': 20, 'SUCCESS': 25, 'WARNING': 30, 'ERROR': 40}, 'LANGUAGES': (('ja', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB7050>), ('zh-tw', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB7090>), ('fr', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB70D0>), ('de', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDEF0>), ('en', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDED0>), ('es', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF10>), ('es-ar', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF30>), ('es-pe', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF50>), ('pt', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF70>), ('pt-br', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDFB0>)), 'LANGUAGE_CODE': 'es', 'LANGUAGE_BIDI': False, 'MEDIA_URL': '/media/', 'STATIC_URL': '/static/', 'TIME_ZONE': 'Hora est. Pacífico, Sudamérica'}, {}, {'view': <apps.clivet.views.main.MainView object at 0x0539F790>, 'venta': 0, 'compra': 8, 'proveedor': 4, 'cliente': 2, 'atencion': 2, 'colamedica': 5, 'mascota': 1, 'cita': 0, 'bienes': Decimal('376029.00'), 'monto': 0}, {'block': <Block Node: title. Contents: [<Variable Node: title>, <TextNode: ' | '>, <Variable Node: site_title|default:_('CLIVET site admin')>, <TextNode: ' '>]>}]"
+[2017-12-01 08:57:25] DEBUG [django.template:927] Exception while resolving variable 'site_title' in template 'main/dashboard.html'.
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 883, in _resolve_lookup
+    current = current[bit]
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\context.py", line 77, in __getitem__
+    raise KeyError(key)
+KeyError: 'site_title'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 889, in _resolve_lookup
+    if isinstance(current, BaseContext) and getattr(type(current), bit):
+AttributeError: type object 'RequestContext' has no attribute 'site_title'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 898, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'site_title'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [site_title] in "[{'True': True, 'False': False, 'None': None}, {'csrf_token': <SimpleLazyObject: <function csrf.<locals>._get_val at 0x046E7108>>, 'request': <WSGIRequest: GET '/'>, 'user': <SimpleLazyObject: <User: admin>>, 'perms': <django.contrib.auth.context_processors.PermWrapper object at 0x04544F30>, 'messages': <django.contrib.messages.storage.fallback.FallbackStorage object at 0x055B9070>, 'DEFAULT_MESSAGE_LEVELS': {'DEBUG': 10, 'INFO': 20, 'SUCCESS': 25, 'WARNING': 30, 'ERROR': 40}, 'LANGUAGES': (('ja', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB7050>), ('zh-tw', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB7090>), ('fr', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB70D0>), ('de', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDEF0>), ('en', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDED0>), ('es', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF10>), ('es-ar', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF30>), ('es-pe', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF50>), ('pt', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF70>), ('pt-br', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDFB0>)), 'LANGUAGE_CODE': 'es', 'LANGUAGE_BIDI': False, 'MEDIA_URL': '/media/', 'STATIC_URL': '/static/', 'TIME_ZONE': 'Hora est. Pacífico, Sudamérica'}, {}, {'view': <apps.clivet.views.main.MainView object at 0x0539F790>, 'venta': 0, 'compra': 8, 'proveedor': 4, 'cliente': 2, 'atencion': 2, 'colamedica': 5, 'mascota': 1, 'cita': 0, 'bienes': Decimal('376029.00'), 'monto': 0}, {'block': <Block Node: title. Contents: [<Variable Node: title>, <TextNode: ' | '>, <Variable Node: site_title|default:_('CLIVET site admin')>, <TextNode: ' '>]>}]"
+[2017-12-01 08:57:25] DEBUG [django.db.backends:89] (0.000) SELECT "params_person"."id", "params_person"."identity_type", "params_person"."identity_num", "params_person"."first_name", "params_person"."last_name", "params_person"."birth_date", "params_person"."photo" FROM "params_person" WHERE "params_person"."id" = 2; args=(2,)
+[2017-12-01 08:57:25] DEBUG [django.db.backends:89] (0.000) SELECT DISTINCT "sad_menu"."id", "sad_menu"."module", "sad_menu"."title", "sad_menu"."url", "sad_menu"."pos", "sad_menu"."icon", "sad_menu"."is_active", "sad_menu"."description", "sad_menu"."created_at", "sad_menu"."updated_at", "sad_menu"."permission_id", "sad_menu"."parent_id" FROM "sad_menu" INNER JOIN "sad_menu" T2 ON ("sad_menu"."id" = T2."parent_id") WHERE (T2."id" IN (SELECT U0."id" FROM "sad_menu" U0 WHERE (U0."id" IS NOT NULL AND U0."module" = 'CLINICA' AND U0."is_active" = 1)) AND "sad_menu"."module" = 'CLINICA' AND "sad_menu"."is_active" = 1) ORDER BY "sad_menu"."pos" ASC; args=('CLINICA', True, 'CLINICA', True)
+[2017-12-01 08:57:25] DEBUG [django.db.backends:89] (0.000) SELECT "sad_menu"."id", "sad_menu"."module", "sad_menu"."title", "sad_menu"."url", "sad_menu"."pos", "sad_menu"."icon", "sad_menu"."is_active", "sad_menu"."description", "sad_menu"."created_at", "sad_menu"."updated_at", "sad_menu"."permission_id", "sad_menu"."parent_id" FROM "sad_menu" WHERE ("sad_menu"."id" IS NOT NULL AND "sad_menu"."parent_id" = 101 AND "sad_menu"."module" = 'CLINICA' AND "sad_menu"."is_active" = 1) ORDER BY "sad_menu"."pos" ASC; args=(101, 'CLINICA', True)
+[2017-12-01 08:57:25] DEBUG [django.db.backends:89] (0.000) SELECT "sad_menu"."id", "sad_menu"."module", "sad_menu"."title", "sad_menu"."url", "sad_menu"."pos", "sad_menu"."icon", "sad_menu"."is_active", "sad_menu"."description", "sad_menu"."created_at", "sad_menu"."updated_at", "sad_menu"."permission_id", "sad_menu"."parent_id" FROM "sad_menu" WHERE ("sad_menu"."id" IS NOT NULL AND "sad_menu"."parent_id" = 121 AND "sad_menu"."module" = 'CLINICA' AND "sad_menu"."is_active" = 1) ORDER BY "sad_menu"."pos" ASC; args=(121, 'CLINICA', True)
+[2017-12-01 08:57:25] DEBUG [django.db.backends:89] (0.000) SELECT "sad_menu"."id", "sad_menu"."module", "sad_menu"."title", "sad_menu"."url", "sad_menu"."pos", "sad_menu"."icon", "sad_menu"."is_active", "sad_menu"."description", "sad_menu"."created_at", "sad_menu"."updated_at", "sad_menu"."permission_id", "sad_menu"."parent_id" FROM "sad_menu" WHERE ("sad_menu"."id" IS NOT NULL AND "sad_menu"."parent_id" = 106 AND "sad_menu"."module" = 'CLINICA' AND "sad_menu"."is_active" = 1) ORDER BY "sad_menu"."pos" ASC; args=(106, 'CLINICA', True)
+[2017-12-01 08:57:25] DEBUG [django.db.backends:89] (0.000) SELECT "sad_menu"."id", "sad_menu"."module", "sad_menu"."title", "sad_menu"."url", "sad_menu"."pos", "sad_menu"."icon", "sad_menu"."is_active", "sad_menu"."description", "sad_menu"."created_at", "sad_menu"."updated_at", "sad_menu"."permission_id", "sad_menu"."parent_id" FROM "sad_menu" WHERE ("sad_menu"."id" IS NOT NULL AND "sad_menu"."parent_id" = 108 AND "sad_menu"."module" = 'CLINICA' AND "sad_menu"."is_active" = 1) ORDER BY "sad_menu"."pos" ASC; args=(108, 'CLINICA', True)
+[2017-12-01 08:57:26] DEBUG [django.db.backends:89] (0.004) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = '4okaf35cotzdmu0cqx2q3x0evznwt3cq' AND "django_session"."expire_date" > '2017-12-01 13:57:26.303635'); args=('4okaf35cotzdmu0cqx2q3x0evznwt3cq', '2017-12-01 13:57:26.303635')
+[2017-12-01 08:57:27] DEBUG [django.db.backends:89] (0.004) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = '4okaf35cotzdmu0cqx2q3x0evznwt3cq' AND "django_session"."expire_date" > '2017-12-01 13:57:27.427670'); args=('4okaf35cotzdmu0cqx2q3x0evznwt3cq', '2017-12-01 13:57:27.427670')
+[2017-12-01 08:57:46] DEBUG [django.db.backends:89] (0.008) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = '4okaf35cotzdmu0cqx2q3x0evznwt3cq' AND "django_session"."expire_date" > '2017-12-01 13:57:46.860794'); args=('4okaf35cotzdmu0cqx2q3x0evznwt3cq', '2017-12-01 13:57:46.860794')
+[2017-12-01 08:57:46] DEBUG [django.db.backends:89] (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined", "auth_user"."last_headquar_id", "auth_user"."last_module_id", "auth_user"."person_id" FROM "auth_user" WHERE "auth_user"."id" = 1; args=(1,)
+[2017-12-01 08:57:46] DEBUG [django.db.backends:89] (0.000) SELECT CAST(SUM("ventas_venta"."total") AS NUMERIC) AS "total" FROM "ventas_venta" WHERE django_date_extract('month', "ventas_venta"."fechav") = 12; args=(12,)
+[2017-12-01 08:57:46] DEBUG [django.db.backends:89] (0.000) SELECT COUNT(*) AS "__count" FROM "ventas_venta"; args=()
+[2017-12-01 08:57:46] DEBUG [django.db.backends:89] (0.000) SELECT COUNT(*) AS "__count" FROM "compras_compra"; args=()
+[2017-12-01 08:57:46] DEBUG [django.db.backends:89] (0.000) SELECT COUNT(*) AS "__count" FROM "compras_proveedor"; args=()
+[2017-12-01 08:57:46] DEBUG [django.db.backends:89] (0.000) SELECT COUNT(*) AS "__count" FROM "clinica_cliente"; args=()
+[2017-12-01 08:57:46] DEBUG [django.db.backends:89] (0.000) SELECT COUNT(*) AS "__count" FROM "clinica_atenciones"; args=()
+[2017-12-01 08:57:46] DEBUG [django.db.backends:89] (0.000) SELECT COUNT(*) AS "__count" FROM "clinica_colamedica"; args=()
+[2017-12-01 08:57:46] DEBUG [django.db.backends:89] (0.000) SELECT COUNT(*) AS "__count" FROM "clinica_mascota"; args=()
+[2017-12-01 08:57:46] DEBUG [django.db.backends:89] (0.000) SELECT COUNT(*) AS "__count" FROM "citas_cita" WHERE "citas_cita"."date" <= '2017-12-01 13:57:46.896799'; args=('2017-12-01 13:57:46.896799',)
+[2017-12-01 08:57:46] DEBUG [django.db.backends:89] (0.004) SELECT CAST(SUM(("ventas_producto"."existencia" * "ventas_producto"."precioV")) AS NUMERIC) AS "total_soles" FROM "ventas_producto"; args=()
+[2017-12-01 08:57:46] DEBUG [django.template:927] Exception while resolving variable 'title' in template 'main/dashboard.html'.
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 883, in _resolve_lookup
+    current = current[bit]
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\context.py", line 77, in __getitem__
+    raise KeyError(key)
+KeyError: 'title'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 889, in _resolve_lookup
+    if isinstance(current, BaseContext) and getattr(type(current), bit):
+AttributeError: type object 'RequestContext' has no attribute 'title'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 898, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'title'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [title] in "[{'True': True, 'False': False, 'None': None}, {'csrf_token': <SimpleLazyObject: <function csrf.<locals>._get_val at 0x055C3660>>, 'request': <WSGIRequest: GET '/'>, 'user': <SimpleLazyObject: <User: admin>>, 'perms': <django.contrib.auth.context_processors.PermWrapper object at 0x046FB3F0>, 'messages': <django.contrib.messages.storage.fallback.FallbackStorage object at 0x046FBF10>, 'DEFAULT_MESSAGE_LEVELS': {'DEBUG': 10, 'INFO': 20, 'SUCCESS': 25, 'WARNING': 30, 'ERROR': 40}, 'LANGUAGES': (('ja', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB7050>), ('zh-tw', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB7090>), ('fr', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB70D0>), ('de', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDEF0>), ('en', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDED0>), ('es', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF10>), ('es-ar', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF30>), ('es-pe', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF50>), ('pt', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF70>), ('pt-br', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDFB0>)), 'LANGUAGE_CODE': 'es', 'LANGUAGE_BIDI': False, 'MEDIA_URL': '/media/', 'STATIC_URL': '/static/', 'TIME_ZONE': 'Hora est. Pacífico, Sudamérica'}, {}, {'view': <apps.clivet.views.main.MainView object at 0x047013B0>, 'venta': 0, 'compra': 8, 'proveedor': 4, 'cliente': 2, 'atencion': 2, 'colamedica': 5, 'mascota': 1, 'cita': 0, 'bienes': Decimal('376029.00'), 'monto': 0}, {'block': <Block Node: title. Contents: [<Variable Node: title>, <TextNode: ' | '>, <Variable Node: site_title|default:_('CLIVET site admin')>, <TextNode: ' '>]>}]"
+[2017-12-01 08:57:46] DEBUG [django.template:927] Exception while resolving variable 'site_title' in template 'main/dashboard.html'.
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 883, in _resolve_lookup
+    current = current[bit]
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\context.py", line 77, in __getitem__
+    raise KeyError(key)
+KeyError: 'site_title'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 889, in _resolve_lookup
+    if isinstance(current, BaseContext) and getattr(type(current), bit):
+AttributeError: type object 'RequestContext' has no attribute 'site_title'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 898, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'site_title'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [site_title] in "[{'True': True, 'False': False, 'None': None}, {'csrf_token': <SimpleLazyObject: <function csrf.<locals>._get_val at 0x055C3660>>, 'request': <WSGIRequest: GET '/'>, 'user': <SimpleLazyObject: <User: admin>>, 'perms': <django.contrib.auth.context_processors.PermWrapper object at 0x046FB3F0>, 'messages': <django.contrib.messages.storage.fallback.FallbackStorage object at 0x046FBF10>, 'DEFAULT_MESSAGE_LEVELS': {'DEBUG': 10, 'INFO': 20, 'SUCCESS': 25, 'WARNING': 30, 'ERROR': 40}, 'LANGUAGES': (('ja', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB7050>), ('zh-tw', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB7090>), ('fr', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB70D0>), ('de', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDEF0>), ('en', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDED0>), ('es', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF10>), ('es-ar', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF30>), ('es-pe', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF50>), ('pt', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF70>), ('pt-br', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDFB0>)), 'LANGUAGE_CODE': 'es', 'LANGUAGE_BIDI': False, 'MEDIA_URL': '/media/', 'STATIC_URL': '/static/', 'TIME_ZONE': 'Hora est. Pacífico, Sudamérica'}, {}, {'view': <apps.clivet.views.main.MainView object at 0x047013B0>, 'venta': 0, 'compra': 8, 'proveedor': 4, 'cliente': 2, 'atencion': 2, 'colamedica': 5, 'mascota': 1, 'cita': 0, 'bienes': Decimal('376029.00'), 'monto': 0}, {'block': <Block Node: title. Contents: [<Variable Node: title>, <TextNode: ' | '>, <Variable Node: site_title|default:_('CLIVET site admin')>, <TextNode: ' '>]>}]"
+[2017-12-01 08:57:46] DEBUG [django.db.backends:89] (0.000) SELECT "params_person"."id", "params_person"."identity_type", "params_person"."identity_num", "params_person"."first_name", "params_person"."last_name", "params_person"."birth_date", "params_person"."photo" FROM "params_person" WHERE "params_person"."id" = 2; args=(2,)
+[2017-12-01 08:57:46] DEBUG [django.db.backends:89] (0.000) SELECT DISTINCT "sad_menu"."id", "sad_menu"."module", "sad_menu"."title", "sad_menu"."url", "sad_menu"."pos", "sad_menu"."icon", "sad_menu"."is_active", "sad_menu"."description", "sad_menu"."created_at", "sad_menu"."updated_at", "sad_menu"."permission_id", "sad_menu"."parent_id" FROM "sad_menu" INNER JOIN "sad_menu" T2 ON ("sad_menu"."id" = T2."parent_id") WHERE (T2."id" IN (SELECT U0."id" FROM "sad_menu" U0 WHERE (U0."id" IS NOT NULL AND U0."module" = 'CLINICA' AND U0."is_active" = 1)) AND "sad_menu"."module" = 'CLINICA' AND "sad_menu"."is_active" = 1) ORDER BY "sad_menu"."pos" ASC; args=('CLINICA', True, 'CLINICA', True)
+[2017-12-01 08:57:46] DEBUG [django.db.backends:89] (0.000) SELECT "sad_menu"."id", "sad_menu"."module", "sad_menu"."title", "sad_menu"."url", "sad_menu"."pos", "sad_menu"."icon", "sad_menu"."is_active", "sad_menu"."description", "sad_menu"."created_at", "sad_menu"."updated_at", "sad_menu"."permission_id", "sad_menu"."parent_id" FROM "sad_menu" WHERE ("sad_menu"."id" IS NOT NULL AND "sad_menu"."parent_id" = 101 AND "sad_menu"."module" = 'CLINICA' AND "sad_menu"."is_active" = 1) ORDER BY "sad_menu"."pos" ASC; args=(101, 'CLINICA', True)
+[2017-12-01 08:57:46] DEBUG [django.db.backends:89] (0.000) SELECT "sad_menu"."id", "sad_menu"."module", "sad_menu"."title", "sad_menu"."url", "sad_menu"."pos", "sad_menu"."icon", "sad_menu"."is_active", "sad_menu"."description", "sad_menu"."created_at", "sad_menu"."updated_at", "sad_menu"."permission_id", "sad_menu"."parent_id" FROM "sad_menu" WHERE ("sad_menu"."id" IS NOT NULL AND "sad_menu"."parent_id" = 121 AND "sad_menu"."module" = 'CLINICA' AND "sad_menu"."is_active" = 1) ORDER BY "sad_menu"."pos" ASC; args=(121, 'CLINICA', True)
+[2017-12-01 08:57:46] DEBUG [django.db.backends:89] (0.000) SELECT "sad_menu"."id", "sad_menu"."module", "sad_menu"."title", "sad_menu"."url", "sad_menu"."pos", "sad_menu"."icon", "sad_menu"."is_active", "sad_menu"."description", "sad_menu"."created_at", "sad_menu"."updated_at", "sad_menu"."permission_id", "sad_menu"."parent_id" FROM "sad_menu" WHERE ("sad_menu"."id" IS NOT NULL AND "sad_menu"."parent_id" = 106 AND "sad_menu"."module" = 'CLINICA' AND "sad_menu"."is_active" = 1) ORDER BY "sad_menu"."pos" ASC; args=(106, 'CLINICA', True)
+[2017-12-01 08:57:46] DEBUG [django.db.backends:89] (0.000) SELECT "sad_menu"."id", "sad_menu"."module", "sad_menu"."title", "sad_menu"."url", "sad_menu"."pos", "sad_menu"."icon", "sad_menu"."is_active", "sad_menu"."description", "sad_menu"."created_at", "sad_menu"."updated_at", "sad_menu"."permission_id", "sad_menu"."parent_id" FROM "sad_menu" WHERE ("sad_menu"."id" IS NOT NULL AND "sad_menu"."parent_id" = 108 AND "sad_menu"."module" = 'CLINICA' AND "sad_menu"."is_active" = 1) ORDER BY "sad_menu"."pos" ASC; args=(108, 'CLINICA', True)
+[2017-12-01 09:01:55] DEBUG [django.db.backends:89] (0.004) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = '4okaf35cotzdmu0cqx2q3x0evznwt3cq' AND "django_session"."expire_date" > '2017-12-01 14:01:55.638742'); args=('4okaf35cotzdmu0cqx2q3x0evznwt3cq', '2017-12-01 14:01:55.638742')
+[2017-12-01 09:01:55] DEBUG [django.db.backends:89] (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined", "auth_user"."last_headquar_id", "auth_user"."last_module_id", "auth_user"."person_id" FROM "auth_user" WHERE "auth_user"."id" = 1; args=(1,)
+[2017-12-01 09:01:55] DEBUG [django.db.backends:89] (0.000) SELECT CAST(SUM("ventas_venta"."total") AS NUMERIC) AS "total" FROM "ventas_venta" WHERE django_date_extract('month', "ventas_venta"."fechav") = 12; args=(12,)
+[2017-12-01 09:01:55] DEBUG [django.db.backends:89] (0.000) SELECT COUNT(*) AS "__count" FROM "ventas_venta"; args=()
+[2017-12-01 09:01:55] DEBUG [django.db.backends:89] (0.000) SELECT COUNT(*) AS "__count" FROM "compras_compra"; args=()
+[2017-12-01 09:01:55] DEBUG [django.db.backends:89] (0.000) SELECT COUNT(*) AS "__count" FROM "compras_proveedor"; args=()
+[2017-12-01 09:01:55] DEBUG [django.db.backends:89] (0.000) SELECT COUNT(*) AS "__count" FROM "clinica_cliente"; args=()
+[2017-12-01 09:01:55] DEBUG [django.db.backends:89] (0.000) SELECT COUNT(*) AS "__count" FROM "clinica_atenciones"; args=()
+[2017-12-01 09:01:55] DEBUG [django.db.backends:89] (0.000) SELECT COUNT(*) AS "__count" FROM "clinica_colamedica"; args=()
+[2017-12-01 09:01:55] DEBUG [django.db.backends:89] (0.000) SELECT COUNT(*) AS "__count" FROM "clinica_mascota"; args=()
+[2017-12-01 09:01:55] DEBUG [django.db.backends:89] (0.000) SELECT COUNT(*) AS "__count" FROM "citas_cita" WHERE "citas_cita"."date" <= '2017-12-01 14:01:55.658742'; args=('2017-12-01 14:01:55.658742',)
+[2017-12-01 09:01:55] DEBUG [django.db.backends:89] (0.000) SELECT CAST(SUM(("ventas_producto"."existencia" * "ventas_producto"."precioV")) AS NUMERIC) AS "total_soles" FROM "ventas_producto"; args=()
+[2017-12-01 09:01:55] DEBUG [django.template:927] Exception while resolving variable 'title' in template 'main/dashboard.html'.
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 883, in _resolve_lookup
+    current = current[bit]
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\context.py", line 77, in __getitem__
+    raise KeyError(key)
+KeyError: 'title'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 889, in _resolve_lookup
+    if isinstance(current, BaseContext) and getattr(type(current), bit):
+AttributeError: type object 'RequestContext' has no attribute 'title'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 898, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'title'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [title] in "[{'True': True, 'False': False, 'None': None}, {'csrf_token': <SimpleLazyObject: <function csrf.<locals>._get_val at 0x055C34B0>>, 'request': <WSGIRequest: GET '/'>, 'user': <SimpleLazyObject: <User: admin>>, 'perms': <django.contrib.auth.context_processors.PermWrapper object at 0x0539BAF0>, 'messages': <django.contrib.messages.storage.fallback.FallbackStorage object at 0x055D53B0>, 'DEFAULT_MESSAGE_LEVELS': {'DEBUG': 10, 'INFO': 20, 'SUCCESS': 25, 'WARNING': 30, 'ERROR': 40}, 'LANGUAGES': (('ja', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB7050>), ('zh-tw', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB7090>), ('fr', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB70D0>), ('de', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDEF0>), ('en', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDED0>), ('es', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF10>), ('es-ar', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF30>), ('es-pe', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF50>), ('pt', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF70>), ('pt-br', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDFB0>)), 'LANGUAGE_CODE': 'es', 'LANGUAGE_BIDI': False, 'MEDIA_URL': '/media/', 'STATIC_URL': '/static/', 'TIME_ZONE': 'Hora est. Pacífico, Sudamérica'}, {}, {'view': <apps.clivet.views.main.MainView object at 0x055D5590>, 'venta': 0, 'compra': 8, 'proveedor': 4, 'cliente': 2, 'atencion': 2, 'colamedica': 5, 'mascota': 1, 'cita': 0, 'bienes': Decimal('376029.00'), 'monto': 0}, {'block': <Block Node: title. Contents: [<Variable Node: title>, <TextNode: ' | '>, <Variable Node: site_title|default:_('hola site admin')>, <TextNode: ' '>]>}]"
+[2017-12-01 09:01:55] DEBUG [django.template:927] Exception while resolving variable 'site_title' in template 'main/dashboard.html'.
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 883, in _resolve_lookup
+    current = current[bit]
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\context.py", line 77, in __getitem__
+    raise KeyError(key)
+KeyError: 'site_title'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 889, in _resolve_lookup
+    if isinstance(current, BaseContext) and getattr(type(current), bit):
+AttributeError: type object 'RequestContext' has no attribute 'site_title'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 898, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'site_title'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [site_title] in "[{'True': True, 'False': False, 'None': None}, {'csrf_token': <SimpleLazyObject: <function csrf.<locals>._get_val at 0x055C34B0>>, 'request': <WSGIRequest: GET '/'>, 'user': <SimpleLazyObject: <User: admin>>, 'perms': <django.contrib.auth.context_processors.PermWrapper object at 0x0539BAF0>, 'messages': <django.contrib.messages.storage.fallback.FallbackStorage object at 0x055D53B0>, 'DEFAULT_MESSAGE_LEVELS': {'DEBUG': 10, 'INFO': 20, 'SUCCESS': 25, 'WARNING': 30, 'ERROR': 40}, 'LANGUAGES': (('ja', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB7050>), ('zh-tw', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB7090>), ('fr', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB70D0>), ('de', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDEF0>), ('en', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDED0>), ('es', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF10>), ('es-ar', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF30>), ('es-pe', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF50>), ('pt', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF70>), ('pt-br', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDFB0>)), 'LANGUAGE_CODE': 'es', 'LANGUAGE_BIDI': False, 'MEDIA_URL': '/media/', 'STATIC_URL': '/static/', 'TIME_ZONE': 'Hora est. Pacífico, Sudamérica'}, {}, {'view': <apps.clivet.views.main.MainView object at 0x055D5590>, 'venta': 0, 'compra': 8, 'proveedor': 4, 'cliente': 2, 'atencion': 2, 'colamedica': 5, 'mascota': 1, 'cita': 0, 'bienes': Decimal('376029.00'), 'monto': 0}, {'block': <Block Node: title. Contents: [<Variable Node: title>, <TextNode: ' | '>, <Variable Node: site_title|default:_('hola site admin')>, <TextNode: ' '>]>}]"
+[2017-12-01 09:01:55] DEBUG [django.db.backends:89] (0.000) SELECT "params_person"."id", "params_person"."identity_type", "params_person"."identity_num", "params_person"."first_name", "params_person"."last_name", "params_person"."birth_date", "params_person"."photo" FROM "params_person" WHERE "params_person"."id" = 2; args=(2,)
+[2017-12-01 09:01:55] DEBUG [django.db.backends:89] (0.000) SELECT DISTINCT "sad_menu"."id", "sad_menu"."module", "sad_menu"."title", "sad_menu"."url", "sad_menu"."pos", "sad_menu"."icon", "sad_menu"."is_active", "sad_menu"."description", "sad_menu"."created_at", "sad_menu"."updated_at", "sad_menu"."permission_id", "sad_menu"."parent_id" FROM "sad_menu" INNER JOIN "sad_menu" T2 ON ("sad_menu"."id" = T2."parent_id") WHERE (T2."id" IN (SELECT U0."id" FROM "sad_menu" U0 WHERE (U0."id" IS NOT NULL AND U0."module" = 'CLINICA' AND U0."is_active" = 1)) AND "sad_menu"."module" = 'CLINICA' AND "sad_menu"."is_active" = 1) ORDER BY "sad_menu"."pos" ASC; args=('CLINICA', True, 'CLINICA', True)
+[2017-12-01 09:01:55] DEBUG [django.db.backends:89] (0.000) SELECT "sad_menu"."id", "sad_menu"."module", "sad_menu"."title", "sad_menu"."url", "sad_menu"."pos", "sad_menu"."icon", "sad_menu"."is_active", "sad_menu"."description", "sad_menu"."created_at", "sad_menu"."updated_at", "sad_menu"."permission_id", "sad_menu"."parent_id" FROM "sad_menu" WHERE ("sad_menu"."id" IS NOT NULL AND "sad_menu"."parent_id" = 101 AND "sad_menu"."module" = 'CLINICA' AND "sad_menu"."is_active" = 1) ORDER BY "sad_menu"."pos" ASC; args=(101, 'CLINICA', True)
+[2017-12-01 09:01:55] DEBUG [django.db.backends:89] (0.000) SELECT "sad_menu"."id", "sad_menu"."module", "sad_menu"."title", "sad_menu"."url", "sad_menu"."pos", "sad_menu"."icon", "sad_menu"."is_active", "sad_menu"."description", "sad_menu"."created_at", "sad_menu"."updated_at", "sad_menu"."permission_id", "sad_menu"."parent_id" FROM "sad_menu" WHERE ("sad_menu"."id" IS NOT NULL AND "sad_menu"."parent_id" = 121 AND "sad_menu"."module" = 'CLINICA' AND "sad_menu"."is_active" = 1) ORDER BY "sad_menu"."pos" ASC; args=(121, 'CLINICA', True)
+[2017-12-01 09:01:55] DEBUG [django.db.backends:89] (0.000) SELECT "sad_menu"."id", "sad_menu"."module", "sad_menu"."title", "sad_menu"."url", "sad_menu"."pos", "sad_menu"."icon", "sad_menu"."is_active", "sad_menu"."description", "sad_menu"."created_at", "sad_menu"."updated_at", "sad_menu"."permission_id", "sad_menu"."parent_id" FROM "sad_menu" WHERE ("sad_menu"."id" IS NOT NULL AND "sad_menu"."parent_id" = 106 AND "sad_menu"."module" = 'CLINICA' AND "sad_menu"."is_active" = 1) ORDER BY "sad_menu"."pos" ASC; args=(106, 'CLINICA', True)
+[2017-12-01 09:01:55] DEBUG [django.db.backends:89] (0.000) SELECT "sad_menu"."id", "sad_menu"."module", "sad_menu"."title", "sad_menu"."url", "sad_menu"."pos", "sad_menu"."icon", "sad_menu"."is_active", "sad_menu"."description", "sad_menu"."created_at", "sad_menu"."updated_at", "sad_menu"."permission_id", "sad_menu"."parent_id" FROM "sad_menu" WHERE ("sad_menu"."id" IS NOT NULL AND "sad_menu"."parent_id" = 108 AND "sad_menu"."module" = 'CLINICA' AND "sad_menu"."is_active" = 1) ORDER BY "sad_menu"."pos" ASC; args=(108, 'CLINICA', True)
+[2017-12-01 09:01:55] DEBUG [django.db.backends:89] (0.004) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = '4okaf35cotzdmu0cqx2q3x0evznwt3cq' AND "django_session"."expire_date" > '2017-12-01 14:01:55.794746'); args=('4okaf35cotzdmu0cqx2q3x0evznwt3cq', '2017-12-01 14:01:55.794746')
+[2017-12-01 09:02:57] DEBUG [django.db.backends:89] (0.004) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = '4okaf35cotzdmu0cqx2q3x0evznwt3cq' AND "django_session"."expire_date" > '2017-12-01 14:02:57.015383'); args=('4okaf35cotzdmu0cqx2q3x0evznwt3cq', '2017-12-01 14:02:57.015383')
+[2017-12-01 09:02:57] DEBUG [django.db.backends:89] (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined", "auth_user"."last_headquar_id", "auth_user"."last_module_id", "auth_user"."person_id" FROM "auth_user" WHERE "auth_user"."id" = 1; args=(1,)
+[2017-12-01 09:02:57] DEBUG [django.db.backends:89] (0.000) SELECT CAST(SUM("ventas_venta"."total") AS NUMERIC) AS "total" FROM "ventas_venta" WHERE django_date_extract('month', "ventas_venta"."fechav") = 12; args=(12,)
+[2017-12-01 09:02:57] DEBUG [django.db.backends:89] (0.000) SELECT COUNT(*) AS "__count" FROM "ventas_venta"; args=()
+[2017-12-01 09:02:57] DEBUG [django.db.backends:89] (0.000) SELECT COUNT(*) AS "__count" FROM "compras_compra"; args=()
+[2017-12-01 09:02:57] DEBUG [django.db.backends:89] (0.000) SELECT COUNT(*) AS "__count" FROM "compras_proveedor"; args=()
+[2017-12-01 09:02:57] DEBUG [django.db.backends:89] (0.000) SELECT COUNT(*) AS "__count" FROM "clinica_cliente"; args=()
+[2017-12-01 09:02:57] DEBUG [django.db.backends:89] (0.000) SELECT COUNT(*) AS "__count" FROM "clinica_atenciones"; args=()
+[2017-12-01 09:02:57] DEBUG [django.db.backends:89] (0.000) SELECT COUNT(*) AS "__count" FROM "clinica_colamedica"; args=()
+[2017-12-01 09:02:57] DEBUG [django.db.backends:89] (0.000) SELECT COUNT(*) AS "__count" FROM "clinica_mascota"; args=()
+[2017-12-01 09:02:57] DEBUG [django.db.backends:89] (0.000) SELECT COUNT(*) AS "__count" FROM "citas_cita" WHERE "citas_cita"."date" <= '2017-12-01 14:02:57.027384'; args=('2017-12-01 14:02:57.027384',)
+[2017-12-01 09:02:57] DEBUG [django.db.backends:89] (0.000) SELECT CAST(SUM(("ventas_producto"."existencia" * "ventas_producto"."precioV")) AS NUMERIC) AS "total_soles" FROM "ventas_producto"; args=()
+[2017-12-01 09:02:57] DEBUG [django.template:927] Exception while resolving variable 'title' in template 'main/dashboard.html'.
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 883, in _resolve_lookup
+    current = current[bit]
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\context.py", line 77, in __getitem__
+    raise KeyError(key)
+KeyError: 'title'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 889, in _resolve_lookup
+    if isinstance(current, BaseContext) and getattr(type(current), bit):
+AttributeError: type object 'RequestContext' has no attribute 'title'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 898, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'title'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [title] in "[{'True': True, 'False': False, 'None': None}, {'csrf_token': <SimpleLazyObject: <function csrf.<locals>._get_val at 0x028D9A50>>, 'request': <WSGIRequest: GET '/'>, 'user': <SimpleLazyObject: <User: admin>>, 'perms': <django.contrib.auth.context_processors.PermWrapper object at 0x045B3B30>, 'messages': <django.contrib.messages.storage.fallback.FallbackStorage object at 0x045B3B10>, 'DEFAULT_MESSAGE_LEVELS': {'DEBUG': 10, 'INFO': 20, 'SUCCESS': 25, 'WARNING': 30, 'ERROR': 40}, 'LANGUAGES': (('ja', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB7050>), ('zh-tw', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB7090>), ('fr', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB70D0>), ('de', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDEF0>), ('en', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDED0>), ('es', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF10>), ('es-ar', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF30>), ('es-pe', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF50>), ('pt', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF70>), ('pt-br', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDFB0>)), 'LANGUAGE_CODE': 'es', 'LANGUAGE_BIDI': False, 'MEDIA_URL': '/media/', 'STATIC_URL': '/static/', 'TIME_ZONE': 'Hora est. Pacífico, Sudamérica'}, {}, {'view': <apps.clivet.views.main.MainView object at 0x045B3390>, 'venta': 0, 'compra': 8, 'proveedor': 4, 'cliente': 2, 'atencion': 2, 'colamedica': 5, 'mascota': 1, 'cita': 0, 'bienes': Decimal('376029.00'), 'monto': 0}, {'block': <Block Node: title. Contents: [<Variable Node: title>, <TextNode: ' | '>, <Variable Node: site_title|default:_('COPAISEG site admin')>, <TextNode: ' '>]>}]"
+[2017-12-01 09:02:57] DEBUG [django.template:927] Exception while resolving variable 'site_title' in template 'main/dashboard.html'.
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 883, in _resolve_lookup
+    current = current[bit]
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\context.py", line 77, in __getitem__
+    raise KeyError(key)
+KeyError: 'site_title'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 889, in _resolve_lookup
+    if isinstance(current, BaseContext) and getattr(type(current), bit):
+AttributeError: type object 'RequestContext' has no attribute 'site_title'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 898, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'site_title'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\SISCopaiseg\copa\lib\site-packages\django\template\base.py", line 905, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [site_title] in "[{'True': True, 'False': False, 'None': None}, {'csrf_token': <SimpleLazyObject: <function csrf.<locals>._get_val at 0x028D9A50>>, 'request': <WSGIRequest: GET '/'>, 'user': <SimpleLazyObject: <User: admin>>, 'perms': <django.contrib.auth.context_processors.PermWrapper object at 0x045B3B30>, 'messages': <django.contrib.messages.storage.fallback.FallbackStorage object at 0x045B3B10>, 'DEFAULT_MESSAGE_LEVELS': {'DEBUG': 10, 'INFO': 20, 'SUCCESS': 25, 'WARNING': 30, 'ERROR': 40}, 'LANGUAGES': (('ja', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB7050>), ('zh-tw', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB7090>), ('fr', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BB70D0>), ('de', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDEF0>), ('en', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDED0>), ('es', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF10>), ('es-ar', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF30>), ('es-pe', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF50>), ('pt', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDF70>), ('pt-br', <django.utils.functional.lazy.<locals>.__proxy__ object at 0x02BBDFB0>)), 'LANGUAGE_CODE': 'es', 'LANGUAGE_BIDI': False, 'MEDIA_URL': '/media/', 'STATIC_URL': '/static/', 'TIME_ZONE': 'Hora est. Pacífico, Sudamérica'}, {}, {'view': <apps.clivet.views.main.MainView object at 0x045B3390>, 'venta': 0, 'compra': 8, 'proveedor': 4, 'cliente': 2, 'atencion': 2, 'colamedica': 5, 'mascota': 1, 'cita': 0, 'bienes': Decimal('376029.00'), 'monto': 0}, {'block': <Block Node: title. Contents: [<Variable Node: title>, <TextNode: ' | '>, <Variable Node: site_title|default:_('COPAISEG site admin')>, <TextNode: ' '>]>}]"
+[2017-12-01 09:02:57] DEBUG [django.db.backends:89] (0.000) SELECT "params_person"."id", "params_person"."identity_type", "params_person"."identity_num", "params_person"."first_name", "params_person"."last_name", "params_person"."birth_date", "params_person"."photo" FROM "params_person" WHERE "params_person"."id" = 2; args=(2,)
+[2017-12-01 09:02:57] DEBUG [django.db.backends:89] (0.000) SELECT DISTINCT "sad_menu"."id", "sad_menu"."module", "sad_menu"."title", "sad_menu"."url", "sad_menu"."pos", "sad_menu"."icon", "sad_menu"."is_active", "sad_menu"."description", "sad_menu"."created_at", "sad_menu"."updated_at", "sad_menu"."permission_id", "sad_menu"."parent_id" FROM "sad_menu" INNER JOIN "sad_menu" T2 ON ("sad_menu"."id" = T2."parent_id") WHERE (T2."id" IN (SELECT U0."id" FROM "sad_menu" U0 WHERE (U0."id" IS NOT NULL AND U0."module" = 'CLINICA' AND U0."is_active" = 1)) AND "sad_menu"."module" = 'CLINICA' AND "sad_menu"."is_active" = 1) ORDER BY "sad_menu"."pos" ASC; args=('CLINICA', True, 'CLINICA', True)
+[2017-12-01 09:02:57] DEBUG [django.db.backends:89] (0.000) SELECT "sad_menu"."id", "sad_menu"."module", "sad_menu"."title", "sad_menu"."url", "sad_menu"."pos", "sad_menu"."icon", "sad_menu"."is_active", "sad_menu"."description", "sad_menu"."created_at", "sad_menu"."updated_at", "sad_menu"."permission_id", "sad_menu"."parent_id" FROM "sad_menu" WHERE ("sad_menu"."id" IS NOT NULL AND "sad_menu"."parent_id" = 101 AND "sad_menu"."module" = 'CLINICA' AND "sad_menu"."is_active" = 1) ORDER BY "sad_menu"."pos" ASC; args=(101, 'CLINICA', True)
+[2017-12-01 09:02:57] DEBUG [django.db.backends:89] (0.000) SELECT "sad_menu"."id", "sad_menu"."module", "sad_menu"."title", "sad_menu"."url", "sad_menu"."pos", "sad_menu"."icon", "sad_menu"."is_active", "sad_menu"."description", "sad_menu"."created_at", "sad_menu"."updated_at", "sad_menu"."permission_id", "sad_menu"."parent_id" FROM "sad_menu" WHERE ("sad_menu"."id" IS NOT NULL AND "sad_menu"."parent_id" = 121 AND "sad_menu"."module" = 'CLINICA' AND "sad_menu"."is_active" = 1) ORDER BY "sad_menu"."pos" ASC; args=(121, 'CLINICA', True)
+[2017-12-01 09:02:57] DEBUG [django.db.backends:89] (0.000) SELECT "sad_menu"."id", "sad_menu"."module", "sad_menu"."title", "sad_menu"."url", "sad_menu"."pos", "sad_menu"."icon", "sad_menu"."is_active", "sad_menu"."description", "sad_menu"."created_at", "sad_menu"."updated_at", "sad_menu"."permission_id", "sad_menu"."parent_id" FROM "sad_menu" WHERE ("sad_menu"."id" IS NOT NULL AND "sad_menu"."parent_id" = 106 AND "sad_menu"."module" = 'CLINICA' AND "sad_menu"."is_active" = 1) ORDER BY "sad_menu"."pos" ASC; args=(106, 'CLINICA', True)
+[2017-12-01 09:02:57] DEBUG [django.db.backends:89] (0.000) SELECT "sad_menu"."id", "sad_menu"."module", "sad_menu"."title", "sad_menu"."url", "sad_menu"."pos", "sad_menu"."icon", "sad_menu"."is_active", "sad_menu"."description", "sad_menu"."created_at", "sad_menu"."updated_at", "sad_menu"."permission_id", "sad_menu"."parent_id" FROM "sad_menu" WHERE ("sad_menu"."id" IS NOT NULL AND "sad_menu"."parent_id" = 108 AND "sad_menu"."module" = 'CLINICA' AND "sad_menu"."is_active" = 1) ORDER BY "sad_menu"."pos" ASC; args=(108, 'CLINICA', True)
+[2017-12-01 09:02:57] DEBUG [django.db.backends:89] (0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = '4okaf35cotzdmu0cqx2q3x0evznwt3cq' AND "django_session"."expire_date" > '2017-12-01 14:02:57.135388'); args=('4okaf35cotzdmu0cqx2q3x0evznwt3cq', '2017-12-01 14:02:57.135388')
