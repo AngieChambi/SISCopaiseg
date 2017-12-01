@@ -56,8 +56,8 @@
                     <i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
                     Update
                 </th>
-                <th class="col-hidden col-blocked text-center ">N° Mascotas</th>
-                <th class="text-center">Add Mascota</th>
+                <th class="col-hidden col-blocked text-center ">N° Producto</th>
+                <th class="text-center">Add Producto</th>
                 <th class="btn-actions col-blocked text-center">Acción</th>
             </tr>
             </thead>
@@ -86,11 +86,9 @@
 
 
                     <td>
-                        <a href="{% url 'clinica:mascota_list' d.pk %}"
-                           class="btn btn-warning btn-sm text-bold"
-                           title="Agregar Mascota" rel="tooltip">
-                            <i class="btn-icon-only fa fa-paw"></i>
-                        </a>
+                       <a href="#">
+          <span class="glyphicon glyphicon-plus"></span>
+        </a>
                     </td>
                     <td class="text-center">
                         <a href="{% url 'clinica:cliente_upd' d.pk %}" class="btn btn-info btn-sm text-bold"

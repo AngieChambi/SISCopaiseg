@@ -36,14 +36,14 @@ $(function() {
                 <th>#</th>
                 <th class="col-hidden" data-search="nombre" data-order="nombre">Nombre</th>
                 <th class="col-hidden" data-search="codigo">Código</th>
-                <th class="col-hidden">Fecha de Vencimiento</th>
+                <!-- <th class="col-hidden">Fecha de Vencimiento</th> -->
                 <th class="col-hidden">Categoria</th>
-                <th class="col-hidden">Precio de compras</th>
+               <!-- <th class="col-hidden">Precio de compras</th>
                 <th class="col-hidden">U. Medida Compra - Venta</th>
-                <th class="col-hidden">Precio de Venta</th>
+                <th class="col-hidden">Precio de Venta</th>  
                 <th class="col-hidden">Cantidad</th>
                 <th class="col-hidden">IGV</th>
-                <th class="col-hidden">Monto real</th>
+                <th class="col-hidden">Monto real</th>  -->
                 <th class="btn-actions col-blocked text-center">Acción</th>
             </tr>
         </thead>
@@ -58,14 +58,14 @@ $(function() {
                 </td>
                 <td>{{ d.nombre }}</td>
                 <td>{{ d.codigo }}</td>
-                <td>{{ d.fechaVencimiento }}</td>
+               <!-- <td>{{ d.fechaVencimiento }}</td> -->
                 <td><span class="label label-info">{{ d.categoria }}</span></td>
-                <td class="text-right">{{ d.precioC }}</td>
+                <!-- <td class="text-right">{{ d.precioC }}</td>
                 <td>{{ d.unidad_medida }}</td>
                 <td class="text-right">{{ d.precioV }}</td>
                 <td class="text-center"> <span class="badge {% if d.existencia < 5.0 %}badge-danger{% else %}badge-primary{% endif %}">{{ d.existencia |floatformat:"0" }}</span></td>
                 <td class="text-right">{{ d.igv }}</td>
-                <td class="text-right">{{ d.MontoReal }}</td>
+                <td class="text-right">{{ d.MontoReal }}</td> -->
                 <td class="text-center">
                     {% if d.state %}
                     <a href="{% url 'ventas:producto_upd' d.pk|key:'pro_upd' %}" class="btn btn-info btn-sm text-bold" title="Cambiar Producto

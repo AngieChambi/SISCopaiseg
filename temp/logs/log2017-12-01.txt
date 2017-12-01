@@ -1,0 +1,7 @@
+[2017-12-01 12:28:29] [WARNING] [apps.clinica.views.cliente:220] [/clinica/cliente/actualizar/2/] [127.0.0.1] [admin] Cliente "Melanie Romero" fue cambiado satisfacoriamente.
+[2017-12-01 12:39:56] [WARNING] [apps.ventas.views.Producto:115] [/ventas/producto/crear/] [127.0.0.1] [admin]  Producto "Quinua Blanca" fue creado satisfactoriamente.
+[2017-12-01 12:41:01] [WARNING] [apps.ventas.views.Producto:166] [/ventas/producto/actualizar/93.fa1a1cd25a1c92940a90d18633821688/] [127.0.0.1] [admin] Producto "Quinua Negra" fue cambiado satisfacoriamente.
+[2017-12-01 12:41:21] [WARNING] [apps.ventas.views.Producto:166] [/ventas/producto/actualizar/92.e2d19731da090eb62a4e43261e9d4d9f/] [127.0.0.1] [admin] Producto "Quinua Rosada Taraco" fue cambiado satisfacoriamente.
+[2017-12-01 12:41:35] [WARNING] [apps.ventas.views.Producto:166] [/ventas/producto/actualizar/91.df6f1e7e79b912084607049df84628e2/] [127.0.0.1] [admin] Producto "Quinua Roja" fue cambiado satisfacoriamente.
+[2017-12-01 12:42:04] [WARNING] [apps.ventas.views.Producto:166] [/ventas/producto/actualizar/90.13e3e5b9f6a25be759f99c09772205f7/] [127.0.0.1] [admin] Producto "Papa Blanca" fue cambiado satisfacoriamente.
+[2017-12-01 12:42:22] [WARNING] [apps.ventas.views.Producto:166] [/ventas/producto/actualizar/89.171228f20f1503ff2be317140789ebc4/] [127.0.0.1] [admin] Producto "Papa Huayro" fue cambiado satisfacoriamente.

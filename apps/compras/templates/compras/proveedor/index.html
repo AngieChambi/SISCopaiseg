@@ -1,7 +1,7 @@
 {% extends "main/dashboard.html" %} {% load i18n app_security %} {% load l10n humanize %} {% block breadcrumbs_item %}
 <li class="active">{{ title }}</li>
 {% endblock breadcrumbs_item %} {% block page_title %}
-<i class="fa fa-users"></i> Lista de {{ opts.verbose_name_plural }}
+<i class="fa fa-users"></i> Lista de Socios
 <small>
         <i class="ace-icon fa fa-angle-double-right"></i>
         {{ title }}
@@ -54,7 +54,7 @@ $(function() {
                 <td class="text-center">
                     {% if  d.estado %}
                         
-                    <a href="{% url 'compras:proveedor_upd' d.pk|key:'doc_upd' %}" class="btn btn-info btn-sm text-bold" title="Cambiar Proveedor" rel="tooltip">
+                    <a href="{% url 'compras:proveedor_upd' d.pk|key:'doc_upd' %}" class="btn btn-info btn-sm text-bold" title="Cambiar Socio" rel="tooltip">
                         <i class="btn-icon-only fa fa-edit"></i>
                     </a>
                     {% endif %}
